@@ -13,16 +13,11 @@ import {
   Sparkles,
   ShieldCheck,
   Star,
-  ChevronDown,
   Calendar,
   Car,
   CheckCircle2,
 } from "lucide-react";
 import heroCar from "@/assets/hero-car.jpg";
-import galleryInterior from "@/assets/gallery-interior.jpg";
-import galleryChauffeur from "@/assets/gallery-chauffeur.jpg";
-import galleryRoad from "@/assets/gallery-road.jpg";
-import galleryAirport from "@/assets/gallery-airport.jpg";
 import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
 
 const TITLE = "Eden Drive VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
@@ -89,11 +84,8 @@ function Home() {
       <Contact />
       <About />
       <Services />
-      <WhyUs />
       <Testimonials />
-      <Gallery />
       <HowToBook />
-      <Faq />
       <Footer />
     </div>
   );
@@ -104,7 +96,6 @@ function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
     { href: "#services", label: "Services" },
-    { href: "#pourquoi", label: "Pourquoi nous" },
     { href: "#avis", label: "Avis" },
     { href: "#reserver", label: "Réserver" },
     { href: "#contact", label: "Contact" },
@@ -345,53 +336,6 @@ function Services() {
   );
 }
 
-/* ---------- Why Us ---------- */
-function WhyUs() {
-  const points = [
-    { title: "Véhicule d'exception", text: "Berlines premium récentes, entretien impeccable, équipements haut de gamme." },
-    { title: "Chauffeur professionnel", text: "Formés, discrets, ponctuels. Costume, gants, savoir-être irréprochable." },
-    { title: "Service premium", text: "Eau, presse, chargeurs, Wi-Fi. Attentions pensées pour vous." },
-    { title: "Disponibilité 24/7", text: "7 jours sur 7, jour et nuit, réservation express possible." },
-    { title: "Tarifs transparents", text: "Forfait ferme communiqué à l'avance. Aucune surprise, aucun supplément caché." },
-    { title: "Confidentialité totale", text: "Discrétion absolue sur vos trajets et rendez-vous." },
-  ];
-  return (
-    <section id="pourquoi" className="relative border-t border-border/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-start">
-          <div className="md:sticky md:top-32">
-            <span className="text-xs uppercase tracking-[0.3em] text-silver">Notre différence</span>
-            <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              Pourquoi choisir <br />
-              <em className="text-silver-gradient not-italic">Eden Drive VTC</em>
-            </h2>
-            <div className="hairline my-6 w-24" />
-            <p className="text-muted-foreground">
-              Six promesses tenues à chaque course. C'est ce qui distingue une prestation
-              premium d'un simple trajet.
-            </p>
-          </div>
-          <ul className="divide-y divide-border/60">
-            {points.map((p, i) => (
-              <li key={p.title} className="group flex gap-6 py-8 first:pt-0">
-                <span className="font-display text-2xl text-silver/70 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-display text-2xl transition-colors group-hover:text-silver">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground sm:text-base">{p.text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- Testimonials ---------- */
 function Testimonials() {
   const reviews = [
@@ -451,49 +395,6 @@ function Testimonials() {
   );
 }
 
-/* ---------- Gallery ---------- */
-function Gallery() {
-  const items = [
-    { src: galleryChauffeur, alt: "Chauffeur privé Eden Drive VTC en costume", tall: true },
-    { src: galleryInterior, alt: "Intérieur cuir premium de la berline Eden Drive" },
-    { src: galleryRoad, alt: "Berline noire en route au coucher du soleil" },
-    { src: galleryAirport, alt: "Transfert aéroport Toulouse-Blagnac" },
-  ];
-  return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <span className="text-xs uppercase tracking-[0.3em] text-silver">Galerie</span>
-            <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              L'univers <em className="text-silver-gradient not-italic">Eden</em>
-            </h2>
-          </div>
-          <div className="hairline w-40" />
-        </div>
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
-          {items.map((it, i) => (
-            <figure
-              key={i}
-              className={`group relative overflow-hidden rounded-xl ${
-                it.tall ? "row-span-2 aspect-[3/5]" : "aspect-square"
-              }`}
-            >
-              <img
-                src={it.src}
-                alt={it.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70" />
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- How to book ---------- */
 function HowToBook() {
   const steps = [
@@ -540,77 +441,6 @@ function HowToBook() {
         </div>
       </div>
     </section>
-  );
-}
-
-/* ---------- FAQ ---------- */
-function Faq() {
-  const items = [
-    {
-      q: "Dans quelles zones intervenez-vous ?",
-      a: "Toulouse, Blagnac, la métropole toulousaine et toute l'Occitanie. Nous assurons également des longs trajets partout en France.",
-    },
-    {
-      q: "Comment se déroule un transfert aéroport ?",
-      a: "Nous suivons votre vol en temps réel. Votre chauffeur vous accueille en zone d'arrivée avec pancarte nominative et prend en charge vos bagages.",
-    },
-    {
-      q: "Vos tarifs sont-ils fixes ?",
-      a: "Oui. Nous communiquons un tarif ferme à la réservation, sans supplément caché : bagages, attente courte et péages sont inclus.",
-    },
-    {
-      q: "Quels moyens de paiement acceptez-vous ?",
-      a: "Carte bancaire, espèces, virement, et facturation professionnelle sur demande.",
-    },
-    {
-      q: "Puis-je réserver à la dernière minute ?",
-      a: "Oui, sous réserve de disponibilité. Contactez-nous par téléphone ou WhatsApp pour une réponse immédiate.",
-    },
-    {
-      q: "Quel type de véhicule proposez-vous ?",
-      a: "Berlines premium récentes (Mercedes Classe E / S ou équivalent), intérieur cuir, Wi-Fi, eau et attentions à bord.",
-    },
-  ];
-  return (
-    <section id="faq" className="relative border-t border-border/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl px-5 sm:px-8">
-        <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-silver">Questions fréquentes</span>
-          <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">FAQ</h2>
-          <div className="hairline mx-auto my-6 w-24" />
-        </div>
-        <div className="mt-12 divide-y divide-border/60">
-          {items.map((it, i) => (
-            <FaqItem key={i} q={it.q} a={it.a} defaultOpen={i === 0} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FaqItem({ q, a, defaultOpen = false }: { q: string; a: string; defaultOpen?: boolean }) {
-  const [open, setOpen] = useState(defaultOpen);
-  return (
-    <div className="py-6">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-6 text-left"
-        aria-expanded={open}
-      >
-        <span className="font-display text-lg sm:text-xl">{q}</span>
-        <ChevronDown
-          className={`h-5 w-5 shrink-0 text-silver transition-transform duration-500 ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-      <div
-        className={`grid transition-all duration-500 ease-out ${open ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
-      >
-        <div className="overflow-hidden">
-          <p className="text-muted-foreground">{a}</p>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -787,7 +617,6 @@ function Footer() {
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
             <a href="#services" className="hover:text-silver">Services</a>
-            <a href="#pourquoi" className="hover:text-silver">Pourquoi nous</a>
             <a href="#avis" className="hover:text-silver">Avis</a>
             <a href="#reserver" className="hover:text-silver">Réserver</a>
             <a href="#contact" className="hover:text-silver">Contact</a>
