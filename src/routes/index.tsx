@@ -58,8 +58,8 @@ export const Route = createFileRoute("/")({
           name: "Eden Drive VTC",
           description: DESCRIPTION,
           image: heroCar,
-          telephone: "+33 6 00 00 00 00",
-          email: "contact@edendrive-vtc.fr",
+          telephone: "+33 6 35 58 58 23",
+          email: "edendrivevtc@gmail.com",
           areaServed: ["Toulouse", "Blagnac", "Occitanie"],
           address: {
             "@type": "PostalAddress",
@@ -76,8 +76,8 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const PHONE_DISPLAY = "+33 6 00 00 00 00";
-const PHONE_TEL = "+33600000000";
+const PHONE_DISPLAY = "+33 6 35 58 58 23";
+const PHONE_TEL = "+33635585823";
 const WHATSAPP = "https://wa.me/33600000000";
 
 function Home() {
@@ -114,7 +114,7 @@ function Nav() {
         <a href="#top" className="flex items-center gap-2 text-lg font-medium tracking-wide">
           <Logo className="h-7 w-7" />
           <span className="font-display text-xl">
-            Eden <span className="text-gold-gradient">Drive</span>
+            Eden <span className="text-silver-gradient">Drive</span>
           </span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
@@ -122,21 +122,21 @@ function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-gold"
+              className="text-sm text-muted-foreground transition-colors hover:text-silver"
             >
               {l.label}
             </a>
           ))}
           <a
             href={`tel:${PHONE_TEL}`}
-            className="btn-gold inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium"
+            className="btn-silver inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium"
           >
             <Phone className="h-4 w-4" /> Appeler
           </a>
         </nav>
         <button
           aria-label="Menu"
-          className="rounded-full border border-border p-2 text-gold md:hidden"
+          className="rounded-full border border-border p-2 text-silver md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           <div className="space-y-1">
@@ -161,7 +161,7 @@ function Nav() {
             ))}
             <a
               href={`tel:${PHONE_TEL}`}
-              className="btn-gold inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium"
+              className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium"
             >
               <Phone className="h-4 w-4" /> Nous appeler
             </a>
@@ -177,8 +177,8 @@ function Logo({ className = "" }: { className?: string }) {
     <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
       <defs>
         <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#EBD9A6" />
-          <stop offset="1" stopColor="#B8934A" />
+          <stop offset="0" stopColor="#E8E8E8" />
+          <stop offset="1" stopColor="#A0A0A0" />
         </linearGradient>
       </defs>
       <circle cx="20" cy="20" r="18" fill="none" stroke="url(#lg)" strokeWidth="1.2" />
@@ -219,11 +219,11 @@ function Hero() {
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 sm:pb-24 md:justify-center">
         <div className="max-w-3xl animate-fade-up">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-black/30 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-gold backdrop-blur">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-silver/40 bg-black/30 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-silver backdrop-blur">
             <Sparkles className="h-3.5 w-3.5" /> Toulouse · Blagnac · Occitanie
           </div>
           <h1 className="font-display text-4xl leading-[1.05] text-ivory sm:text-6xl md:text-7xl">
-            Eden Drive <span className="text-gold-gradient">VTC</span>
+            Eden Drive <span className="text-silver-gradient">VTC</span>
           </h1>
           <div className="hairline my-6 w-40" />
           <p className="max-w-xl text-lg text-ivory/85 sm:text-xl">
@@ -236,22 +236,22 @@ function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
               href="#reserver"
-              className="btn-gold inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+              className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
             >
               <Calendar className="h-4 w-4" /> Réserver maintenant
             </a>
             <a
               href={`tel:${PHONE_TEL}`}
-              className="btn-ghost-gold inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+              className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
             >
               <Phone className="h-4 w-4" /> Nous appeler
             </a>
           </div>
 
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs uppercase tracking-widest text-ivory/60">
-            <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-gold" /> Chauffeurs certifiés</span>
-            <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold" /> Disponible 24/7</span>
-            <span className="flex items-center gap-2"><Star className="h-4 w-4 text-gold" /> Service 5 étoiles</span>
+            <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-silver" /> Chauffeurs certifiés</span>
+            <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-silver" /> Disponible 24/7</span>
+            <span className="flex items-center gap-2"><Star className="h-4 w-4 text-silver" /> Service 5 étoiles</span>
           </div>
         </div>
       </div>
@@ -271,9 +271,9 @@ function About() {
     <section id="about" className="relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 md:grid-cols-2 md:items-center">
         <div>
-          <span className="text-xs uppercase tracking-[0.3em] text-gold">Notre maison</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-silver">Notre maison</span>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            L'art du voyage <em className="text-gold-gradient not-italic">privé</em>
+            L'art du voyage <em className="text-silver-gradient not-italic">privé</em>
           </h2>
           <div className="hairline my-6 w-24" />
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -291,7 +291,7 @@ function About() {
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
           {pillars.map((p) => (
             <div key={p.title} className="luxe-card rounded-xl p-5 sm:p-7">
-              <p.icon className="h-6 w-6 text-gold" strokeWidth={1.4} />
+              <p.icon className="h-6 w-6 text-silver" strokeWidth={1.4} />
               <h3 className="mt-4 font-display text-xl">{p.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{p.text}</p>
             </div>
@@ -318,9 +318,9 @@ function Services() {
     <section id="services" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-gold">Prestations</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-silver">Prestations</span>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            Nos <em className="text-gold-gradient not-italic">services</em>
+            Nos <em className="text-silver-gradient not-italic">services</em>
           </h2>
           <div className="hairline mx-auto my-6 w-24" />
           <p className="text-muted-foreground">
@@ -330,8 +330,8 @@ function Services() {
         <div className="mt-16 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => (
             <article key={s.title} className="luxe-card group rounded-2xl p-7">
-              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-gold/5">
-                <s.icon className="h-5 w-5 text-gold" strokeWidth={1.4} />
+              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
+                <s.icon className="h-5 w-5 text-silver" strokeWidth={1.4} />
               </div>
               <h3 className="font-display text-2xl">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
@@ -358,10 +358,10 @@ function WhyUs() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-start">
           <div className="md:sticky md:top-32">
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Notre différence</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-silver">Notre différence</span>
             <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
               Pourquoi choisir <br />
-              <em className="text-gold-gradient not-italic">Eden Drive VTC</em>
+              <em className="text-silver-gradient not-italic">Eden Drive VTC</em>
             </h2>
             <div className="hairline my-6 w-24" />
             <p className="text-muted-foreground">
@@ -372,11 +372,11 @@ function WhyUs() {
           <ul className="divide-y divide-border/60">
             {points.map((p, i) => (
               <li key={p.title} className="group flex gap-6 py-8 first:pt-0">
-                <span className="font-display text-2xl text-gold/70 tabular-nums">
+                <span className="font-display text-2xl text-silver/70 tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="font-display text-2xl transition-colors group-hover:text-gold">
+                  <h3 className="font-display text-2xl transition-colors group-hover:text-silver">
                     {p.title}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground sm:text-base">{p.text}</p>
@@ -418,16 +418,16 @@ function Testimonials() {
     <section id="avis" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-gold">Témoignages</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-silver">Témoignages</span>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            Ils nous font <em className="text-gold-gradient not-italic">confiance</em>
+            Ils nous font <em className="text-silver-gradient not-italic">confiance</em>
           </h2>
           <div className="hairline mx-auto my-6 w-24" />
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r) => (
             <figure key={r.name} className="luxe-card flex h-full flex-col rounded-2xl p-7">
-              <div className="flex gap-1 text-gold">
+              <div className="flex gap-1 text-silver">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="h-4 w-4 fill-current" />
                 ))}
@@ -462,9 +462,9 @@ function Gallery() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Galerie</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-silver">Galerie</span>
             <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              L'univers <em className="text-gold-gradient not-italic">Eden</em>
+              L'univers <em className="text-silver-gradient not-italic">Eden</em>
             </h2>
           </div>
           <div className="hairline w-40" />
@@ -504,9 +504,9 @@ function HowToBook() {
     <section id="reserver" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-gold">Réservation</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            Comment <em className="text-gold-gradient not-italic">réserver</em>
+            Comment <em className="text-silver-gradient not-italic">réserver</em>
           </h2>
           <div className="hairline mx-auto my-6 w-24" />
           <p className="text-muted-foreground">Une réservation simple, rapide et sans engagement.</p>
@@ -514,7 +514,7 @@ function HowToBook() {
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div key={s.n} className="luxe-card relative rounded-2xl p-7">
-              <div className="font-display text-5xl text-gold-gradient">{s.n}</div>
+              <div className="font-display text-5xl text-silver-gradient">{s.n}</div>
               <h3 className="mt-4 font-display text-xl">{s.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
             </div>
@@ -523,7 +523,7 @@ function HowToBook() {
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={`tel:${PHONE_TEL}`}
-            className="btn-gold inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <Phone className="h-4 w-4" /> Réserver par téléphone
           </a>
@@ -531,7 +531,7 @@ function HowToBook() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener"
-            className="btn-ghost-gold inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
@@ -573,7 +573,7 @@ function Faq() {
     <section id="faq" className="relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-5 sm:px-8">
         <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-gold">Questions fréquentes</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-silver">Questions fréquentes</span>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">FAQ</h2>
           <div className="hairline mx-auto my-6 w-24" />
         </div>
@@ -598,7 +598,7 @@ function FaqItem({ q, a, defaultOpen = false }: { q: string; a: string; defaultO
       >
         <span className="font-display text-lg sm:text-xl">{q}</span>
         <ChevronDown
-          className={`h-5 w-5 shrink-0 text-gold transition-transform duration-500 ${open ? "rotate-180" : ""}`}
+          className={`h-5 w-5 shrink-0 text-silver transition-transform duration-500 ${open ? "rotate-180" : ""}`}
         />
       </button>
       <div
@@ -620,9 +620,9 @@ function Contact() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-14 md:grid-cols-2">
           <div>
-            <span className="text-xs uppercase tracking-[0.3em] text-gold">Contact</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact</span>
             <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              À votre <em className="text-gold-gradient not-italic">service</em>
+              À votre <em className="text-silver-gradient not-italic">service</em>
             </h2>
             <div className="hairline my-6 w-24" />
             <p className="max-w-md text-muted-foreground">
@@ -632,30 +632,30 @@ function Contact() {
 
             <ul className="mt-10 space-y-5">
               <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-gold/5">
-                  <Phone className="h-4 w-4 text-gold" />
+                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
+                  <Phone className="h-4 w-4 text-silver" />
                 </span>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-muted-foreground">Téléphone</div>
-                  <a href={`tel:${PHONE_TEL}`} className="text-lg font-medium hover:text-gold">
+                  <a href={`tel:${PHONE_TEL}`} className="text-lg font-medium hover:text-silver">
                     {PHONE_DISPLAY}
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-gold/5">
-                  <Mail className="h-4 w-4 text-gold" />
+                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
+                  <Mail className="h-4 w-4 text-silver" />
                 </span>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-muted-foreground">E-mail</div>
-                  <a href="mailto:contact@edendrive-vtc.fr" className="text-lg font-medium hover:text-gold">
-                    contact@edendrive-vtc.fr
+                  <a href="mailto:edendrivevtc@gmail.com" className="text-lg font-medium hover:text-silver">
+                    edendrivevtc@gmail.com
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-gold/5">
-                  <MapPin className="h-4 w-4 text-gold" />
+                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
+                  <MapPin className="h-4 w-4 text-silver" />
                 </span>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-muted-foreground">Zone</div>
@@ -667,7 +667,7 @@ function Contact() {
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a
                 href={`tel:${PHONE_TEL}`}
-                className="btn-gold inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+                className="btn-silver inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
               >
                 <Phone className="h-4 w-4" /> Appeler
               </a>
@@ -675,7 +675,7 @@ function Contact() {
                 href={WHATSAPP}
                 target="_blank"
                 rel="noopener"
-                className="btn-ghost-gold inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+                className="btn-ghost-silver inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
               >
                 <MessageCircle className="h-4 w-4" /> WhatsApp
               </a>
@@ -715,19 +715,19 @@ function Contact() {
                 <textarea
                   name="message"
                   rows={3}
-                  className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-gold"
+                  className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
                   placeholder="Précisions, bagages, vol, etc."
                 />
               </div>
               <button
                 type="submit"
-                className="btn-gold inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+                className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
               >
                 <Calendar className="h-4 w-4" />
                 {sent ? "Demande envoyée" : "Demander un devis"}
               </button>
               {sent && (
-                <p className="flex items-center gap-2 text-sm text-gold">
+                <p className="flex items-center gap-2 text-sm text-silver">
                   <CheckCircle2 className="h-4 w-4" />
                   Merci — nous vous recontactons très vite.
                 </p>
@@ -757,7 +757,7 @@ function Field({
     <div>
       <label htmlFor={name} className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
         {label}
-        {required && <span className="text-gold"> *</span>}
+        {required && <span className="text-silver"> *</span>}
       </label>
       <input
         id={name}
@@ -765,7 +765,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-gold"
+        className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
       />
     </div>
   );
@@ -781,7 +781,7 @@ function Footer() {
             <Logo className="h-8 w-8" />
             <div>
               <div className="font-display text-xl">
-                Eden <span className="text-gold-gradient">Drive VTC</span>
+                Eden <span className="text-silver-gradient">Drive VTC</span>
               </div>
               <div className="text-xs uppercase tracking-widest text-muted-foreground">
                 Chauffeur privé haut de gamme
@@ -789,11 +789,11 @@ function Footer() {
             </div>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-gold">Services</a>
-            <a href="#pourquoi" className="hover:text-gold">Pourquoi nous</a>
-            <a href="#avis" className="hover:text-gold">Avis</a>
-            <a href="#reserver" className="hover:text-gold">Réserver</a>
-            <a href="#contact" className="hover:text-gold">Contact</a>
+            <a href="#services" className="hover:text-silver">Services</a>
+            <a href="#pourquoi" className="hover:text-silver">Pourquoi nous</a>
+            <a href="#avis" className="hover:text-silver">Avis</a>
+            <a href="#reserver" className="hover:text-silver">Réserver</a>
+            <a href="#contact" className="hover:text-silver">Contact</a>
           </div>
         </div>
         <div className="hairline my-8" />
