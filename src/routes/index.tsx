@@ -13,16 +13,11 @@ import {
   Sparkles,
   ShieldCheck,
   Star,
-  ChevronDown,
   Calendar,
   Car,
   CheckCircle2,
 } from "lucide-react";
 import heroCar from "@/assets/hero-car.jpg";
-import galleryInterior from "@/assets/gallery-interior.jpg";
-import galleryChauffeur from "@/assets/gallery-chauffeur.jpg";
-import galleryRoad from "@/assets/gallery-road.jpg";
-import galleryAirport from "@/assets/gallery-airport.jpg";
 import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
 
 const TITLE = "Eden Drive VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
@@ -89,11 +84,8 @@ function Home() {
       <Contact />
       <About />
       <Services />
-      <WhyUs />
       <Testimonials />
-      <Gallery />
       <HowToBook />
-      <Faq />
       <Footer />
     </div>
   );
@@ -104,7 +96,6 @@ function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
     { href: "#services", label: "Services" },
-    { href: "#pourquoi", label: "Pourquoi nous" },
     { href: "#avis", label: "Avis" },
     { href: "#reserver", label: "Réserver" },
     { href: "#contact", label: "Contact" },
