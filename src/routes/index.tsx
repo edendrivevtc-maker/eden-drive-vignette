@@ -85,6 +85,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <Hero />
+      <Contact />
       <About />
       <Services />
       <WhyUs />
@@ -92,7 +93,6 @@ function Home() {
       <Gallery />
       <HowToBook />
       <Faq />
-      <Contact />
       <Footer />
     </div>
   );
@@ -128,6 +128,14 @@ function Nav() {
             </a>
           ))}
           <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener"
+            className="btn-ghost-silver inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium"
+          >
+            <MessageCircle className="h-4 w-4" /> WhatsApp
+          </a>
+          <a
             href={`tel:${PHONE_TEL}`}
             className="btn-silver inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium"
           >
@@ -159,6 +167,14 @@ function Nav() {
                 {l.label}
               </a>
             ))}
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener"
+              className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium"
+            >
+              <MessageCircle className="h-4 w-4" /> WhatsApp
+            </a>
             <a
               href={`tel:${PHONE_TEL}`}
               className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium"
