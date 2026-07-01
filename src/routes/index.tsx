@@ -112,11 +112,8 @@ function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#top" className="flex items-center gap-2 text-lg font-medium tracking-wide">
-          <Logo className="h-7 w-7" />
-          <span className="font-display text-xl">
-            Eden <span className="text-silver-gradient">Drive</span>
-          </span>
+        <a href="#top" className="flex items-center">
+          <Logo className="h-9 w-auto" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
