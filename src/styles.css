@@ -6,7 +6,7 @@
 
 /*
  * Eden Drive VTC — luxury design system
- * Black · Ivory · Gold
+ * Black · Ivory · Silver
  */
 
 @theme inline {
@@ -29,9 +29,9 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
-  --color-gold-deep: var(--gold-deep);
+  --color-silver: var(--silver);
+  --color-silver-soft: var(--silver-soft);
+  --color-silver-deep: var(--silver-deep);
   --color-ivory: var(--ivory);
   --color-onyx: var(--onyx);
   --color-border: var(--border);
@@ -50,34 +50,34 @@
   --onyx: oklch(0.13 0.006 60);
   --ivory: oklch(0.96 0.01 85);
 
-  --gold: oklch(0.78 0.12 82);
-  --gold-soft: oklch(0.86 0.08 85);
-  --gold-deep: oklch(0.62 0.13 70);
+  --silver: oklch(0.75 0.02 260);
+  --silver-soft: oklch(0.88 0.01 260);
+  --silver-deep: oklch(0.58 0.025 260);
 
   --card: oklch(0.12 0.005 60);
   --card-foreground: oklch(0.96 0.008 80);
   --popover: oklch(0.12 0.005 60);
   --popover-foreground: oklch(0.96 0.008 80);
 
-  --primary: oklch(0.78 0.12 82);
+  --primary: oklch(0.75 0.02 260);
   --primary-foreground: oklch(0.09 0.005 60);
   --secondary: oklch(0.18 0.006 60);
   --secondary-foreground: oklch(0.96 0.008 80);
   --muted: oklch(0.16 0.006 60);
   --muted-foreground: oklch(0.66 0.01 75);
-  --accent: oklch(0.78 0.12 82);
+  --accent: oklch(0.75 0.02 260);
   --accent-foreground: oklch(0.09 0.005 60);
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.96 0.008 80);
 
   --border: oklch(0.24 0.01 75 / 60%);
   --input: oklch(0.22 0.01 75);
-  --ring: oklch(0.78 0.12 82);
+  --ring: oklch(0.75 0.02 260);
 
-  --gradient-gold: linear-gradient(135deg, oklch(0.86 0.08 85), oklch(0.72 0.14 75));
+  --gradient-silver: linear-gradient(135deg, oklch(0.88 0.01 260), oklch(0.66 0.02 260));
   --gradient-hero: linear-gradient(180deg, oklch(0.05 0 0 / 0.35) 0%, oklch(0.05 0 0 / 0.75) 60%, oklch(0.05 0 0 / 0.95) 100%);
-  --gradient-veil: radial-gradient(60% 50% at 50% 0%, oklch(0.78 0.12 82 / 0.08), transparent 70%);
-  --shadow-gold: 0 20px 60px -20px oklch(0.78 0.12 82 / 0.35);
+  --gradient-veil: radial-gradient(60% 50% at 50% 0%, oklch(0.75 0.02 260 / 0.08), transparent 70%);
+  --shadow-silver: 0 20px 60px -20px oklch(0.75 0.02 260 / 0.35);
   --shadow-luxe: 0 30px 80px -30px oklch(0 0 0 / 0.8);
 
   --transition-smooth: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -108,13 +108,13 @@
   }
 
   ::selection {
-    background: var(--gold);
+    background: var(--silver);
     color: var(--onyx);
   }
 }
 
-@utility text-gold-gradient {
-  background: var(--gradient-gold);
+@utility text-silver-gradient {
+  background: var(--gradient-silver);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -122,27 +122,27 @@
 
 @utility hairline {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+  background: linear-gradient(90deg, transparent, var(--silver) 50%, transparent);
 }
 
-@utility btn-gold {
-  background: var(--gradient-gold);
+@utility btn-silver {
+  background: var(--gradient-silver);
   color: var(--onyx);
   transition: transform 0.4s var(--transition-smooth), box-shadow 0.4s var(--transition-smooth), filter 0.4s var(--transition-smooth);
-  box-shadow: var(--shadow-gold);
+  box-shadow: var(--shadow-silver);
   &:hover {
     transform: translateY(-2px);
     filter: brightness(1.05);
   }
 }
 
-@utility btn-ghost-gold {
-  border: 1px solid var(--gold);
-  color: var(--gold);
+@utility btn-ghost-silver {
+  border: 1px solid var(--silver);
+  color: var(--silver);
   background: transparent;
   transition: all 0.4s var(--transition-smooth);
   &:hover {
-    background: var(--gold);
+    background: var(--silver);
     color: var(--onyx);
   }
 }
@@ -152,7 +152,7 @@
   border: 1px solid var(--color-border);
   transition: border-color 0.4s var(--transition-smooth), transform 0.4s var(--transition-smooth);
   &:hover {
-    border-color: var(--gold);
+    border-color: var(--silver);
     transform: translateY(-4px);
   }
 }
