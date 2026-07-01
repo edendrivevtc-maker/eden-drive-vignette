@@ -336,53 +336,6 @@ function Services() {
   );
 }
 
-/* ---------- Why Us ---------- */
-function WhyUs() {
-  const points = [
-    { title: "Véhicule d'exception", text: "Berlines premium récentes, entretien impeccable, équipements haut de gamme." },
-    { title: "Chauffeur professionnel", text: "Formés, discrets, ponctuels. Costume, gants, savoir-être irréprochable." },
-    { title: "Service premium", text: "Eau, presse, chargeurs, Wi-Fi. Attentions pensées pour vous." },
-    { title: "Disponibilité 24/7", text: "7 jours sur 7, jour et nuit, réservation express possible." },
-    { title: "Tarifs transparents", text: "Forfait ferme communiqué à l'avance. Aucune surprise, aucun supplément caché." },
-    { title: "Confidentialité totale", text: "Discrétion absolue sur vos trajets et rendez-vous." },
-  ];
-  return (
-    <section id="pourquoi" className="relative border-t border-border/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-start">
-          <div className="md:sticky md:top-32">
-            <span className="text-xs uppercase tracking-[0.3em] text-silver">Notre différence</span>
-            <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              Pourquoi choisir <br />
-              <em className="text-silver-gradient not-italic">Eden Drive VTC</em>
-            </h2>
-            <div className="hairline my-6 w-24" />
-            <p className="text-muted-foreground">
-              Six promesses tenues à chaque course. C'est ce qui distingue une prestation
-              premium d'un simple trajet.
-            </p>
-          </div>
-          <ul className="divide-y divide-border/60">
-            {points.map((p, i) => (
-              <li key={p.title} className="group flex gap-6 py-8 first:pt-0">
-                <span className="font-display text-2xl text-silver/70 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-display text-2xl transition-colors group-hover:text-silver">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground sm:text-base">{p.text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- Testimonials ---------- */
 function Testimonials() {
   const reviews = [
