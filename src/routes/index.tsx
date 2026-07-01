@@ -309,7 +309,7 @@ function Services() {
     { icon: Train, title: "Transfert gare", text: "Gare Matabiau et gares régionales, accueil quai avec pancarte." },
     { icon: Hotel, title: "Transferts hôtels", text: "Prise en charge à votre hôtel, palace ou résidence." },
     { icon: Car, title: "Longs trajets", text: "Interville et longue distance dans toute la France." },
-    { icon: Clock, title: "Mise à disposition", city: true, title2: "Mise à disposition", text: "Votre chauffeur à l'heure ou à la journée, disponibilité totale." },
+    { icon: Clock, title: "Mise à disposition", text: "Votre chauffeur à l'heure ou à la journée, disponibilité totale." },
     { icon: Briefcase, title: "Déplacements pros", text: "Roadshows, rendez-vous d'affaires, événements corporate." },
     { icon: Sparkles, title: "Événements privés", text: "Mariages, galas, soirées prestige, arrivées remarquées." },
     { icon: ShieldCheck, title: "Service VIP", text: "Personnalités, artistes, protocole sur mesure." },
