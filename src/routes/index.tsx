@@ -191,23 +191,11 @@ function Nav() {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <defs>
-        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#E8E8E8" />
-          <stop offset="1" stopColor="#A0A0A0" />
-        </linearGradient>
-      </defs>
-      <circle cx="20" cy="20" r="18" fill="none" stroke="url(#lg)" strokeWidth="1.2" />
-      <path
-        d="M13 26 L20 12 L27 26 M16 22 H24"
-        fill="none"
-        stroke="url(#lg)"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <img
+      src={logoAsset.url}
+      alt="Eden Drive VTC"
+      className={`h-10 w-auto object-contain ${className}`}
+    />
   );
 }
 
