@@ -23,6 +23,7 @@ import galleryInterior from "@/assets/gallery-interior.jpg";
 import galleryChauffeur from "@/assets/gallery-chauffeur.jpg";
 import galleryRoad from "@/assets/gallery-road.jpg";
 import galleryAirport from "@/assets/gallery-airport.jpg";
+import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
 
 const TITLE = "Eden Drive VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
 const DESCRIPTION =
