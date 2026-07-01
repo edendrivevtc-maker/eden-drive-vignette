@@ -78,7 +78,7 @@ export const Route = createFileRoute("/")({
 
 const PHONE_DISPLAY = "+33 6 35 58 58 23";
 const PHONE_TEL = "+33635585823";
-const WHATSAPP = "https://wa.me/33600000000";
+const WHATSAPP = "https://wa.me/33635585823";
 
 function Home() {
   return (
