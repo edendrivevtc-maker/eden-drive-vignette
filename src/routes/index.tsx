@@ -85,6 +85,7 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <Hero />
+      <Contact />
       <About />
       <Services />
       <WhyUs />
@@ -92,7 +93,6 @@ function Home() {
       <Gallery />
       <HowToBook />
       <Faq />
-      <Contact />
       <Footer />
     </div>
   );
