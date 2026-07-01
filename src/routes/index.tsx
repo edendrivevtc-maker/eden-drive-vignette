@@ -779,15 +779,10 @@ function Footer() {
     <footer className="border-t border-border/40 bg-background py-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div className="flex items-center gap-3">
-            <Logo className="h-8 w-8" />
-            <div>
-              <div className="font-display text-xl">
-                Eden <span className="text-silver-gradient">Drive VTC</span>
-              </div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                Chauffeur privé haut de gamme
-              </div>
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <Logo className="h-12 w-auto" />
+            <div className="text-xs uppercase tracking-widest text-muted-foreground">
+              Chauffeur privé haut de gamme
             </div>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
