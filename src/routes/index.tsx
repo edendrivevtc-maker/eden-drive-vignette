@@ -23,6 +23,7 @@ import galleryInterior from "@/assets/gallery-interior.jpg";
 import galleryChauffeur from "@/assets/gallery-chauffeur.jpg";
 import galleryRoad from "@/assets/gallery-road.jpg";
 import galleryAirport from "@/assets/gallery-airport.jpg";
+import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
 
 const TITLE = "Eden Drive VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
 const DESCRIPTION =
@@ -110,12 +111,9 @@ function Nav() {
   ];
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#top" className="flex items-center gap-2 text-lg font-medium tracking-wide">
-          <Logo className="h-7 w-7" />
-          <span className="font-display text-xl">
-            Eden <span className="text-silver-gradient">Drive</span>
-          </span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
+        <a href="#top" className="flex items-center">
+          <Logo className="h-16 w-auto" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -190,23 +188,11 @@ function Nav() {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <defs>
-        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#E8E8E8" />
-          <stop offset="1" stopColor="#A0A0A0" />
-        </linearGradient>
-      </defs>
-      <circle cx="20" cy="20" r="18" fill="none" stroke="url(#lg)" strokeWidth="1.2" />
-      <path
-        d="M13 26 L20 12 L27 26 M16 22 H24"
-        fill="none"
-        stroke="url(#lg)"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <img
+      src={logoAsset.url}
+      alt="Eden Drive VTC"
+      className={`h-10 w-auto object-contain ${className}`}
+    />
   );
 }
 
@@ -793,15 +779,10 @@ function Footer() {
     <footer className="border-t border-border/40 bg-background py-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div className="flex items-center gap-3">
-            <Logo className="h-8 w-8" />
-            <div>
-              <div className="font-display text-xl">
-                Eden <span className="text-silver-gradient">Drive VTC</span>
-              </div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                Chauffeur privé haut de gamme
-              </div>
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <Logo className="h-12 w-auto" />
+            <div className="text-xs uppercase tracking-widest text-muted-foreground">
+              Chauffeur privé haut de gamme
             </div>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
