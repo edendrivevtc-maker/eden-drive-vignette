@@ -514,63 +514,58 @@ function Contact() {
 
 
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
-            className="luxe-card rounded-2xl p-7 sm:p-10"
-          >
-            <h3 className="font-display text-2xl">Demande de réservation</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Nous vous répondons sous 15 minutes.
-            </p>
-
-            <div className="mt-8 space-y-5">
-              <Field label="Nom complet" name="name" required />
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Téléphone" name="phone" type="tel" required />
-                <Field label="E-mail" name="email" type="email" />
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Départ" name="from" placeholder="Adresse ou aéroport" required />
-                <Field label="Destination" name="to" required />
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Date & heure" name="datetime" type="datetime-local" required />
-                <Field label="Passagers" name="pax" type="number" placeholder="2" />
-              </div>
-              <div>
-                <label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  rows={3}
-                  className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
-                  placeholder="Précisions, bagages, vol, etc."
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-              >
-                <Calendar className="h-4 w-4" />
-                {sent ? "Demande envoyée" : "Demander un devis"}
-              </button>
-              {sent && (
-                <p className="flex items-center gap-2 text-sm text-silver">
-                  <CheckCircle2 className="h-4 w-4" />
-                  Merci — nous vous recontactons très vite.
-                </p>
-              )}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSent(true);
+          }}
+          className="luxe-card mt-10 rounded-2xl p-7 sm:p-10"
+        >
+          <div className="space-y-5">
+            <Field label="Nom complet" name="name" required />
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Téléphone" name="phone" type="tel" required />
+              <Field label="E-mail" name="email" type="email" />
             </div>
-          </form>
-        </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Départ" name="from" placeholder="Adresse ou aéroport" required />
+              <Field label="Destination" name="to" required />
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Date & heure" name="datetime" type="datetime-local" required />
+              <Field label="Passagers" name="pax" type="number" placeholder="2" />
+            </div>
+            <div>
+              <label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
+                Message
+              </label>
+              <textarea
+                name="message"
+                rows={3}
+                className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
+                placeholder="Précisions, bagages, vol, etc."
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+            >
+              <Calendar className="h-4 w-4" />
+              {sent ? "Demande envoyée" : "Demander un devis"}
+            </button>
+            {sent && (
+              <p className="flex items-center gap-2 text-sm text-silver">
+                <CheckCircle2 className="h-4 w-4" />
+                Merci — nous vous recontactons très vite.
+              </p>
+            )}
+          </div>
+        </form>
       </div>
     </section>
   );
 }
+
 
 function Field({
   label,
