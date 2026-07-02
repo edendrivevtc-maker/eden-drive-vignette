@@ -82,14 +82,14 @@ function Home() {
       <Nav />
       <Hero />
       <Contact />
-      <About />
       <Services />
+      <ContactCTA />
       <Testimonials />
-      <HowToBook />
       <Footer />
     </div>
   );
 }
+
 
 /* ---------- Navigation ---------- */
 function Nav() {
