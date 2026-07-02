@@ -512,67 +512,7 @@ function Contact() {
           </p>
         </div>
 
-            <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact</span>
-            <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              À votre <em className="text-silver-gradient not-italic">service</em>
-            </h2>
-            <div className="hairline my-6 w-24" />
-            <p className="max-w-md text-muted-foreground">
-              Notre conciergerie répond à vos demandes 24h/24, 7j/7. Réponse
-              immédiate par téléphone ou WhatsApp.
-            </p>
 
-            <ul className="mt-10 space-y-5">
-              <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
-                  <Phone className="h-4 w-4 text-silver" />
-                </span>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Téléphone</div>
-                  <a href={`tel:${PHONE_TEL}`} className="text-lg font-medium hover:text-silver">
-                    {PHONE_DISPLAY}
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
-                  <Mail className="h-4 w-4 text-silver" />
-                </span>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">E-mail</div>
-                  <a href="mailto:edendrivevtc@gmail.com" className="text-lg font-medium hover:text-silver">
-                    edendrivevtc@gmail.com
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
-                  <MapPin className="h-4 w-4 text-silver" />
-                </span>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Zone</div>
-                  <div className="text-lg font-medium">Toulouse · Blagnac · Occitanie</div>
-                </div>
-              </li>
-            </ul>
-
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={`tel:${PHONE_TEL}`}
-                className="btn-silver inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-              >
-                <Phone className="h-4 w-4" /> Appeler
-              </a>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener"
-                className="btn-ghost-silver inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-              >
-                <MessageCircle className="h-4 w-4" /> WhatsApp
-              </a>
-            </div>
-          </div>
 
           <form
             onSubmit={(e) => {
