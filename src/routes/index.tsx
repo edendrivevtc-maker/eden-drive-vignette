@@ -80,8 +80,8 @@ function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <Hero />
       <Contact />
+      <Hero />
       <Services />
       <ContactCTA />
       <Testimonials />
@@ -505,7 +505,7 @@ function Contact() {
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            Demande de <em className="text-silver-gradient not-italic">réservation</em>
+            <em className="text-silver-gradient not-italic">Réservation en ligne</em>
           </h2>
           <div className="hairline mx-auto my-6 w-24" />
           <p className="text-muted-foreground">
