@@ -603,26 +603,51 @@ function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background py-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Logo className="h-12 w-auto" />
-            <div className="text-xs uppercase tracking-widest text-muted-foreground">
-              Chauffeur privé haut de gamme
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-silver">Services</a>
-            <a href="#avis" className="hover:text-silver">Avis</a>
-            <a href="#reserver" className="hover:text-silver">Réserver</a>
-            <a href="#contact" className="hover:text-silver">Contact</a>
-          </div>
-        </div>
+        {/* Menu */}
+        <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
+          <a href="#reserver" className="hover:text-silver">Réservation</a>
+          <a href="#services" className="hover:text-silver">Services</a>
+          <a href="#contact-rapide" className="hover:text-silver">Contact</a>
+          <a href="#avis" className="hover:text-silver">Avis clients</a>
+        </nav>
+
         <div className="hairline my-8" />
-        <div className="flex flex-col justify-between gap-2 text-xs text-muted-foreground md:flex-row">
-          <div>© {new Date().getFullYear()} Eden Drive VTC — Toulouse & Occitanie. Tous droits réservés.</div>
-          <div>Chauffeur privé Toulouse · VTC Blagnac · Transferts aéroport</div>
+
+        {/* Coordonnées entreprise */}
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Logo className="h-14 w-auto" />
+          <div className="font-display text-2xl text-ivory">Eden Drive VTC</div>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li className="flex items-center justify-center gap-2">
+              <MapPin className="h-4 w-4 text-silver" /> Toulouse & Blagnac, Occitanie
+            </li>
+            <li className="flex items-center justify-center gap-2">
+              <Clock className="h-4 w-4 text-silver" /> Ouvert 24h/24, 7j/7
+            </li>
+            <li>
+              <a
+                href={`tel:${PHONE_TEL}`}
+                className="inline-flex items-center gap-2 hover:text-silver"
+              >
+                <Phone className="h-4 w-4 text-silver" /> {PHONE_DISPLAY}
+              </a>
+            </li>
+          </ul>
+          <a
+            href="#reserver"
+            className="btn-silver mt-4 inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-widest"
+          >
+            <Calendar className="h-4 w-4" /> Nous contacter
+          </a>
+        </div>
+
+        <div className="hairline my-8" />
+
+        <div className="text-center text-xs text-muted-foreground">
+          © {new Date().getFullYear()} Eden Drive VTC — Chauffeur VTC Toulouse. Tous droits réservés.
         </div>
       </div>
     </footer>
   );
 }
+
