@@ -95,11 +95,12 @@ function Home() {
 function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
+    { href: "#reserver", label: "Réservation" },
     { href: "#services", label: "Services" },
+    { href: "#contact-rapide", label: "Contact" },
     { href: "#avis", label: "Avis" },
-    { href: "#reserver", label: "Réserver" },
-    { href: "#contact", label: "Contact" },
   ];
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
