@@ -131,17 +131,27 @@ function Nav() {
             <Phone className="h-4 w-4" /> Appeler
           </a>
         </nav>
-        <button
-          aria-label="Menu"
-          className="rounded-full border border-border p-2 text-silver md:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <div className="space-y-1">
-            <span className="block h-px w-5 bg-current" />
-            <span className="block h-px w-5 bg-current" />
-            <span className="block h-px w-5 bg-current" />
-          </div>
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <a
+            href={`tel:${PHONE_TEL}`}
+            aria-label="Appeler Eden Drive VTC"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-silver/40 bg-silver/10 text-silver transition hover:bg-silver/20"
+          >
+            <Phone className="h-4 w-4" />
+          </a>
+          <button
+            aria-label="Menu"
+            className="rounded-full border border-border p-2 text-silver"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <div className="space-y-1">
+              <span className="block h-px w-5 bg-current" />
+              <span className="block h-px w-5 bg-current" />
+              <span className="block h-px w-5 bg-current" />
+            </div>
+          </button>
+        </div>
+
       </div>
       {open && (
         <div className="border-t border-border/40 bg-background/95 backdrop-blur md:hidden">
