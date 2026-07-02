@@ -455,14 +455,63 @@ function HowToBook() {
   );
 }
 
-/* ---------- Contact ---------- */
+/* ---------- Contact CTA (rappel numéro + WhatsApp) ---------- */
+function ContactCTA() {
+  return (
+    <section id="contact-rapide" className="relative border-t border-border/40 bg-background py-24 sm:py-28">
+      <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact & Réservation</span>
+        <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
+          Contactez-nous <em className="text-silver-gradient not-italic">directement</em>
+        </h2>
+        <div className="hairline mx-auto my-6 w-24" />
+        <p className="mx-auto max-w-xl text-muted-foreground">
+          Disponible 24h/24, 7j/7. Réponse immédiate par téléphone ou WhatsApp.
+        </p>
+        <a
+          href={`tel:${PHONE_TEL}`}
+          className="mt-8 inline-flex items-center gap-3 font-display text-3xl text-silver-gradient hover:opacity-90 sm:text-4xl"
+        >
+          <Phone className="h-6 w-6 text-silver" /> {PHONE_DISPLAY}
+        </a>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href={`tel:${PHONE_TEL}`}
+            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+          >
+            <Phone className="h-4 w-4" /> Appeler
+          </a>
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener"
+            className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+          >
+            <MessageCircle className="h-4 w-4" /> WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Contact form ---------- */
 function Contact() {
   const [sent, setSent] = useState(false);
   return (
-    <section id="contact" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-14 md:grid-cols-2">
-          <div>
+    <section id="reserver" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
+      <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <div className="text-center">
+          <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
+          <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
+            Demande de <em className="text-silver-gradient not-italic">réservation</em>
+          </h2>
+          <div className="hairline mx-auto my-6 w-24" />
+          <p className="text-muted-foreground">
+            Remplissez le formulaire — nous vous répondons sous 15 minutes.
+          </p>
+        </div>
+
             <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact</span>
             <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
               À votre <em className="text-silver-gradient not-italic">service</em>
