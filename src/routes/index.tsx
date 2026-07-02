@@ -80,8 +80,8 @@ function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <Hero />
       <Contact />
+      <Hero />
       <Services />
       <ContactCTA />
       <Testimonials />
