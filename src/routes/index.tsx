@@ -223,8 +223,9 @@ function Hero() {
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 sm:pb-24 md:justify-center">
         <div className="max-w-3xl animate-fade-up">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-silver/40 bg-black/30 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-silver backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5" /> Toulouse · Blagnac · Occitanie
+            <Sparkles className="h-3.5 w-3.5" /> Chauffeur VTC Toulouse
           </div>
+
           <h1 className="font-display text-4xl leading-[1.05] text-ivory sm:text-6xl md:text-7xl">
             Eden Drive <span className="text-silver-gradient">VTC</span>
           </h1>
