@@ -82,24 +82,25 @@ function Home() {
       <Nav />
       <Hero />
       <Contact />
-      <About />
       <Services />
+      <ContactCTA />
       <Testimonials />
-      <HowToBook />
       <Footer />
     </div>
   );
 }
 
+
 /* ---------- Navigation ---------- */
 function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
+    { href: "#reserver", label: "Réservation" },
     { href: "#services", label: "Services" },
+    { href: "#contact-rapide", label: "Contact" },
     { href: "#avis", label: "Avis" },
-    { href: "#reserver", label: "Réserver" },
-    { href: "#contact", label: "Contact" },
   ];
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
@@ -131,17 +132,27 @@ function Nav() {
             <Phone className="h-4 w-4" /> Appeler
           </a>
         </nav>
-        <button
-          aria-label="Menu"
-          className="rounded-full border border-border p-2 text-silver md:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <div className="space-y-1">
-            <span className="block h-px w-5 bg-current" />
-            <span className="block h-px w-5 bg-current" />
-            <span className="block h-px w-5 bg-current" />
-          </div>
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <a
+            href={`tel:${PHONE_TEL}`}
+            aria-label="Appeler Eden Drive VTC"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-silver/40 bg-silver/10 text-silver transition hover:bg-silver/20"
+          >
+            <Phone className="h-4 w-4" />
+          </a>
+          <button
+            aria-label="Menu"
+            className="rounded-full border border-border p-2 text-silver"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <div className="space-y-1">
+              <span className="block h-px w-5 bg-current" />
+              <span className="block h-px w-5 bg-current" />
+              <span className="block h-px w-5 bg-current" />
+            </div>
+          </button>
+        </div>
+
       </div>
       {open && (
         <div className="border-t border-border/40 bg-background/95 backdrop-blur md:hidden">
@@ -213,8 +224,9 @@ function Hero() {
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 sm:pb-24 md:justify-center">
         <div className="max-w-3xl animate-fade-up">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-silver/40 bg-black/30 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-silver backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5" /> Toulouse · Blagnac · Occitanie
+            <Sparkles className="h-3.5 w-3.5" /> Chauffeur VTC Toulouse
           </div>
+
           <h1 className="font-display text-4xl leading-[1.05] text-ivory sm:text-6xl md:text-7xl">
             Eden Drive <span className="text-silver-gradient">VTC</span>
           </h1>
@@ -444,133 +456,117 @@ function HowToBook() {
   );
 }
 
-/* ---------- Contact ---------- */
-function Contact() {
-  const [sent, setSent] = useState(false);
+/* ---------- Contact CTA (rappel numéro + WhatsApp) ---------- */
+function ContactCTA() {
   return (
-    <section id="contact" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-14 md:grid-cols-2">
-          <div>
-            <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact</span>
-            <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-              À votre <em className="text-silver-gradient not-italic">service</em>
-            </h2>
-            <div className="hairline my-6 w-24" />
-            <p className="max-w-md text-muted-foreground">
-              Notre conciergerie répond à vos demandes 24h/24, 7j/7. Réponse
-              immédiate par téléphone ou WhatsApp.
-            </p>
-
-            <ul className="mt-10 space-y-5">
-              <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
-                  <Phone className="h-4 w-4 text-silver" />
-                </span>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Téléphone</div>
-                  <a href={`tel:${PHONE_TEL}`} className="text-lg font-medium hover:text-silver">
-                    {PHONE_DISPLAY}
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
-                  <Mail className="h-4 w-4 text-silver" />
-                </span>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">E-mail</div>
-                  <a href="mailto:edendrivevtc@gmail.com" className="text-lg font-medium hover:text-silver">
-                    edendrivevtc@gmail.com
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
-                  <MapPin className="h-4 w-4 text-silver" />
-                </span>
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Zone</div>
-                  <div className="text-lg font-medium">Toulouse · Blagnac · Occitanie</div>
-                </div>
-              </li>
-            </ul>
-
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={`tel:${PHONE_TEL}`}
-                className="btn-silver inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-              >
-                <Phone className="h-4 w-4" /> Appeler
-              </a>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener"
-                className="btn-ghost-silver inline-flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-              >
-                <MessageCircle className="h-4 w-4" /> WhatsApp
-              </a>
-            </div>
-          </div>
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
-            className="luxe-card rounded-2xl p-7 sm:p-10"
+    <section id="contact-rapide" className="relative border-t border-border/40 bg-background py-24 sm:py-28">
+      <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact & Réservation</span>
+        <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
+          Contactez-nous <em className="text-silver-gradient not-italic">directement</em>
+        </h2>
+        <div className="hairline mx-auto my-6 w-24" />
+        <p className="mx-auto max-w-xl text-muted-foreground">
+          Disponible 24h/24, 7j/7. Réponse immédiate par téléphone ou WhatsApp.
+        </p>
+        <a
+          href={`tel:${PHONE_TEL}`}
+          className="mt-8 inline-flex items-center gap-3 font-display text-3xl text-silver-gradient hover:opacity-90 sm:text-4xl"
+        >
+          <Phone className="h-6 w-6 text-silver" /> {PHONE_DISPLAY}
+        </a>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href={`tel:${PHONE_TEL}`}
+            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
           >
-            <h3 className="font-display text-2xl">Demande de réservation</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Nous vous répondons sous 15 minutes.
-            </p>
-
-            <div className="mt-8 space-y-5">
-              <Field label="Nom complet" name="name" required />
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Téléphone" name="phone" type="tel" required />
-                <Field label="E-mail" name="email" type="email" />
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Départ" name="from" placeholder="Adresse ou aéroport" required />
-                <Field label="Destination" name="to" required />
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Date & heure" name="datetime" type="datetime-local" required />
-                <Field label="Passagers" name="pax" type="number" placeholder="2" />
-              </div>
-              <div>
-                <label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  rows={3}
-                  className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
-                  placeholder="Précisions, bagages, vol, etc."
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-              >
-                <Calendar className="h-4 w-4" />
-                {sent ? "Demande envoyée" : "Demander un devis"}
-              </button>
-              {sent && (
-                <p className="flex items-center gap-2 text-sm text-silver">
-                  <CheckCircle2 className="h-4 w-4" />
-                  Merci — nous vous recontactons très vite.
-                </p>
-              )}
-            </div>
-          </form>
+            <Phone className="h-4 w-4" /> Appeler
+          </a>
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener"
+            className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+          >
+            <MessageCircle className="h-4 w-4" /> WhatsApp
+          </a>
         </div>
       </div>
     </section>
   );
 }
+
+/* ---------- Contact form ---------- */
+function Contact() {
+  const [sent, setSent] = useState(false);
+  return (
+    <section id="reserver" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
+      <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <div className="text-center">
+          <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
+          <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
+            Demande de <em className="text-silver-gradient not-italic">réservation</em>
+          </h2>
+          <div className="hairline mx-auto my-6 w-24" />
+          <p className="text-muted-foreground">
+            Remplissez le formulaire — nous vous répondons sous 15 minutes.
+          </p>
+        </div>
+
+
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSent(true);
+          }}
+          className="luxe-card mt-10 rounded-2xl p-7 sm:p-10"
+        >
+          <div className="space-y-5">
+            <Field label="Nom complet" name="name" required />
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Téléphone" name="phone" type="tel" required />
+              <Field label="E-mail" name="email" type="email" />
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Départ" name="from" placeholder="Adresse ou aéroport" required />
+              <Field label="Destination" name="to" required />
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Date & heure" name="datetime" type="datetime-local" required />
+              <Field label="Passagers" name="pax" type="number" placeholder="2" />
+            </div>
+            <div>
+              <label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
+                Message
+              </label>
+              <textarea
+                name="message"
+                rows={3}
+                className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
+                placeholder="Précisions, bagages, vol, etc."
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+            >
+              <Calendar className="h-4 w-4" />
+              {sent ? "Demande envoyée" : "Demander un devis"}
+            </button>
+            {sent && (
+              <p className="flex items-center gap-2 text-sm text-silver">
+                <CheckCircle2 className="h-4 w-4" />
+                Merci — nous vous recontactons très vite.
+              </p>
+            )}
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}
+
 
 function Field({
   label,
@@ -608,26 +604,51 @@ function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background py-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Logo className="h-12 w-auto" />
-            <div className="text-xs uppercase tracking-widest text-muted-foreground">
-              Chauffeur privé haut de gamme
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted-foreground">
-            <a href="#services" className="hover:text-silver">Services</a>
-            <a href="#avis" className="hover:text-silver">Avis</a>
-            <a href="#reserver" className="hover:text-silver">Réserver</a>
-            <a href="#contact" className="hover:text-silver">Contact</a>
-          </div>
-        </div>
+        {/* Menu */}
+        <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
+          <a href="#reserver" className="hover:text-silver">Réservation</a>
+          <a href="#services" className="hover:text-silver">Services</a>
+          <a href="#contact-rapide" className="hover:text-silver">Contact</a>
+          <a href="#avis" className="hover:text-silver">Avis clients</a>
+        </nav>
+
         <div className="hairline my-8" />
-        <div className="flex flex-col justify-between gap-2 text-xs text-muted-foreground md:flex-row">
-          <div>© {new Date().getFullYear()} Eden Drive VTC — Toulouse & Occitanie. Tous droits réservés.</div>
-          <div>Chauffeur privé Toulouse · VTC Blagnac · Transferts aéroport</div>
+
+        {/* Coordonnées entreprise */}
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Logo className="h-14 w-auto" />
+          <div className="font-display text-2xl text-ivory">Eden Drive VTC</div>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li className="flex items-center justify-center gap-2">
+              <MapPin className="h-4 w-4 text-silver" /> Toulouse & Blagnac, Occitanie
+            </li>
+            <li className="flex items-center justify-center gap-2">
+              <Clock className="h-4 w-4 text-silver" /> Ouvert 24h/24, 7j/7
+            </li>
+            <li>
+              <a
+                href={`tel:${PHONE_TEL}`}
+                className="inline-flex items-center gap-2 hover:text-silver"
+              >
+                <Phone className="h-4 w-4 text-silver" /> {PHONE_DISPLAY}
+              </a>
+            </li>
+          </ul>
+          <a
+            href="#reserver"
+            className="btn-silver mt-4 inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-widest"
+          >
+            <Calendar className="h-4 w-4" /> Nous contacter
+          </a>
+        </div>
+
+        <div className="hairline my-8" />
+
+        <div className="text-center text-xs text-muted-foreground">
+          © {new Date().getFullYear()} Eden Drive VTC — Chauffeur VTC Toulouse. Tous droits réservés.
         </div>
       </div>
     </footer>
   );
 }
+
