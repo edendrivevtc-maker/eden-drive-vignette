@@ -77,6 +77,7 @@ export const Route = createFileRoute("/")({
 });
 
 const PHONE_DISPLAY = "+33 6 35 58 58 23";
+const PHONE_DISPLAY_LOCAL = "06 35 58 58 23";
 const PHONE_TEL = "+33635585823";
 const WHATSAPP = "https://wa.me/33635585823";
 const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=EDEN+DRIVE+VTC+Toulouse+avis"; // Remplacer par le lien direct vers vos avis Google
@@ -254,7 +255,7 @@ function Hero() {
               href={`tel:${PHONE_TEL}`}
               className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
             >
-              <Phone className="h-4 w-4" /> Nous appeler
+              <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
             </a>
           </div>
 
@@ -720,9 +721,9 @@ function Footer() {
             <li>
               <a
                 href={`tel:${PHONE_TEL}`}
-                className="inline-flex items-center gap-2 hover:text-silver"
+                className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-widest"
               >
-                <Phone className="h-4 w-4 text-silver" /> {PHONE_DISPLAY}
+                <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
               </a>
             </li>
           </ul>
