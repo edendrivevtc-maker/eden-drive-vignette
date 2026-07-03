@@ -255,7 +255,7 @@ function Hero() {
               href={`tel:${PHONE_TEL}`}
               className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
             >
-              <Phone className="h-4 w-4" /> Nous appeler
+              <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
             </a>
           </div>
 
