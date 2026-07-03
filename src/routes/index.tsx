@@ -24,9 +24,9 @@ import { sendBookingRequest } from "@/lib/booking.functions";
 import heroCar from "@/assets/hero-car.jpg";
 import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
 
-const TITLE = "Eden Drive VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
+const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
 const DESCRIPTION =
-  "Eden Drive VTC : chauffeur privé premium à Toulouse, Blagnac et en Occitanie. Transferts aéroport, gares, longs trajets, mise à disposition. Discrétion, ponctualité, luxe.";
+  "EDEN DRIVE VTC : chauffeur privé premium à Toulouse, Blagnac et en Occitanie. Transferts aéroport, gares, longs trajets, mise à disposition. Discrétion, ponctualité, luxe.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
