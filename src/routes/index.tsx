@@ -712,21 +712,21 @@ function Footer() {
             <li className="flex items-center justify-center gap-2">
               <Clock className="h-4 w-4 text-silver" /> Ouvert 24h/24, 7j/7
             </li>
-            <li>
-              <a
-                href={`tel:${PHONE_TEL}`}
-                className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-              >
-                <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
-              </a>
-            </li>
           </ul>
-          <a
-            href="#reserver"
-            className="btn-silver mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-          >
-            <Calendar className="h-4 w-4" /> Réserver
-          </a>
+          <div className="flex w-full flex-col gap-3">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+            >
+              <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
+            </a>
+            <a
+              href="#reserver"
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+            >
+              <Calendar className="h-4 w-4" /> Réserver
+            </a>
+          </div>
         </div>
 
         <div className="hairline my-8" />
