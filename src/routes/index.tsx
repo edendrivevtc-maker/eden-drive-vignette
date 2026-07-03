@@ -127,13 +127,13 @@ function Nav() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener"
-            className="btn-ghost-silver inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium"
+            className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
           <a
             href={`tel:${PHONE_TEL}`}
-            className="btn-silver inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium"
+            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <Phone className="h-4 w-4" /> Appeler
           </a>
@@ -177,13 +177,13 @@ function Nav() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener"
-              className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium"
+              className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
             >
               <MessageCircle className="h-4 w-4" /> WhatsApp
             </a>
             <a
               href={`tel:${PHONE_TEL}`}
-              className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium"
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
             >
               <Phone className="h-4 w-4" /> Nous appeler
             </a>
@@ -244,16 +244,16 @@ function Hero() {
             Discrétion absolue, ponctualité irréprochable, confort d'exception.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col gap-3">
             <a
               href="#reserver"
-              className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
             >
               <Calendar className="h-4 w-4" /> Réserver maintenant
             </a>
             <a
               href={`tel:${PHONE_TEL}`}
-              className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+              className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
             >
               <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
             </a>
@@ -406,7 +406,7 @@ function Testimonials() {
                 href={GOOGLE_REVIEWS_URL}
                 target="_blank"
                 rel="noopener"
-                className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest sm:w-auto"
+                className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
               >
                 Laissez un avis
               </a>
@@ -490,10 +490,10 @@ function HowToBook() {
             </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-center gap-3">
           <a
             href={`tel:${PHONE_TEL}`}
-            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <Phone className="h-4 w-4" /> Réserver par téléphone
           </a>
@@ -501,7 +501,7 @@ function HowToBook() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener"
-            className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
@@ -524,10 +524,10 @@ function ContactCTA() {
         <p className="mx-auto max-w-xl text-muted-foreground">
           Disponible 24h/24, 7j/7. Réponse immédiate par téléphone ou WhatsApp.
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-3">
           <a
             href={`tel:${PHONE_TEL}`}
-            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
           </a>
@@ -535,7 +535,7 @@ function ContactCTA() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener"
-            className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
@@ -715,7 +715,7 @@ function Footer() {
             <li>
               <a
                 href={`tel:${PHONE_TEL}`}
-                className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-widest"
+                className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
               >
                 <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
               </a>
@@ -723,7 +723,7 @@ function Footer() {
           </ul>
           <a
             href="#reserver"
-            className="btn-silver mt-4 inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <Calendar className="h-4 w-4" /> Réserver
           </a>
