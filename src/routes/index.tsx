@@ -287,7 +287,7 @@ function About() {
           </h2>
           <div className="hairline my-6 w-24" />
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Eden Drive VTC accompagne particuliers, dirigeants d'entreprise, touristes
+            EDEN DRIVE VTC accompagne particuliers, dirigeants d'entreprise, touristes
             et voyageurs d'affaires à travers Toulouse et l'Occitanie. Nous avons fait
             de l'excellence un principe : véhicules d'exception, chauffeurs formés,
             attentions discrètes.
