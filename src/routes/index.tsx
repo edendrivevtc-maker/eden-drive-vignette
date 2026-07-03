@@ -197,7 +197,7 @@ function Logo({ className = "" }: { className?: string }) {
   return (
     <img
       src={logoAsset.url}
-      alt="Eden Drive VTC"
+      alt="EDEN DRIVE VTC"
       className={`h-10 w-auto object-contain ${className}`}
     />
   );
@@ -209,7 +209,7 @@ function Hero() {
     <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
       <img
         src={heroCar}
-        alt="Berline noire premium Eden Drive VTC devant un hôtel de luxe"
+        alt="Berline noire premium EDEN DRIVE VTC devant un hôtel de luxe"
         width={1920}
         height={1280}
         fetchPriority="high"
@@ -233,7 +233,7 @@ function Hero() {
           </div>
 
           <h1 className="font-display text-4xl leading-[1.05] text-ivory sm:text-6xl md:text-7xl">
-            Eden Drive <span className="text-silver-gradient">VTC</span>
+            EDEN DRIVE <span className="text-silver-gradient tracking-[0.08em]">VTC</span>
           </h1>
           <div className="hairline my-6 w-40" />
           <p className="max-w-xl text-lg text-ivory/85 sm:text-xl">
