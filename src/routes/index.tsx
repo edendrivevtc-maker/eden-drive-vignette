@@ -140,7 +140,7 @@ function Nav() {
         <div className="flex items-center gap-2 md:hidden">
           <a
             href={`tel:${PHONE_TEL}`}
-            aria-label="Appeler Eden Drive VTC"
+            aria-label="Appeler EDEN DRIVE VTC"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-silver/40 bg-silver/10 text-silver transition hover:bg-silver/20"
           >
             <Phone className="h-4 w-4" />
