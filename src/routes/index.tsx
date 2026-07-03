@@ -502,7 +502,38 @@ function ContactCTA() {
 
 /* ---------- Contact form ---------- */
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const sendBooking = useServerFn(sendBookingRequest);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "loading") return;
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      name: String(formData.get("name") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      from: String(formData.get("from") ?? ""),
+      to: String(formData.get("to") ?? ""),
+      datetime: String(formData.get("datetime") ?? ""),
+      pax: String(formData.get("pax") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+
+    setStatus("loading");
+    setError(null);
+
+    try {
+      await sendBooking({ data: payload });
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Une erreur est survenue.");
+    }
+  };
+
   return (
     <section id="reserver" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
@@ -514,13 +545,8 @@ function Contact() {
         <div className="hairline mx-auto my-6 w-24" />
         </div>
 
-
-
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSent(true);
-          }}
+          onSubmit={handleSubmit}
           className="luxe-card mt-10 rounded-2xl p-7 sm:p-10"
         >
           <div className="space-y-5">
@@ -550,15 +576,30 @@ function Contact() {
             </div>
             <button
               type="submit"
-              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+              disabled={status === "loading" || status === "success"}
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest disabled:opacity-70"
             >
-              <Calendar className="h-4 w-4" />
-              {sent ? "Demande envoyée" : "Demander un devis"}
+              {status === "loading" ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Calendar className="h-4 w-4" />
+              )}
+              {status === "success"
+                ? "Demande envoyée"
+                : status === "loading"
+                ? "Envoi en cours..."
+                : "Demander un devis"}
             </button>
-            {sent && (
+            {status === "success" && (
               <p className="flex items-center gap-2 text-sm text-silver">
                 <CheckCircle2 className="h-4 w-4" />
                 Merci — nous vous recontactons très vite.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="flex items-center gap-2 text-sm text-red-400">
+                <AlertCircle className="h-4 w-4" />
+                {error ?? "L'envoi a échoué. Veuillez réessayer ou nous appeler."}
               </p>
             )}
           </div>
