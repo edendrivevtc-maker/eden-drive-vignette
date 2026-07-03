@@ -124,18 +124,10 @@ function Nav() {
             </a>
           ))}
           <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener"
-            className="btn-ghost-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-          >
-            <MessageCircle className="h-4 w-4" /> WhatsApp
-          </a>
-          <a
             href={`tel:${PHONE_TEL}`}
             className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
-            <Phone className="h-4 w-4" /> Appeler
+            <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
           </a>
         </nav>
         <div className="flex items-center gap-2 md:hidden">
@@ -174,18 +166,10 @@ function Nav() {
               </a>
             ))}
             <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener"
-              className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </a>
-            <a
               href={`tel:${PHONE_TEL}`}
               className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
             >
-              <Phone className="h-4 w-4" /> Nous appeler
+              <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
             </a>
           </div>
         </div>
