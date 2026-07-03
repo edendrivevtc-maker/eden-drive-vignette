@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import {
   Phone,
   MessageCircle,
@@ -16,7 +17,10 @@ import {
   Calendar,
   Car,
   CheckCircle2,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
+import { sendBookingRequest } from "@/lib/booking.functions";
 import heroCar from "@/assets/hero-car.jpg";
 import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
 
