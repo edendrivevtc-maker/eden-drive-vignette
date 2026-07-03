@@ -471,7 +471,7 @@ function ContactCTA() {
         </p>
         <a
           href={`tel:${PHONE_TEL}`}
-          className="mt-8 inline-flex items-center gap-3 font-display text-3xl text-silver-gradient hover:opacity-90 sm:text-4xl"
+          className="mt-8 inline-flex items-center gap-3 text-3xl text-silver-gradient hover:opacity-90 sm:text-4xl"
         >
           <Phone className="h-6 w-6 text-silver" /> {PHONE_DISPLAY}
         </a>
@@ -507,10 +507,7 @@ function Contact() {
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
             <em className="text-silver-gradient not-italic">Réservation en ligne</em>
           </h2>
-          <div className="hairline mx-auto my-6 w-24" />
-          <p className="text-muted-foreground">
-            Remplissez le formulaire — nous vous répondons sous 15 minutes.
-          </p>
+        <div className="hairline mx-auto my-6 w-24" />
         </div>
 
 
@@ -620,7 +617,7 @@ function Footer() {
           <div className="font-display text-2xl text-ivory">Eden Drive VTC</div>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-center justify-center gap-2">
-              <MapPin className="h-4 w-4 text-silver" /> Toulouse & Blagnac, Occitanie
+              <MapPin className="h-4 w-4 text-silver" /> Toulouse et ses environs
             </li>
             <li className="flex items-center justify-center gap-2">
               <Clock className="h-4 w-4 text-silver" /> Ouvert 24h/24, 7j/7
