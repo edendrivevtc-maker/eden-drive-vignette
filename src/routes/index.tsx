@@ -524,18 +524,12 @@ function ContactCTA() {
         <p className="mx-auto max-w-xl text-muted-foreground">
           Disponible 24h/24, 7j/7. Réponse immédiate par téléphone ou WhatsApp.
         </p>
-        <a
-          href={`tel:${PHONE_TEL}`}
-          className="mt-8 inline-flex items-center gap-3 text-3xl text-silver-gradient hover:opacity-90 sm:text-4xl"
-        >
-          <Phone className="h-6 w-6 text-silver" /> {PHONE_DISPLAY}
-        </a>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={`tel:${PHONE_TEL}`}
             className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-medium uppercase tracking-widest"
           >
-            <Phone className="h-4 w-4" /> Appeler
+            <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
           </a>
           <a
             href={WHATSAPP}
