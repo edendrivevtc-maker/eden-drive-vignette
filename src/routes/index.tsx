@@ -400,7 +400,7 @@ function Testimonials() {
                 <span>5/5</span>
                 <Star className="h-8 w-8 fill-silver text-silver" />
               </div>
-              <p className="text-sm text-muted-foreground">48 avis vérifiés · note moyenne 5,0</p>
+              <p className="text-sm text-muted-foreground">48 avis vérifiés</p>
               <a
                 href={GOOGLE_REVIEWS_URL}
                 target="_blank"
@@ -709,7 +709,7 @@ function Footer() {
         {/* Coordonnées entreprise */}
         <div className="flex flex-col items-center gap-4 text-center">
           <Logo className="h-14 w-auto" />
-          <div className="font-display text-2xl text-ivory">Eden Drive VTC</div>
+          <div className="font-display text-2xl uppercase tracking-[0.15em] text-ivory">EDEN DRIVE VTC</div>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-center justify-center gap-2">
               <MapPin className="h-4 w-4 text-silver" /> Toulouse et ses environs
@@ -730,14 +730,14 @@ function Footer() {
             href="#reserver"
             className="btn-silver mt-4 inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-widest"
           >
-            <Calendar className="h-4 w-4" /> Nous contacter
+            <Calendar className="h-4 w-4" /> Réserver
           </a>
         </div>
 
         <div className="hairline my-8" />
 
         <div className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Eden Drive VTC — Chauffeur VTC Toulouse. Tous droits réservés.
+          © {new Date().getFullYear()} EDEN DRIVE VTC — Chauffeur VTC Toulouse. Tous droits réservés.
         </div>
       </div>
     </footer>
