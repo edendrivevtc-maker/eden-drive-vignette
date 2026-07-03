@@ -342,24 +342,29 @@ function Services() {
 function Testimonials() {
   const reviews = [
     {
-      name: "Claire M.",
-      role: "Dirigeante — Toulouse",
-      text: "Un service irréprochable. Le chauffeur, la voiture, la ponctualité : tout est au niveau des plus grands palaces.",
+      name: "Sarah Vrancken",
+      role: "",
+      text: "J’utilise Eden Drive pour le transport école maison des enfants et mes trajets personnels depuis plusieurs années. Le chauffeur hyper gentil est toujours à l’heure, la voiture impeccable, une conduite parfaite et toujours disponible. Je recommande vivement. Merci Mr Lopez!!",
     },
     {
-      name: "Antoine R.",
-      role: "Voyageur d'affaires",
-      text: "J'utilise Eden Drive à chaque déplacement à Blagnac. Discrétion parfaite, véhicule sublime. Le standard que je cherchais.",
+      name: "Laurence Favre",
+      role: "",
+      text: "Nous avons fait appel à Fabrice pour un long trajet, et nous avons apprécié notre voyage. Le confort, la conduite et la gentillesse de Fabrice nous ont permis de ne pas voir passer le temps pendant nos 2 heures de trajet. Petite attention de la part de Fabrice qui montre tout son professionnalisme : des bouteilles d’eau fraîches nous ont été offertes pour braver cette chaleur. Je recommande à 200%",
     },
     {
-      name: "Sophie L.",
-      role: "Cliente privée",
-      text: "Élégance, calme, professionnalisme. Réservation simple, prix communiqué à l'avance. Rien à redire.",
+      name: "Mariam Jbilou",
+      role: "",
+      text: "Très très bon chauffeur, TRÈS PROFESSIONNEL, rapide, efficace, véhicule très propre !",
     },
     {
-      name: "Marc D.",
-      role: "Événement privé",
-      text: "Nous avons fait appel à Eden Drive pour notre mariage. Les invités ont adoré. Un service digne d'un grand hôtel.",
+      name: "Inès El Hage",
+      role: "",
+      text: "Excellent accueil, excellente prise en charge, matin et après-midi. Prestation top niveau. Merci messieurs.",
+    },
+    {
+      name: "Karen Le Boulanger",
+      role: "",
+      text: "Service impeccable, qui s’adapte aux demandes particulières des clients avec un service chaleureux. Au top, je recommande.",
     },
   ];
   return (
