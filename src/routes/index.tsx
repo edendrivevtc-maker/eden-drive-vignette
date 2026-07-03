@@ -55,7 +55,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "@id": "https://edendrive-vtc.fr/#business",
-          name: "Eden Drive VTC",
+          name: "EDEN DRIVE VTC",
           description: DESCRIPTION,
           image: heroCar,
           telephone: "+33 6 35 58 58 23",
