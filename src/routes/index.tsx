@@ -36,7 +36,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "chauffeur privé Toulouse, VTC Toulouse, chauffeur privé Blagnac, transfert aéroport Toulouse-Blagnac, chauffeur premium Toulouse, VTC haut de gamme Toulouse, Eden Drive VTC",
+          "chauffeur privé Toulouse, VTC Toulouse, chauffeur privé Blagnac, transfert aéroport Toulouse-Blagnac, chauffeur premium Toulouse, VTC haut de gamme Toulouse, EDEN DRIVE VTC",
       },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
