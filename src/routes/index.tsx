@@ -590,8 +590,8 @@ function Contact() {
               <Field label="E-mail" name="email" type="email" />
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Départ" name="from" placeholder="Adresse ou aéroport" required />
-              <Field label="Destination" name="to" required />
+              <PlacesField label="Départ" name="from" placeholder="Adresse ou aéroport" required />
+              <PlacesField label="Destination" name="to" required />
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="Date & heure" name="datetime" type="datetime-local" required />
