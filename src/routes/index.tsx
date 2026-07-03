@@ -24,9 +24,9 @@ import { sendBookingRequest } from "@/lib/booking.functions";
 import heroCar from "@/assets/hero-car.jpg";
 import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
 
-const TITLE = "Eden Drive VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
+const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
 const DESCRIPTION =
-  "Eden Drive VTC : chauffeur privé premium à Toulouse, Blagnac et en Occitanie. Transferts aéroport, gares, longs trajets, mise à disposition. Discrétion, ponctualité, luxe.";
+  "EDEN DRIVE VTC : chauffeur privé premium à Toulouse, Blagnac et en Occitanie. Transferts aéroport, gares, longs trajets, mise à disposition. Discrétion, ponctualité, luxe.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "chauffeur privé Toulouse, VTC Toulouse, chauffeur privé Blagnac, transfert aéroport Toulouse-Blagnac, chauffeur premium Toulouse, VTC haut de gamme Toulouse, Eden Drive VTC",
+          "chauffeur privé Toulouse, VTC Toulouse, chauffeur privé Blagnac, transfert aéroport Toulouse-Blagnac, chauffeur premium Toulouse, VTC haut de gamme Toulouse, EDEN DRIVE VTC",
       },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
@@ -55,7 +55,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "@id": "https://edendrive-vtc.fr/#business",
-          name: "Eden Drive VTC",
+          name: "EDEN DRIVE VTC",
           description: DESCRIPTION,
           image: heroCar,
           telephone: "+33 6 35 58 58 23",
@@ -140,7 +140,7 @@ function Nav() {
         <div className="flex items-center gap-2 md:hidden">
           <a
             href={`tel:${PHONE_TEL}`}
-            aria-label="Appeler Eden Drive VTC"
+            aria-label="Appeler EDEN DRIVE VTC"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-silver/40 bg-silver/10 text-silver transition hover:bg-silver/20"
           >
             <Phone className="h-4 w-4" />
@@ -197,7 +197,7 @@ function Logo({ className = "" }: { className?: string }) {
   return (
     <img
       src={logoAsset.url}
-      alt="Eden Drive VTC"
+      alt="EDEN DRIVE VTC"
       className={`h-10 w-auto object-contain ${className}`}
     />
   );
@@ -209,7 +209,7 @@ function Hero() {
     <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
       <img
         src={heroCar}
-        alt="Berline noire premium Eden Drive VTC devant un hôtel de luxe"
+        alt="Berline noire premium EDEN DRIVE VTC devant un hôtel de luxe"
         width={1920}
         height={1280}
         fetchPriority="high"
@@ -233,7 +233,7 @@ function Hero() {
           </div>
 
           <h1 className="font-display text-4xl leading-[1.05] text-ivory sm:text-6xl md:text-7xl">
-            Eden Drive <span className="text-silver-gradient">VTC</span>
+            EDEN DRIVE <span className="text-silver-gradient tracking-[0.08em]">VTC</span>
           </h1>
           <div className="hairline my-6 w-40" />
           <p className="max-w-xl text-lg text-ivory/85 sm:text-xl">
@@ -287,7 +287,7 @@ function About() {
           </h2>
           <div className="hairline my-6 w-24" />
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Eden Drive VTC accompagne particuliers, dirigeants d'entreprise, touristes
+            EDEN DRIVE VTC accompagne particuliers, dirigeants d'entreprise, touristes
             et voyageurs d'affaires à travers Toulouse et l'Occitanie. Nous avons fait
             de l'excellence un principe : véhicules d'exception, chauffeurs formés,
             attentions discrètes.
@@ -400,7 +400,7 @@ function Testimonials() {
                 <span>5/5</span>
                 <Star className="h-8 w-8 fill-silver text-silver" />
               </div>
-              <p className="text-sm text-muted-foreground">48 avis vérifiés · note moyenne 5,0</p>
+              <p className="text-sm text-muted-foreground">48 avis vérifiés</p>
               <a
                 href={GOOGLE_REVIEWS_URL}
                 target="_blank"
@@ -709,7 +709,7 @@ function Footer() {
         {/* Coordonnées entreprise */}
         <div className="flex flex-col items-center gap-4 text-center">
           <Logo className="h-14 w-auto" />
-          <div className="font-display text-2xl text-ivory">Eden Drive VTC</div>
+          <div className="font-display text-2xl uppercase tracking-[0.15em] text-ivory">EDEN DRIVE VTC</div>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-center justify-center gap-2">
               <MapPin className="h-4 w-4 text-silver" /> Toulouse et ses environs
@@ -730,14 +730,14 @@ function Footer() {
             href="#reserver"
             className="btn-silver mt-4 inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-widest"
           >
-            <Calendar className="h-4 w-4" /> Nous contacter
+            <Calendar className="h-4 w-4" /> Réserver
           </a>
         </div>
 
         <div className="hairline my-8" />
 
         <div className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Eden Drive VTC — Chauffeur VTC Toulouse. Tous droits réservés.
+          © {new Date().getFullYear()} EDEN DRIVE VTC — Chauffeur VTC Toulouse. Tous droits réservés.
         </div>
       </div>
     </footer>
