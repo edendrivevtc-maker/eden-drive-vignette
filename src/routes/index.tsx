@@ -23,7 +23,7 @@ import {
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
 import heroCar from "@/assets/hero-car.jpg";
-import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
+
 
 const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
 const DESCRIPTION =
@@ -181,11 +181,13 @@ function Nav() {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <img
-      src={logoAsset.url}
-      alt="EDEN DRIVE VTC"
-      className={`h-10 w-auto object-contain ${className}`}
-    />
+    <a href="#top" aria-label="EDEN DRIVE VTC - Retour en haut" className="inline-flex items-center">
+      <img
+        src="/logo.png"
+        alt="EDEN DRIVE VTC"
+        className={`h-10 w-auto object-contain ${className}`}
+      />
+    </a>
   );
 }
 
