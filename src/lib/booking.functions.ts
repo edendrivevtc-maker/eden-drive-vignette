@@ -17,16 +17,11 @@ const bookingSchema = z.object({
 export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
   .handler(async ({ data }) => {
-    const lovableApiKey = process.env.LOVABLE_API_KEY;
     const brevoApiKey = process.env.BREVO_API_KEY;
 
-    if (!lovableApiKey || !brevoApiKey) {
-      const missing = [
-        !lovableApiKey ? "LOVABLE_API_KEY" : null,
-        !brevoApiKey ? "BREVO_API_KEY" : null,
-      ].filter(Boolean).join(", ");
-      console.error(`[booking] Missing env: ${missing}`);
-      throw new Error(`Configuration email manquante (${missing}).`);
+    if (!brevoApiKey) {
+      console.error(`[booking] Missing env: BREVO_API_KEY`);
+      throw new Error(`Configuration email manquante (BREVO_API_KEY).`);
     }
 
     const htmlContent = `
@@ -50,12 +45,12 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
       </html>
     `;
 
-    const response = await fetch(`${GATEWAY_URL}/smtp/email`, {
+    const response = await fetch(BREVO_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${lovableApiKey}`,
-        "X-Connection-Api-Key": brevoApiKey,
+        "Accept": "application/json",
+        "api-key": brevoApiKey,
       },
       body: JSON.stringify({
         sender: { name: "Eden Drive VTC", email: "edendrivevtc@gmail.com" },
@@ -68,6 +63,7 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
 
     if (!response.ok) {
       const body = await response.text().catch(() => "");
+      console.error(`[booking] Brevo API error ${response.status}: ${body}`);
       throw new Error(`Échec de l'envoi de l'e-mail (${response.status}).`);
     }
 
