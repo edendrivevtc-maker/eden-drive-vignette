@@ -358,11 +358,6 @@ function Testimonials() {
       text: "Très très bon chauffeur, TRÈS PROFESSIONNEL, rapide, efficace, véhicule très propre !",
     },
     {
-      name: "Inès El Hage",
-      role: "",
-      text: "Excellent accueil, excellente prise en charge, matin et après-midi. Prestation top niveau. Merci messieurs.",
-    },
-    {
       name: "Karen Le Boulanger",
       role: "",
       text: "Service impeccable, qui s’adapte aux demandes particulières des clients avec un service chaleureux. Au top, je recommande.",
