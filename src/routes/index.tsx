@@ -23,7 +23,7 @@ import {
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
 import heroCar from "@/assets/hero-car.jpg";
-import logoAsset from "@/assets/eden-drive-logo.jpeg.asset.json";
+
 
 const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
 const DESCRIPTION =
@@ -111,9 +111,7 @@ function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
-        <a href="#top" className="flex items-center">
-          <Logo className="h-16 w-auto" />
-        </a>
+        <Logo className="h-16 w-auto" />
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
             <a
@@ -181,11 +179,13 @@ function Nav() {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <img
-      src={logoAsset.url}
-      alt="EDEN DRIVE VTC"
-      className={`h-10 w-auto object-contain ${className}`}
-    />
+    <a href="#top" aria-label="EDEN DRIVE VTC - Retour en haut" className="inline-flex items-center">
+      <img
+        src="/logo.png"
+        alt="EDEN DRIVE VTC"
+        className={`h-10 w-auto object-contain ${className}`}
+      />
+    </a>
   );
 }
 
