@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const GATEWAY_URL = "https://connector-gateway.lovable.dev/brevo";
+const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
 
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Le nom est requis").max(100),
