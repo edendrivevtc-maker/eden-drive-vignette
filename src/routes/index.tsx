@@ -716,7 +716,18 @@ function Footer() {
 
         <div className="hairline my-8" />
 
-        <div className="text-center text-xs text-muted-foreground">
+        {/* Liens légaux */}
+        <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs uppercase tracking-widest text-muted-foreground">
+          <Link to="/mentions-legales" className="transition-colors hover:text-silver">
+            Mentions légales
+          </Link>
+          <span aria-hidden="true" className="text-border">·</span>
+          <Link to="/politique-confidentialite" className="transition-colors hover:text-silver">
+            Politique de confidentialité
+          </Link>
+        </nav>
+
+        <div className="mt-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} EDEN DRIVE VTC — Chauffeur VTC Toulouse. Tous droits réservés.
         </div>
       </div>
