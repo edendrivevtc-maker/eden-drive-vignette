@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 const TITLE = "Mentions légales — EDEN DRIVE VTC";
 const DESCRIPTION =
-  "Mentions légales du site EDEN DRIVE VTC, chauffeur privé haut de gamme à Toulouse et en Occitanie.";
+  "Mentions légales du site EURL EDEN DRIVE VTC, chauffeur privé haut de gamme à Toulouse et en Occitanie.";
 
 export const Route = createFileRoute("/mentions-legales")({
   head: () => ({
@@ -29,73 +29,94 @@ function MentionsLegales() {
         </h1>
         <div className="hairline my-6 w-24" />
 
-        <div className="space-y-10 text-sm leading-relaxed text-muted-foreground sm:text-base">
+        <div className="space-y-12 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <section>
-            <h2 className="font-display text-2xl text-ivory">Éditeur du site</h2>
+            <h2 className="font-display text-2xl text-ivory">1. Éditeur du site</h2>
             <div className="hairline my-4 w-16" />
-            <p>
-              Le site <strong className="text-ivory">edendrive-vtc.fr</strong> est édité par
-              EDEN DRIVE VTC, entreprise individuelle spécialisée dans le transport de
-              personnes avec chauffeur (VTC).
-            </p>
+            <p>Le présent site internet est édité par :</p>
             <ul className="mt-4 space-y-1">
-              <li>Dénomination : EDEN DRIVE VTC</li>
-              <li>Siège : Toulouse, Occitanie, France</li>
-              <li>Téléphone : +33 6 35 58 58 23</li>
+              <li><strong className="text-ivory">EURL EDEN DRIVE VTC</strong></li>
+              <li>Forme juridique : Entreprise Unipersonnelle à Responsabilité Limitée (EURL)</li>
+              <li>Capital social : 1 000 €</li>
+              <li>Siège social : 3 rue Suzanne Valadon, 31850 Montrabé, France</li>
+              <li>SIRET : 938 872 017 00018</li>
+              <li>Immatriculation : Registre du Commerce et des Sociétés de Toulouse</li>
+            </ul>
+
+            <p className="mt-6"><span className="text-ivory">Dirigeant de la publication :</span><br />Fabrice Lopez</p>
+
+            <p className="mt-6"><span className="text-ivory">Contact :</span></p>
+            <ul className="mt-2 space-y-1">
+              <li>
+                Téléphone :{" "}
+                <a href="tel:+33635585823" className="text-silver hover:underline">
+                  06 35 58 58 23
+                </a>
+              </li>
               <li>
                 E-mail :{" "}
                 <a href="mailto:edendrivevtc@gmail.com" className="text-silver hover:underline">
                   edendrivevtc@gmail.com
                 </a>
               </li>
-              <li>Directeur de la publication : le représentant légal de l'entreprise</li>
-              <li>Numéro SIRET et inscription au registre EVTC : disponibles sur demande</li>
             </ul>
-          </section>
 
-          <section>
-            <h2 className="font-display text-2xl text-ivory">Hébergement</h2>
-            <div className="hairline my-4 w-16" />
-            <p>
-              Le site est hébergé par Cloudflare, Inc., 101 Townsend Street, San Francisco,
-              CA 94107, États-Unis — <a href="https://www.cloudflare.com" className="text-silver hover:underline" target="_blank" rel="noopener">cloudflare.com</a>.
+            <p className="mt-6"><span className="text-ivory">Site internet :</span><br />
+              <a href="https://edendrive-vtc.fr" className="text-silver hover:underline">
+                https://edendrive-vtc.fr
+              </a>
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Propriété intellectuelle</h2>
+            <h2 className="font-display text-2xl text-ivory">2. Hébergement du site</h2>
+            <div className="hairline my-4 w-16" />
+            <p>Le site est hébergé par :</p>
+            <p className="mt-4">
+              <strong className="text-ivory">Cloudflare, Inc.</strong><br />
+              101 Townsend St, San Francisco, CA 94107, États-Unis
+            </p>
+            <p className="mt-4">
+              Cloudflare fournit notamment des services d'hébergement technique, de sécurité et
+              d'optimisation du réseau.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl text-ivory">3. Propriété intellectuelle</h2>
             <div className="hairline my-4 w-16" />
             <p>
-              L'ensemble des contenus présents sur ce site (textes, images, logo, graphismes,
-              mise en page) est la propriété exclusive d'EDEN DRIVE VTC, sauf mention
-              contraire. Toute reproduction, représentation, modification ou diffusion,
-              totale ou partielle, sans autorisation écrite préalable, est strictement
-              interdite et constitue une contrefaçon sanctionnée par le Code de la
+              L'ensemble des éléments présents sur ce site (textes, images, logos, éléments
+              graphiques, structure et contenus) sont protégés par les dispositions relatives à la
               propriété intellectuelle.
             </p>
-          </section>
-
-          <section>
-            <h2 className="font-display text-2xl text-ivory">Responsabilité</h2>
-            <div className="hairline my-4 w-16" />
-            <p>
-              EDEN DRIVE VTC met tout en œuvre pour assurer l'exactitude et l'actualité des
-              informations diffusées sur ce site. Toutefois, l'éditeur ne saurait être tenu
-              responsable des erreurs ou omissions, ni des conséquences d'une utilisation des
-              informations mises à disposition.
+            <p className="mt-4">
+              Toute reproduction, représentation ou utilisation sans autorisation préalable
+              d'EURL EDEN DRIVE VTC est interdite.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Contact</h2>
+            <h2 className="font-display text-2xl text-ivory">4. Responsabilité</h2>
             <div className="hairline my-4 w-16" />
             <p>
-              Pour toute question relative au site ou à nos prestations, contactez-nous par
-              e-mail à{" "}
-              <a href="mailto:edendrivevtc@gmail.com" className="text-silver hover:underline">
-                edendrivevtc@gmail.com
-              </a>{" "}
-              ou par téléphone au +33 6 35 58 58 23.
+              EURL EDEN DRIVE VTC s'efforce de fournir des informations exactes et à jour sur son
+              site.
+            </p>
+            <p className="mt-4">
+              Toutefois, l'entreprise ne peut garantir l'exactitude complète, l'absence d'erreur ou
+              la disponibilité permanente des informations publiées.
+            </p>
+            <p className="mt-4">L'utilisation du site relève de la responsabilité de l'utilisateur.</p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl text-ivory">5. Liens externes</h2>
+            <div className="hairline my-4 w-16" />
+            <p>Le site peut contenir des liens vers des sites externes.</p>
+            <p className="mt-4">
+              EURL EDEN DRIVE VTC ne peut être tenue responsable du contenu, du fonctionnement ou
+              des pratiques de confidentialité de ces sites tiers.
             </p>
           </section>
         </div>
