@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 const TITLE = "Politique de confidentialité — EDEN DRIVE VTC";
 const DESCRIPTION =
-  "Politique de confidentialité et de protection des données personnelles du site EDEN DRIVE VTC.";
+  "Politique de confidentialité et de protection des données personnelles du site EURL EDEN DRIVE VTC.";
 
 export const Route = createFileRoute("/politique-confidentialite")({
   head: () => ({
@@ -28,143 +28,196 @@ function PolitiqueConfidentialite() {
           Politique de <em className="text-silver-gradient not-italic">confidentialité</em>
         </h1>
         <div className="hairline my-6 w-24" />
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          Dernière mise à jour : juillet 2026
+        </p>
 
-        <div className="space-y-10 text-sm leading-relaxed text-muted-foreground sm:text-base">
+        <div className="mt-10 space-y-12 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <section>
             <p>
-              EDEN DRIVE VTC accorde la plus grande importance à la protection de votre vie
-              privée et de vos données personnelles. La présente politique décrit les
-              informations collectées via le site edendrive-vtc.fr, la manière dont elles
-              sont utilisées et les droits dont vous disposez, conformément au Règlement
-              général sur la protection des données (RGPD) et à la loi Informatique et
-              Libertés.
+              EURL EDEN DRIVE VTC accorde une importance particulière à la protection des données
+              personnelles de ses clients et visiteurs.
             </p>
-          </section>
-
-          <section>
-            <h2 className="font-display text-2xl text-ivory">Responsable du traitement</h2>
-            <div className="hairline my-4 w-16" />
-            <p>
-              Le responsable du traitement des données est EDEN DRIVE VTC, joignable à
-              l'adresse{" "}
-              <a href="mailto:edendrivevtc@gmail.com" className="text-silver hover:underline">
-                edendrivevtc@gmail.com
+            <p className="mt-4">
+              La présente politique explique quelles informations sont collectées via le site{" "}
+              <a href="https://edendrive-vtc.fr" className="text-silver hover:underline">
+                https://edendrive-vtc.fr
               </a>
-              .
+              , pourquoi elles sont utilisées et quels sont vos droits.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Données collectées</h2>
+            <h2 className="font-display text-2xl text-ivory">1. Responsable du traitement des données</h2>
             <div className="hairline my-4 w-16" />
-            <p>
-              Dans le cadre d'une demande de réservation ou de contact, nous collectons
-              uniquement les informations strictement nécessaires au traitement de votre
-              demande :
+            <p>Le responsable du traitement des données personnelles collectées sur ce site est :</p>
+            <p className="mt-4">
+              <strong className="text-ivory">EURL EDEN DRIVE VTC</strong><br />
+              3 rue Suzanne Valadon<br />
+              31850 Montrabé<br />
+              France
             </p>
-            <ul className="mt-4 list-disc space-y-1 pl-6">
-              <li>Nom et prénom</li>
-              <li>Numéro de téléphone</li>
-              <li>Adresse e-mail</li>
-              <li>Adresses de prise en charge et de destination</li>
-              <li>Date, heure et détails du trajet souhaité</li>
-              <li>Toute information communiquée dans le champ « message »</li>
+            <p className="mt-4"><span className="text-ivory">Contact :</span></p>
+            <ul className="mt-2 space-y-1">
+              <li>
+                <a href="mailto:edendrivevtc@gmail.com" className="text-silver hover:underline">
+                  edendrivevtc@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+33635585823" className="text-silver hover:underline">
+                  06 35 58 58 23
+                </a>
+              </li>
             </ul>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Finalités du traitement</h2>
+            <h2 className="font-display text-2xl text-ivory">2. Données collectées</h2>
             <div className="hairline my-4 w-16" />
-            <p>Vos données sont utilisées exclusivement pour :</p>
+            <p>
+              Lorsque vous utilisez le formulaire de demande de réservation, les informations
+              suivantes peuvent être collectées :
+            </p>
             <ul className="mt-4 list-disc space-y-1 pl-6">
-              <li>Répondre à vos demandes de devis et de réservation</li>
-              <li>Assurer la bonne exécution de la prestation de transport</li>
-              <li>Vous recontacter en cas de besoin</li>
-              <li>Respecter nos obligations légales et comptables</li>
+              <li>Nom et prénom ;</li>
+              <li>Numéro de téléphone ;</li>
+              <li>Adresse e-mail ;</li>
+              <li>Adresse de départ ;</li>
+              <li>Adresse d'arrivée ;</li>
+              <li>Date de la course ;</li>
+              <li>Heure de prise en charge ;</li>
+              <li>Nombre de passagers ;</li>
+              <li>Informations complémentaires éventuellement renseignées dans le message.</li>
             </ul>
             <p className="mt-4">
-              Aucune donnée n'est utilisée à des fins de prospection commerciale sans votre
-              consentement, ni cédée ou revendue à des tiers.
+              Ces informations sont nécessaires afin de pouvoir répondre à votre demande de
+              réservation et organiser votre transport.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Base légale</h2>
+            <h2 className="font-display text-2xl text-ivory">3. Utilisation des données</h2>
             <div className="hairline my-4 w-16" />
-            <p>
-              Le traitement de vos données repose sur votre consentement (envoi du
-              formulaire) et sur l'exécution de mesures précontractuelles ou contractuelles
-              prises à votre demande.
+            <p>Les données collectées sont utilisées uniquement pour :</p>
+            <ul className="mt-4 list-disc space-y-1 pl-6">
+              <li>répondre aux demandes de réservation ;</li>
+              <li>établir une proposition tarifaire ;</li>
+              <li>organiser et assurer les prestations de transport ;</li>
+              <li>échanger avec le client concernant sa demande.</li>
+            </ul>
+            <p className="mt-4">
+              Les données ne sont pas utilisées à des fins publicitaires et ne sont pas vendues ou
+              louées à des tiers.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Durée de conservation</h2>
+            <h2 className="font-display text-2xl text-ivory">4. Conservation des données</h2>
             <div className="hairline my-4 w-16" />
             <p>
-              Les données liées à une demande de réservation sont conservées pendant la
-              durée nécessaire à la gestion de la prestation, puis archivées conformément
-              aux obligations légales (notamment comptables et fiscales), avant d'être
-              supprimées.
+              Les demandes reçues par e-mail sont conservées pendant une durée raisonnable
+              permettant le suivi administratif et commercial des demandes clients.
             </p>
+            <p className="mt-4">
+              Sauf obligation légale particulière, les données sont conservées pendant une durée
+              maximale de 3 ans à compter du dernier contact avec le client, conformément aux
+              bonnes pratiques applicables en matière de gestion commerciale.
+            </p>
+            <p className="mt-4">Au-delà de cette période, les données sont supprimées ou anonymisées.</p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Destinataires</h2>
+            <h2 className="font-display text-2xl text-ivory">5. Transmission des données</h2>
             <div className="hairline my-4 w-16" />
             <p>
-              Vos données sont destinées uniquement à EDEN DRIVE VTC et à ses sous-traitants
-              techniques strictement nécessaires au fonctionnement du site et à l'envoi des
-              e-mails (hébergeur Cloudflare, service d'envoi transactionnel Brevo). Ces
-              prestataires agissent sur nos instructions et sont tenus à la confidentialité.
+              Les informations transmises via le formulaire sont envoyées directement à l'adresse
+              e-mail professionnelle :
             </p>
-          </section>
-
-          <section>
-            <h2 className="font-display text-2xl text-ivory">Vos droits</h2>
-            <div className="hairline my-4 w-16" />
-            <p>
-              Conformément au RGPD, vous disposez d'un droit d'accès, de rectification,
-              d'effacement, de limitation, d'opposition et de portabilité concernant vos
-              données personnelles. Vous pouvez exercer ces droits à tout moment par e-mail
-              à{" "}
+            <p className="mt-4">
               <a href="mailto:edendrivevtc@gmail.com" className="text-silver hover:underline">
                 edendrivevtc@gmail.com
               </a>
-              .
             </p>
             <p className="mt-4">
-              En cas de désaccord persistant, vous pouvez introduire une réclamation auprès
-              de la CNIL —{" "}
-              <a
-                href="https://www.cnil.fr"
-                target="_blank"
-                rel="noopener"
-                className="text-silver hover:underline"
-              >
-                www.cnil.fr
+              Elles ne sont pas enregistrées dans une base de données dédiée sur le site internet.
+            </p>
+            <p className="mt-4">
+              EURL EDEN DRIVE VTC ne transmet pas vos données personnelles à des tiers, sauf
+              obligation légale ou nécessité liée à l'exécution de la prestation demandée.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl text-ivory">6. Cookies et outils de suivi</h2>
+            <div className="hairline my-4 w-16" />
+            <p>
+              Le site{" "}
+              <a href="https://edendrive-vtc.fr" className="text-silver hover:underline">
+                https://edendrive-vtc.fr
+              </a>{" "}
+              n'utilise pas d'outil d'analyse d'audience ou de suivi publicitaire tel que Google
+              Analytics, Meta Pixel ou outils similaires.
+            </p>
+            <p className="mt-4">Aucun cookie publicitaire ou de suivi n'est utilisé.</p>
+            <p className="mt-4">
+              Des éléments techniques nécessaires au fonctionnement du site peuvent toutefois être
+              utilisés par les services d'hébergement afin d'assurer la sécurité et le bon
+              fonctionnement du site.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-2xl text-ivory">7. Vos droits</h2>
+            <div className="hairline my-4 w-16" />
+            <p>
+              Conformément à la réglementation applicable sur la protection des données
+              personnelles, vous disposez des droits suivants :
+            </p>
+            <ul className="mt-4 list-disc space-y-1 pl-6">
+              <li>droit d'accès à vos données ;</li>
+              <li>droit de rectification des informations inexactes ;</li>
+              <li>droit à l'effacement de vos données ;</li>
+              <li>droit de limitation du traitement ;</li>
+              <li>droit d'opposition dans certains cas.</li>
+            </ul>
+            <p className="mt-4">Pour exercer vos droits, vous pouvez contacter :</p>
+            <p className="mt-4">
+              <strong className="text-ivory">EURL EDEN DRIVE VTC</strong><br />
+              E-mail :{" "}
+              <a href="mailto:edendrivevtc@gmail.com" className="text-silver hover:underline">
+                edendrivevtc@gmail.com
               </a>
-              .
+              <br />
+              Téléphone :{" "}
+              <a href="tel:+33635585823" className="text-silver hover:underline">
+                06 35 58 58 23
+              </a>
+            </p>
+            <p className="mt-4">
+              Une réponse vous sera apportée dans les délais prévus par la réglementation.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Cookies</h2>
+            <h2 className="font-display text-2xl text-ivory">8. Sécurité des données</h2>
             <div className="hairline my-4 w-16" />
             <p>
-              Le site edendrive-vtc.fr n'utilise pas de cookies publicitaires ni de traceurs
-              de mesure d'audience non essentiels. Seuls des cookies strictement nécessaires
-              au bon fonctionnement du site peuvent être déposés.
+              EURL EDEN DRIVE VTC met en œuvre des mesures raisonnables afin de protéger les
+              informations transmises contre toute perte, utilisation abusive ou accès non
+              autorisé.
             </p>
           </section>
 
           <section>
-            <h2 className="font-display text-2xl text-ivory">Sécurité</h2>
+            <h2 className="font-display text-2xl text-ivory">9. Modification de la politique de confidentialité</h2>
             <div className="hairline my-4 w-16" />
             <p>
-              EDEN DRIVE VTC met en œuvre toutes les mesures techniques et organisationnelles
-              appropriées pour garantir la sécurité, l'intégrité et la confidentialité de vos
-              données.
+              EURL EDEN DRIVE VTC se réserve le droit de modifier la présente politique afin de
+              tenir compte des évolutions légales, techniques ou organisationnelles.
+            </p>
+            <p className="mt-4">
+              La version applicable est celle publiée sur le site au moment de votre consultation.
             </p>
           </section>
         </div>
