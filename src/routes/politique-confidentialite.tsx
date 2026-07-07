@@ -22,12 +22,12 @@ function PolitiqueConfidentialite() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <LegalHeader />
-      <main className="mx-auto max-w-3xl px-5 py-24 sm:px-8 sm:py-32">
+      <main className="mx-auto max-w-3xl px-5 py-24 text-center sm:px-8 sm:py-32">
         <span className="text-xs uppercase tracking-[0.3em] text-silver">Vie privée</span>
         <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
           Politique de <em className="text-silver-gradient not-italic">confidentialité</em>
         </h1>
-        <div className="hairline my-6 w-24" />
+        <div className="hairline mx-auto my-6 w-24" />
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Dernière mise à jour : juillet 2026
         </p>
