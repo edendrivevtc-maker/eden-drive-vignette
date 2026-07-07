@@ -23,16 +23,14 @@ function PolitiqueConfidentialite() {
     <div className="min-h-screen bg-background text-foreground">
       <LegalHeader />
       <main className="mx-auto max-w-3xl px-5 py-24 sm:px-8 sm:py-32">
-        <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-silver">Vie privée</span>
-          <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            Politique de <em className="text-silver-gradient not-italic">confidentialité</em>
-          </h1>
-          <div className="hairline mx-auto my-6 w-24" />
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Dernière mise à jour : juillet 2026
-          </p>
-        </div>
+        <span className="text-xs uppercase tracking-[0.3em] text-silver">Vie privée</span>
+        <h1 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
+          Politique de <em className="text-silver-gradient not-italic">confidentialité</em>
+        </h1>
+        <div className="hairline my-6 w-24" />
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          Dernière mise à jour : juillet 2026
+        </p>
 
         <div className="mt-10 space-y-12 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <section>
@@ -50,8 +48,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">1. Responsable du traitement des données</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">1. Responsable du traitement des données</h2>
+            <div className="hairline my-4 w-16" />
             <p>Le responsable du traitement des données personnelles collectées sur ce site est :</p>
             <p className="mt-4">
               <strong className="text-ivory">EURL EDEN DRIVE VTC</strong><br />
@@ -75,8 +73,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">2. Données collectées</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">2. Données collectées</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               Lorsque vous utilisez le formulaire de demande de réservation, les informations
               suivantes peuvent être collectées :
@@ -99,8 +97,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">3. Utilisation des données</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">3. Utilisation des données</h2>
+            <div className="hairline my-4 w-16" />
             <p>Les données collectées sont utilisées uniquement pour :</p>
             <ul className="mt-4 list-disc space-y-1 pl-6">
               <li>répondre aux demandes de réservation ;</li>
@@ -115,8 +113,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">4. Conservation des données</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">4. Conservation des données</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               Les demandes reçues par e-mail sont conservées pendant une durée raisonnable
               permettant le suivi administratif et commercial des demandes clients.
@@ -130,8 +128,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">5. Transmission des données</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">5. Transmission des données</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               Les informations transmises via le formulaire sont envoyées directement à l'adresse
               e-mail professionnelle :
@@ -151,8 +149,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">6. Cookies et outils de suivi</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">6. Cookies et outils de suivi</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               Le site{" "}
               <a href="https://edendrive-vtc.fr" className="text-silver hover:underline">
@@ -170,8 +168,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">7. Vos droits</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">7. Vos droits</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               Conformément à la réglementation applicable sur la protection des données
               personnelles, vous disposez des droits suivants :
@@ -202,8 +200,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">8. Sécurité des données</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">8. Sécurité des données</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               EURL EDEN DRIVE VTC met en œuvre des mesures raisonnables afin de protéger les
               informations transmises contre toute perte, utilisation abusive ou accès non
@@ -212,8 +210,8 @@ function PolitiqueConfidentialite() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">9. Modification de la politique de confidentialité</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">9. Modification de la politique de confidentialité</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               EURL EDEN DRIVE VTC se réserve le droit de modifier la présente politique afin de
               tenir compte des évolutions légales, techniques ou organisationnelles.
