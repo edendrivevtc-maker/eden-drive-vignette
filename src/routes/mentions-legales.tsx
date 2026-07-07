@@ -33,8 +33,8 @@ function MentionsLegales() {
 
         <div className="space-y-12 text-sm leading-relaxed text-muted-foreground sm:text-base">
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">1. Éditeur du site</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">1. Éditeur du site</h2>
+            <div className="hairline my-4 w-16" />
             <p>Le présent site internet est édité par :</p>
             <ul className="mt-4 space-y-1">
               <li><strong className="text-ivory">EURL EDEN DRIVE VTC</strong></li>
@@ -71,8 +71,8 @@ function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">2. Hébergement du site</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">2. Hébergement du site</h2>
+            <div className="hairline my-4 w-16" />
             <p>Le site est hébergé par :</p>
             <p className="mt-4">
               <strong className="text-ivory">Cloudflare, Inc.</strong><br />
@@ -85,8 +85,8 @@ function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">3. Propriété intellectuelle</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">3. Propriété intellectuelle</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               L'ensemble des éléments présents sur ce site (textes, images, logos, éléments
               graphiques, structure et contenus) sont protégés par les dispositions relatives à la
@@ -99,8 +99,8 @@ function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">4. Responsabilité</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">4. Responsabilité</h2>
+            <div className="hairline my-4 w-16" />
             <p>
               EURL EDEN DRIVE VTC s'efforce de fournir des informations exactes et à jour sur son
               site.
@@ -113,8 +113,8 @@ function MentionsLegales() {
           </section>
 
           <section>
-            <h2 className="text-center font-display text-2xl text-ivory">5. Liens externes</h2>
-            <div className="hairline mx-auto my-4 w-16" />
+            <h2 className="font-display text-2xl text-ivory">5. Liens externes</h2>
+            <div className="hairline my-4 w-16" />
             <p>Le site peut contenir des liens vers des sites externes.</p>
             <p className="mt-4">
               EURL EDEN DRIVE VTC ne peut être tenue responsable du contenu, du fonctionnement ou
