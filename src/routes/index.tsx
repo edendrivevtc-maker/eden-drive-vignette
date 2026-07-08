@@ -194,20 +194,7 @@ function Logo({ className = "" }: { className?: string }) {
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
-      <img
-        src={heroCar}
-        alt="Berline noire premium EDEN DRIVE VTC devant un hôtel de luxe"
-        width={1920}
-        height={1280}
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: "var(--gradient-hero)" }}
-        aria-hidden="true"
-      />
+    <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden bg-background">
       <div
         className="absolute inset-0"
         style={{ background: "var(--gradient-veil)" }}
