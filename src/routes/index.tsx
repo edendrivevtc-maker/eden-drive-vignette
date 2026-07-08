@@ -192,6 +192,27 @@ function Logo({ className = "" }: { className?: string }) {
   );
 }
 
+/* ---------- Chauffeur Showcase ---------- */
+function ChauffeurShowcase() {
+  return (
+    <section
+      id="chauffeur"
+      className="relative border-t border-border/40 bg-background py-20 sm:py-28"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <img
+          src={chauffeurShowcase}
+          alt="Chauffeur EDEN DRIVE VTC ouvrant la portière d'une berline noire premium"
+          width={1400}
+          height={900}
+          loading="lazy"
+          className="w-full h-auto rounded-2xl object-cover shadow-[var(--shadow-luxe)]"
+        />
+      </div>
+    </section>
+  );
+
+
 /* ---------- Hero ---------- */
 function Hero() {
   return (
