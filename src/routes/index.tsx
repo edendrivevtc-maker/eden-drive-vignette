@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   Phone,
@@ -22,7 +22,9 @@ import {
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
-import heroCar from "@/assets/hero-car.jpg";
+import chauffeurShowcaseAsset from "@/assets/chauffeur-portiere.jpeg.asset.json";
+
+const chauffeurShowcase = chauffeurShowcaseAsset.url;
 
 
 const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
@@ -43,10 +45,10 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: "/" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroCar },
+      { property: "og:image", content: chauffeurShowcase },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: heroCar },
+      { name: "twitter:image", content: chauffeurShowcase },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
@@ -58,7 +60,7 @@ export const Route = createFileRoute("/")({
           "@id": "https://edendrive-vtc.fr/#business",
           name: "EDEN DRIVE VTC",
           description: DESCRIPTION,
-          image: heroCar,
+          image: chauffeurShowcase,
           telephone: "+33 6 35 58 58 23",
           email: "edendrivevtc@gmail.com",
           areaServed: ["Toulouse", "Blagnac", "Occitanie"],
@@ -89,6 +91,7 @@ function Home() {
       <Nav />
       <Contact />
       <Hero />
+      <ChauffeurShowcase />
       <Services />
       <ContactCTA />
       <Testimonials />
@@ -189,23 +192,65 @@ function Logo({ className = "" }: { className?: string }) {
   );
 }
 
+/* ---------- Chauffeur Showcase ---------- */
+function ChauffeurShowcase() {
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = imgRef.current;
+    if (!el || visible) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
+
+  return (
+    <section
+      id="chauffeur"
+      className="relative border-t border-border/40 bg-background py-20 sm:py-28"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <img
+          ref={imgRef}
+          src={chauffeurShowcase}
+          alt="Chauffeur EDEN DRIVE VTC ouvrant la portière d'une berline noire premium"
+          width={1400}
+          height={900}
+          loading="lazy"
+          className="w-full h-auto rounded-2xl object-cover shadow-[var(--shadow-luxe)] motion-safe:transition-[opacity,transform] motion-safe:duration-[400ms] motion-safe:ease-out"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(8px)",
+          }}
+        />
+      </div>
+    </section>
+  );
+}
+
+
+
+
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
-      <img
-        src={heroCar}
-        alt="Berline noire premium EDEN DRIVE VTC devant un hôtel de luxe"
-        width={1920}
-        height={1280}
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: "var(--gradient-hero)" }}
-        aria-hidden="true"
-      />
+    <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden bg-background">
       <div
         className="absolute inset-0"
         style={{ background: "var(--gradient-veil)" }}
