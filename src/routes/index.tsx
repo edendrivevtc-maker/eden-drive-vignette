@@ -60,7 +60,7 @@ export const Route = createFileRoute("/")({
           "@id": "https://edendrive-vtc.fr/#business",
           name: "EDEN DRIVE VTC",
           description: DESCRIPTION,
-          image: heroCar,
+          image: chauffeurShowcase,
           telephone: "+33 6 35 58 58 23",
           email: "edendrivevtc@gmail.com",
           areaServed: ["Toulouse", "Blagnac", "Occitanie"],
