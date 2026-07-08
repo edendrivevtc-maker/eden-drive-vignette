@@ -191,57 +191,8 @@ function Logo({ className = "" }: { className?: string }) {
   );
 }
 
-/* ---------- Chauffeur Showcase ---------- */
-function ChauffeurShowcase() {
-  const imgRef = useRef<HTMLImageElement | null>(null);
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const el = imgRef.current;
-    if (!el || visible) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-            break;
-          }
-        }
-      },
-      { threshold: 0.15 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [visible]);
 
-  return (
-    <section
-      id="chauffeur"
-      className="relative border-t border-border/40 bg-background py-20 sm:py-28"
-    >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <img
-          ref={imgRef}
-          src={chauffeurShowcase}
-          alt="Chauffeur EDEN DRIVE VTC ouvrant la portière d'une berline noire premium"
-          width={1400}
-          height={900}
-          loading="lazy"
-          className="w-full h-auto rounded-2xl object-cover shadow-[var(--shadow-luxe)] motion-safe:transition-[opacity,transform] motion-safe:duration-[400ms] motion-safe:ease-out"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(8px)",
-          }}
-        />
-      </div>
-    </section>
-  );
-}
 
 
 
