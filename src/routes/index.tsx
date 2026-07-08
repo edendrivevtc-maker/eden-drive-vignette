@@ -22,7 +22,9 @@ import {
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
-import heroCar from "@/assets/hero-car.jpg";
+import chauffeurShowcaseAsset from "@/assets/chauffeur-portiere.jpeg.asset.json";
+
+const chauffeurShowcase = chauffeurShowcaseAsset.url;
 
 
 const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
