@@ -124,7 +124,7 @@ function MentionsLegales() {
         <div className="mt-16">
           <Link
             to="/"
-            className="btn-ghost-silver inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium uppercase tracking-widest"
           >
             Retour à l'accueil
           </Link>

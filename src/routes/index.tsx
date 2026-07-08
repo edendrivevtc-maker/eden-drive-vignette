@@ -238,7 +238,7 @@ function Hero() {
             </a>
             <a
               href={`tel:${PHONE_TEL}`}
-              className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
             >
               <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
             </a>
@@ -486,7 +486,7 @@ function HowToBook() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener"
-            className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
@@ -520,7 +520,7 @@ function ContactCTA() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener"
-            className="btn-ghost-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
