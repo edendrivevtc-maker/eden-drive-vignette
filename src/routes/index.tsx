@@ -91,7 +91,6 @@ function Home() {
       <Nav />
       <Contact />
       <Hero />
-      <ChauffeurShowcase />
       <Services />
       <ContactCTA />
       <Testimonials />
