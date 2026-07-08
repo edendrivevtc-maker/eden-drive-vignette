@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   Phone,
@@ -23,6 +23,9 @@ import {
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
 import chauffeurShowcaseAsset from "@/assets/chauffeur-portiere.jpeg.asset.json";
+import vtcPhoto1Asset from "@/assets/vtcphoto1.jpeg.asset.json";
+
+const vtcPhoto1 = vtcPhoto1Asset.url;
 
 const chauffeurShowcase = chauffeurShowcaseAsset.url;
 
@@ -90,7 +93,9 @@ function Home() {
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <Contact />
+      <VtcPhoto />
       <Hero />
+      
       
       <Services />
       <ContactCTA />
@@ -195,6 +200,55 @@ function Logo({ className = "" }: { className?: string }) {
 
 
 
+
+/* ---------- VTC Photo ---------- */
+function VtcPhoto() {
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = imgRef.current;
+    if (!el || visible) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
+
+  return (
+    <section className="relative bg-background py-16 sm:py-20">
+      <div className="mx-auto max-w-5xl px-5 sm:px-8">
+        <img
+          ref={imgRef}
+          src={vtcPhoto1}
+          alt="Chauffeur EDEN DRIVE VTC ouvrant la portière d'une berline noire premium"
+          width={1400}
+          height={900}
+          loading="lazy"
+          className="mx-auto w-full h-auto rounded-2xl object-cover shadow-[var(--shadow-luxe)] motion-safe:transition-[opacity,transform] motion-safe:duration-[600ms] motion-safe:ease-out"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(8px)",
+          }}
+        />
+      </div>
+    </section>
+  );
+}
 
 /* ---------- Hero ---------- */
 function Hero() {
