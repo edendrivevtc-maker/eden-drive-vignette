@@ -45,10 +45,10 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: "/" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroCar },
+      { property: "og:image", content: chauffeurShowcase },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: heroCar },
+      { name: "twitter:image", content: chauffeurShowcase },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
