@@ -105,7 +105,7 @@ function WhatsAppFloating() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contacter EDEN DRIVE VTC sur WhatsApp"
-      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-[0_10px_30px_-8px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-110 active:scale-105 md:hidden"
+      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full transition-transform duration-300 hover:scale-110 active:scale-105 md:hidden"
       style={{ backgroundColor: "#25D366" }}
     >
       <svg viewBox="0 0 32 32" className="h-7 w-7" fill="#ffffff" aria-hidden="true">
