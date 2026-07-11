@@ -344,15 +344,33 @@ function Services() {
           </p>
         </div>
         <div className="mt-16 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {services.map((s) => (
-            <article key={s.title} className="luxe-card group rounded-2xl p-7">
-              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
-                <s.icon className="h-5 w-5 text-silver" strokeWidth={1.4} />
-              </div>
-              <h3 className="font-display text-2xl">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-            </article>
-          ))}
+          {services.map((s) => {
+            const cardInner = (
+              <>
+                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full border border-silver/30 bg-silver/5">
+                  <s.icon className="h-5 w-5 text-silver" strokeWidth={1.4} />
+                </div>
+                <h3 className="font-display text-2xl">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+              </>
+            );
+            if (s.to) {
+              return (
+                <Link
+                  key={s.title}
+                  to={s.to}
+                  className="luxe-card group block rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:border-silver/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-silver/40"
+                >
+                  {cardInner}
+                </Link>
+              );
+            }
+            return (
+              <article key={s.title} className="luxe-card group rounded-2xl p-7">
+                {cardInner}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
