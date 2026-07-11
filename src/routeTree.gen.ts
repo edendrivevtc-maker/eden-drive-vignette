@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VtcAeroportToulouseBlagnacRoute =
@@ -31,6 +32,12 @@ const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChauffeurVtcEntrepriseToulouseRoute =
+  ChauffeurVtcEntrepriseToulouseRouteImport.update({
+    id: '/chauffeur-vtc-entreprise-toulouse',
+    path: '/chauffeur-vtc-entreprise-toulouse',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -39,12 +46,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
@@ -52,6 +61,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
@@ -60,18 +70,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/vtc-aeroport-toulouse-blagnac'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/vtc-aeroport-toulouse-blagnac'
   id:
     | '__root__'
     | '/'
+    | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/vtc-aeroport-toulouse-blagnac'
@@ -79,6 +92,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChauffeurVtcEntrepriseToulouseRoute: typeof ChauffeurVtcEntrepriseToulouseRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
   VtcAeroportToulouseBlagnacRoute: typeof VtcAeroportToulouseBlagnacRoute
@@ -107,6 +121,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chauffeur-vtc-entreprise-toulouse': {
+      id: '/chauffeur-vtc-entreprise-toulouse'
+      path: '/chauffeur-vtc-entreprise-toulouse'
+      fullPath: '/chauffeur-vtc-entreprise-toulouse'
+      preLoaderRoute: typeof ChauffeurVtcEntrepriseToulouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -119,6 +140,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChauffeurVtcEntrepriseToulouseRoute: ChauffeurVtcEntrepriseToulouseRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
   VtcAeroportToulouseBlagnacRoute: VtcAeroportToulouseBlagnacRoute,
