@@ -55,7 +55,7 @@ const FAQ = [
   },
 ];
 
-export const Route = createFileRoute("https://edendrive-vtc.fr/vtc-aeroport-toulouse-blagnac")({
+export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
   head: () => ({
     meta: [
       { title: TITLE },
