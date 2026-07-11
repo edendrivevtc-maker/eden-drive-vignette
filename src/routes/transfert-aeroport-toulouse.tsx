@@ -3,12 +3,10 @@ import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   Phone,
-  MessageCircle,
   MapPin,
   Plane,
   Clock,
   Sparkles,
-  ShieldCheck,
   Star,
   Calendar,
   CheckCircle2,

@@ -9,10 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TransfertAeroportToulouseRouteImport } from './routes/transfert-aeroport-toulouse'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TransfertAeroportToulouseRoute =
+  TransfertAeroportToulouseRouteImport.update({
+    id: '/transfert-aeroport-toulouse',
+    path: '/transfert-aeroport-toulouse',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PolitiqueConfidentialiteRoute =
   PolitiqueConfidentialiteRouteImport.update({
     id: '/politique-confidentialite',
@@ -34,34 +41,58 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/transfert-aeroport-toulouse': typeof TransfertAeroportToulouseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/transfert-aeroport-toulouse': typeof TransfertAeroportToulouseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/transfert-aeroport-toulouse': typeof TransfertAeroportToulouseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mentions-legales' | '/politique-confidentialite'
+  fullPaths:
+    | '/'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
+    | '/transfert-aeroport-toulouse'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mentions-legales' | '/politique-confidentialite'
-  id: '__root__' | '/' | '/mentions-legales' | '/politique-confidentialite'
+  to:
+    | '/'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
+    | '/transfert-aeroport-toulouse'
+  id:
+    | '__root__'
+    | '/'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
+    | '/transfert-aeroport-toulouse'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
+  TransfertAeroportToulouseRoute: typeof TransfertAeroportToulouseRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/transfert-aeroport-toulouse': {
+      id: '/transfert-aeroport-toulouse'
+      path: '/transfert-aeroport-toulouse'
+      fullPath: '/transfert-aeroport-toulouse'
+      preLoaderRoute: typeof TransfertAeroportToulouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/politique-confidentialite': {
       id: '/politique-confidentialite'
       path: '/politique-confidentialite'
@@ -90,6 +121,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
+  TransfertAeroportToulouseRoute: TransfertAeroportToulouseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
