@@ -55,7 +55,7 @@ const FAQ = [
   },
 ];
 
-export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
+export const Route = createFileRoute("https://edendrive-vtc.fr/vtc-aeroport-toulouse-blagnac")({
   head: () => ({
     meta: [
       { title: TITLE },
@@ -67,14 +67,14 @@ export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
       },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:url", content: "/vtc-aeroport-toulouse-blagnac" },
+      { property: "og:url", content: "https://edendrive-vtc.fr/vtc-aeroport-toulouse-blagnac" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: airportImg },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: airportImg },
     ],
-    links: [{ rel: "canonical", href: "/vtc-aeroport-toulouse-blagnac" }],
+    links: [{ rel: "canonical", href: "https://edendrive-vtc.fr/vtc-aeroport-toulouse-blagnac" }],
     scripts: [
       {
         type: "application/ld+json",
