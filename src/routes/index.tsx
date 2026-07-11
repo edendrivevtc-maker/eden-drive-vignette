@@ -320,8 +320,8 @@ function About() {
 
 /* ---------- Services ---------- */
 function Services() {
-  const services = [
-    { icon: Plane, title: "Transfert aéroport", text: "Toulouse-Blagnac et aéroports d'Occitanie. Suivi de vol inclus." },
+  const services: Array<{ icon: typeof Plane; title: string; text: string; to?: string }> = [
+    { icon: Plane, title: "Transfert aéroport", text: "Toulouse-Blagnac et aéroports d'Occitanie. Suivi de vol inclus.", to: "/vtc-aeroport-toulouse-blagnac" },
     { icon: Train, title: "Transfert gare", text: "Gare Matabiau et gares régionales, accueil quai avec pancarte." },
     { icon: Hotel, title: "Transferts hôtels", text: "Prise en charge à votre hôtel, palace ou résidence." },
     { icon: Car, title: "Longs trajets", text: "Interville et longue distance dans toute la France." },
