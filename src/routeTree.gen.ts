@@ -9,15 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TransfertAeroportToulouseRouteImport } from './routes/transfert-aeroport-toulouse'
+import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as IndexRouteImport } from './routes/index'
 
-const TransfertAeroportToulouseRoute =
-  TransfertAeroportToulouseRouteImport.update({
-    id: '/transfert-aeroport-toulouse',
-    path: '/transfert-aeroport-toulouse',
+const VtcAeroportToulouseBlagnacRoute =
+  VtcAeroportToulouseBlagnacRouteImport.update({
+    id: '/vtc-aeroport-toulouse-blagnac',
+    path: '/vtc-aeroport-toulouse-blagnac',
     getParentRoute: () => rootRouteImport,
   } as any)
 const PolitiqueConfidentialiteRoute =
@@ -41,20 +41,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
-  '/transfert-aeroport-toulouse': typeof TransfertAeroportToulouseRoute
+  '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
-  '/transfert-aeroport-toulouse': typeof TransfertAeroportToulouseRoute
+  '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
-  '/transfert-aeroport-toulouse': typeof TransfertAeroportToulouseRoute
+  '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -62,35 +62,35 @@ export interface FileRouteTypes {
     | '/'
     | '/mentions-legales'
     | '/politique-confidentialite'
-    | '/transfert-aeroport-toulouse'
+    | '/vtc-aeroport-toulouse-blagnac'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/mentions-legales'
     | '/politique-confidentialite'
-    | '/transfert-aeroport-toulouse'
+    | '/vtc-aeroport-toulouse-blagnac'
   id:
     | '__root__'
     | '/'
     | '/mentions-legales'
     | '/politique-confidentialite'
-    | '/transfert-aeroport-toulouse'
+    | '/vtc-aeroport-toulouse-blagnac'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
-  TransfertAeroportToulouseRoute: typeof TransfertAeroportToulouseRoute
+  VtcAeroportToulouseBlagnacRoute: typeof VtcAeroportToulouseBlagnacRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/transfert-aeroport-toulouse': {
-      id: '/transfert-aeroport-toulouse'
-      path: '/transfert-aeroport-toulouse'
-      fullPath: '/transfert-aeroport-toulouse'
-      preLoaderRoute: typeof TransfertAeroportToulouseRouteImport
+    '/vtc-aeroport-toulouse-blagnac': {
+      id: '/vtc-aeroport-toulouse-blagnac'
+      path: '/vtc-aeroport-toulouse-blagnac'
+      fullPath: '/vtc-aeroport-toulouse-blagnac'
+      preLoaderRoute: typeof VtcAeroportToulouseBlagnacRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politique-confidentialite': {
@@ -121,7 +121,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
-  TransfertAeroportToulouseRoute: TransfertAeroportToulouseRoute,
+  VtcAeroportToulouseBlagnacRoute: VtcAeroportToulouseBlagnacRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
