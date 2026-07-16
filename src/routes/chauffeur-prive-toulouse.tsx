@@ -331,14 +331,23 @@ function WhyUs() {
           <div className="hairline mx-auto my-6 w-24" />
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-6">
-          <div className="flex items-center gap-3">
+        <div className="mt-12 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <GoogleReviewsRating />
             <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              <GoogleReviewsCount /> vérifiés
+              basé sur <GoogleReviewsCount />
             </span>
           </div>
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-xs font-medium uppercase tracking-widest"
+          >
+            <Star className="h-4 w-4" /> Voir tous les avis Google
+          </a>
         </div>
+
 
         <div className="mt-12 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((s) => (
