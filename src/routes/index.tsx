@@ -752,6 +752,27 @@ function Footer() {
 
         <div className="hairline my-8" />
 
+        {/* Services */}
+        <div className="mb-8 text-center">
+          <div className="mb-3 text-xs uppercase tracking-[0.25em] text-silver">Services</div>
+          <nav className="flex flex-col items-center gap-2 text-sm text-muted-foreground">
+            <Link to="/chauffeur-prive-toulouse" className="hover:text-silver">
+              Chauffeur privé Toulouse
+            </Link>
+            <Link to="/vtc-aeroport-toulouse-blagnac" className="hover:text-silver">
+              Transfert Aéroport Toulouse-Blagnac
+            </Link>
+            <Link to="/vtc-gare-matabiau-toulouse" className="hover:text-silver">
+              Transfert Gare Toulouse Matabiau
+            </Link>
+            <Link to="/chauffeur-vtc-entreprise-toulouse" className="hover:text-silver">
+              Déplacements professionnels
+            </Link>
+          </nav>
+        </div>
+
+        <div className="hairline my-8" />
+
         {/* Liens légaux */}
         <nav className="flex flex-col items-center gap-2 text-center text-xs uppercase tracking-widest text-muted-foreground">
           <Link to="/mentions-legales" className="transition-colors hover:text-silver">
@@ -761,6 +782,7 @@ function Footer() {
             Politique de confidentialité
           </Link>
         </nav>
+
 
         <div className="mt-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} EDEN DRIVE VTC — Chauffeur VTC Toulouse. Tous droits réservés.
