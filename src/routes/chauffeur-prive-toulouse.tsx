@@ -35,6 +35,8 @@ const DESCRIPTION =
 const PHONE_DISPLAY_LOCAL = "06 35 58 58 23";
 const PHONE_TEL = "+33635585823";
 const WHATSAPP = "https://wa.me/33635585823";
+const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=EDEN+DRIVE+VTC+Toulouse+avis";
+
 
 export const Route = createFileRoute("/chauffeur-prive-toulouse")({
   head: () => ({
