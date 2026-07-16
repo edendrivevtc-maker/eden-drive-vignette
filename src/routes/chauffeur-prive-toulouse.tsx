@@ -401,38 +401,7 @@ function Areas() {
   );
 }
 
-/* ---------- Final CTA ---------- */
-function FinalCta() {
-  return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl px-5 sm:px-8 text-center">
-        <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
-        <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-          Réservez votre <em className="text-silver-gradient not-italic">chauffeur privé Toulouse</em>
-        </h2>
-        <div className="hairline mx-auto my-6 w-24" />
-        <p className="text-muted-foreground">
-          Besoin d'un chauffeur VTC pour un transfert, un déplacement professionnel ou un trajet
-          personnalisé ? Eden Drive VTC vous accompagne avec un service confortable et fiable.
-        </p>
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <a
-            href="#reserver"
-            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest sm:w-auto"
-          >
-            <Calendar className="h-4 w-4" /> Réserver maintenant
-          </a>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest sm:w-auto"
-          >
-            <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
+
 
 /* ---------- Booking form ---------- */
 function BookingForm() {
