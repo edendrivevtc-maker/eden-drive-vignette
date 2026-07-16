@@ -14,6 +14,7 @@ import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aer
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
+import { Route as ChauffeurPriveToulouseRouteImport } from './routes/chauffeur-prive-toulouse'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VtcGareMatabiauToulouseRoute = VtcGareMatabiauToulouseRouteImport.update({
@@ -44,6 +45,11 @@ const ChauffeurVtcEntrepriseToulouseRoute =
     path: '/chauffeur-vtc-entreprise-toulouse',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ChauffeurPriveToulouseRoute = ChauffeurPriveToulouseRouteImport.update({
+  id: '/chauffeur-prive-toulouse',
+  path: '/chauffeur-prive-toulouse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -52,6 +58,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chauffeur-prive-toulouse': typeof ChauffeurPriveToulouseRoute
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
@@ -60,6 +67,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chauffeur-prive-toulouse': typeof ChauffeurPriveToulouseRoute
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
@@ -69,6 +77,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chauffeur-prive-toulouse': typeof ChauffeurPriveToulouseRoute
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/chauffeur-prive-toulouse'
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/chauffeur-prive-toulouse'
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/chauffeur-prive-toulouse'
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
@@ -104,6 +116,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChauffeurPriveToulouseRoute: typeof ChauffeurPriveToulouseRoute
   ChauffeurVtcEntrepriseToulouseRoute: typeof ChauffeurVtcEntrepriseToulouseRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChauffeurVtcEntrepriseToulouseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chauffeur-prive-toulouse': {
+      id: '/chauffeur-prive-toulouse'
+      path: '/chauffeur-prive-toulouse'
+      fullPath: '/chauffeur-prive-toulouse'
+      preLoaderRoute: typeof ChauffeurPriveToulouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -160,6 +180,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChauffeurPriveToulouseRoute: ChauffeurPriveToulouseRoute,
   ChauffeurVtcEntrepriseToulouseRoute: ChauffeurVtcEntrepriseToulouseRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
