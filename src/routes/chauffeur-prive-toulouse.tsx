@@ -35,6 +35,8 @@ const DESCRIPTION =
 const PHONE_DISPLAY_LOCAL = "06 35 58 58 23";
 const PHONE_TEL = "+33635585823";
 const WHATSAPP = "https://wa.me/33635585823";
+const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=EDEN+DRIVE+VTC+Toulouse+avis";
+
 
 export const Route = createFileRoute("/chauffeur-prive-toulouse")({
   head: () => ({
@@ -104,8 +106,8 @@ function Page() {
       <Services />
       <WhyUs />
       <Areas />
-      <FinalCta />
       <BookingForm />
+
       <Footer />
       <WhatsAppFloating />
     </div>
@@ -331,14 +333,23 @@ function WhyUs() {
           <div className="hairline mx-auto my-6 w-24" />
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-6">
-          <div className="flex items-center gap-3">
+        <div className="mt-12 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <GoogleReviewsRating />
             <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              <GoogleReviewsCount /> vérifiés
+              basé sur <GoogleReviewsCount />
             </span>
           </div>
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-xs font-medium uppercase tracking-widest"
+          >
+            <Star className="h-4 w-4" /> Voir tous les avis Google
+          </a>
         </div>
+
 
         <div className="mt-12 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((s) => (
@@ -390,38 +401,7 @@ function Areas() {
   );
 }
 
-/* ---------- Final CTA ---------- */
-function FinalCta() {
-  return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl px-5 sm:px-8 text-center">
-        <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
-        <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-          Réservez votre <em className="text-silver-gradient not-italic">chauffeur privé Toulouse</em>
-        </h2>
-        <div className="hairline mx-auto my-6 w-24" />
-        <p className="text-muted-foreground">
-          Besoin d'un chauffeur VTC pour un transfert, un déplacement professionnel ou un trajet
-          personnalisé ? Eden Drive VTC vous accompagne avec un service confortable et fiable.
-        </p>
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <a
-            href="#reserver"
-            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest sm:w-auto"
-          >
-            <Calendar className="h-4 w-4" /> Réserver maintenant
-          </a>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest sm:w-auto"
-          >
-            <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
+
 
 /* ---------- Booking form ---------- */
 function BookingForm() {
