@@ -106,8 +106,8 @@ function Page() {
       <Services />
       <WhyUs />
       <Areas />
-      <FinalCta />
       <BookingForm />
+
       <Footer />
       <WhatsAppFloating />
     </div>
