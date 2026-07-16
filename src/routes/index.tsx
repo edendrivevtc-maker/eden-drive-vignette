@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
+import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import heroCar from "@/assets/hero-car.jpg";
 
 
@@ -420,11 +421,8 @@ function Testimonials() {
                 <GoogleG className="h-4 w-4" />
                 <span className="text-xs uppercase tracking-[0.2em]">Avis Google</span>
               </div>
-              <div className="flex items-center gap-3 font-display text-5xl text-ivory sm:text-6xl">
-                <span>5/5</span>
-                <Star className="h-8 w-8 fill-silver text-silver" />
-              </div>
-              <p className="text-sm text-muted-foreground">48 avis vérifiés</p>
+              <GoogleReviewsRating />
+              <GoogleReviewsCount />
               <a
                 href={GOOGLE_REVIEWS_URL}
                 target="_blank"
