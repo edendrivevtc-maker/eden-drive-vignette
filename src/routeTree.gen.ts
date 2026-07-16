@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VtcGareMatabiauToulouseRouteImport } from './routes/vtc-gare-matabiau-toulouse'
 import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VtcGareMatabiauToulouseRoute = VtcGareMatabiauToulouseRouteImport.update({
+  id: '/vtc-gare-matabiau-toulouse',
+  path: '/vtc-gare-matabiau-toulouse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VtcAeroportToulouseBlagnacRoute =
   VtcAeroportToulouseBlagnacRouteImport.update({
     id: '/vtc-aeroport-toulouse-blagnac',
@@ -50,6 +56,7 @@ export interface FileRoutesByFullPath {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
+  '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByTo {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
+  '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -65,6 +73,7 @@ export interface FileRoutesById {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
+  '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -74,6 +83,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/vtc-aeroport-toulouse-blagnac'
+    | '/vtc-gare-matabiau-toulouse'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -81,6 +91,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/vtc-aeroport-toulouse-blagnac'
+    | '/vtc-gare-matabiau-toulouse'
   id:
     | '__root__'
     | '/'
@@ -88,6 +99,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/vtc-aeroport-toulouse-blagnac'
+    | '/vtc-gare-matabiau-toulouse'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,10 +108,18 @@ export interface RootRouteChildren {
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
   VtcAeroportToulouseBlagnacRoute: typeof VtcAeroportToulouseBlagnacRoute
+  VtcGareMatabiauToulouseRoute: typeof VtcGareMatabiauToulouseRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vtc-gare-matabiau-toulouse': {
+      id: '/vtc-gare-matabiau-toulouse'
+      path: '/vtc-gare-matabiau-toulouse'
+      fullPath: '/vtc-gare-matabiau-toulouse'
+      preLoaderRoute: typeof VtcGareMatabiauToulouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vtc-aeroport-toulouse-blagnac': {
       id: '/vtc-aeroport-toulouse-blagnac'
       path: '/vtc-aeroport-toulouse-blagnac'
@@ -144,6 +164,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
   VtcAeroportToulouseBlagnacRoute: VtcAeroportToulouseBlagnacRoute,
+  VtcGareMatabiauToulouseRoute: VtcGareMatabiauToulouseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
