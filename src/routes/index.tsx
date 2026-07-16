@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
+import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import heroCar from "@/assets/hero-car.jpg";
 
 

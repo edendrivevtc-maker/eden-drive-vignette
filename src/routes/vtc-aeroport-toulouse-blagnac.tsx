@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
+import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import airportImg from "@/assets/airport-transfer.jpg";
 
 const TITLE = "Chauffeur VTC Aéroport Toulouse-Blagnac | Eden Drive";
