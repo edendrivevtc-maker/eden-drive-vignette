@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
-import businessImg from "@/assets/business-transfer.jpg.asset.json";
+import businessImg from "@/assets/business-transfer.jpg";
 
 const TITLE = "Chauffeur VTC entreprise Toulouse | Eden Drive";
 const DESCRIPTION =
@@ -70,10 +70,10 @@ export const Route = createFileRoute("/chauffeur-vtc-entreprise-toulouse")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: "https://edendrive-vtc.fr/chauffeur-vtc-entreprise-toulouse" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: businessImg.url },
+      { property: "og:image", content: businessImg },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: businessImg.url },
+      { name: "twitter:image", content: businessImg },
     ],
     links: [{ rel: "canonical", href: "https://edendrive-vtc.fr/chauffeur-vtc-entreprise-toulouse" }],
     scripts: [
@@ -84,7 +84,7 @@ export const Route = createFileRoute("/chauffeur-vtc-entreprise-toulouse")({
           "@type": "TaxiService",
           name: "Eden Drive VTC — Chauffeur entreprise Toulouse",
           description: DESCRIPTION,
-          image: businessImg.url,
+          image: businessImg,
           provider: {
             "@type": "LocalBusiness",
             name: "EDEN DRIVE VTC",
@@ -182,7 +182,7 @@ function Hero() {
   return (
     <section id="top" className="relative isolate min-h-[100svh] w-full overflow-hidden">
       <img
-        src={businessImg.url}
+        src={businessImg}
         alt="Chauffeur VTC Eden Drive accueillant un cadre à Toulouse pour un déplacement professionnel"
         width={1920}
         height={1280}
