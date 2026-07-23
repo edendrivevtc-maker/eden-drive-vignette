@@ -208,7 +208,7 @@ function Hero() {
 /* ---------- Intro ---------- */
 function Intro() {
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-5 sm:px-8 text-center">
         <span className="text-xs uppercase tracking-[0.3em] text-silver">Chauffeur privé Toulouse</span>
         <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
@@ -323,7 +323,7 @@ function WhyUs() {
     { icon: Star, title: "Avis Google 5/5", text: "Une clientèle fidèle et des avis authentiques 5 étoiles." },
   ];
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Eden Drive VTC</span>

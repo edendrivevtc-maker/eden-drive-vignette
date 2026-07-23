@@ -212,3 +212,11 @@
 .section-light textarea::placeholder {
   color: oklch(0.6 0.008 60);
 }
+
+/* Silver gradient headings need more contrast on light backgrounds */
+.section-light .text-silver-gradient {
+  background: linear-gradient(135deg, oklch(0.38 0.015 260), oklch(0.22 0.008 60));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

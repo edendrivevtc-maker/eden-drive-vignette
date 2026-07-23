@@ -281,7 +281,7 @@ function HowItWorks() {
     { n: "03", title: "Profitez d'un trajet confortable", text: "Voyagez sereinement jusqu'à votre destination dans une berline haut de gamme." },
   ];
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation simplifiée</span>
@@ -367,7 +367,7 @@ function TestimonialsBlock() {
     },
   ];
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Avis clients</span>
@@ -497,7 +497,7 @@ function BookingForm() {
   };
 
   return (
-    <section id="reserver" className="relative border-t border-border/40 py-24 sm:py-32">
+    <section id="reserver" className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
