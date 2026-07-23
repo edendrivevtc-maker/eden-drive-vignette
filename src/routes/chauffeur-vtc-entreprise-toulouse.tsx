@@ -284,7 +284,7 @@ function WhyUs() {
     { icon: FileText, title: "Facturation professionnelle", text: "Factures conformes envoyées par e-mail, facturation mensuelle possible pour les entreprises régulières." },
   ];
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Eden Drive VTC</span>
@@ -356,7 +356,7 @@ function Partner() {
 /* ---------- CTA block ---------- */
 function CtaBlock() {
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
         <span className="text-xs uppercase tracking-[0.3em] text-silver">Passez à l'action</span>
         <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
@@ -465,7 +465,7 @@ function BookingForm() {
   };
 
   return (
-    <section id="reserver" className="relative border-t border-border/40 py-24 sm:py-32">
+    <section id="reserver" className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Devis professionnel</span>

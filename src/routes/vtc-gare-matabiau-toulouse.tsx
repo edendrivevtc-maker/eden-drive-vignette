@@ -201,7 +201,7 @@ function Hero() {
 /* ---------- Intro ---------- */
 function Intro() {
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-5 sm:px-8 text-center">
         <span className="text-xs uppercase tracking-[0.3em] text-silver">Chauffeur privé Gare Matabiau</span>
         <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
@@ -274,7 +274,7 @@ function Destinations() {
     { icon: Building2, title: "Entreprises de la métropole", text: "Sièges sociaux et sites industriels de la métropole toulousaine et de l'Occitanie." },
   ];
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Destinations</span>
@@ -354,7 +354,7 @@ function Clients() {
     },
   ];
   return (
-    <section className="relative border-t border-border/40 py-24 sm:py-32">
+    <section className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Nos clients</span>
@@ -447,7 +447,7 @@ function BookingForm() {
   };
 
   return (
-    <section id="reserver" className="relative border-t border-border/40 py-24 sm:py-32">
+    <section id="reserver" className="section-light relative border-t border-border/40 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
