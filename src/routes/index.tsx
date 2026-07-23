@@ -601,7 +601,8 @@ function Contact() {
   };
 
   return (
-    <section id="reserver" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
+    <section id="reserver" className="section-light relative border-t border-border/40 py-28 sm:py-40">
+
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
