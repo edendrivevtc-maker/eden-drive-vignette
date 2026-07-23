@@ -170,3 +170,45 @@
 @utility animate-fade-up {
   animation: fadeUp 0.9s var(--transition-smooth) both;
 }
+
+/* ---------- Light section theme (scoped) ---------- */
+.section-light {
+  --background: oklch(0.985 0.002 60);
+  --foreground: oklch(0.16 0.005 60);
+  --muted: oklch(0.96 0.003 60);
+  --muted-foreground: oklch(0.42 0.008 60);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.005 60);
+  --border: oklch(0.88 0.005 60);
+  --input: oklch(0.92 0.004 60);
+  --ivory: oklch(0.16 0.005 60);
+  --onyx: oklch(0.985 0.002 60);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.section-light .luxe-card {
+  background: #ffffff;
+  border: 1px solid oklch(0.9 0.005 60);
+  box-shadow:
+    0 14px 36px -18px rgb(15 15 20 / 0.14),
+    0 2px 6px -2px rgb(15 15 20 / 0.05);
+}
+.section-light .luxe-card:hover {
+  border-color: var(--silver-deep);
+  transform: translateY(-4px);
+  box-shadow:
+    0 24px 50px -20px rgb(15 15 20 / 0.2),
+    0 4px 10px -3px rgb(15 15 20 / 0.06);
+}
+
+.section-light input,
+.section-light textarea {
+  background-color: #ffffff;
+  border-color: oklch(0.88 0.005 60);
+  color: var(--foreground);
+}
+.section-light input::placeholder,
+.section-light textarea::placeholder {
+  color: oklch(0.6 0.008 60);
+}
