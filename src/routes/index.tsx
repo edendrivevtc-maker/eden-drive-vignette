@@ -175,7 +175,7 @@ function Nav() {
 
       </div>
       {open && (
-        <div className="border-t border-border/40 bg-background/95 backdrop-blur md:hidden">
+        <div className="border-t border-silver/15 bg-black/95 backdrop-blur md:hidden">
           <div className="flex flex-col gap-4 px-6 py-6">
             {links.map((l) => (
               <a
