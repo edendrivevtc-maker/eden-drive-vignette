@@ -535,7 +535,7 @@ function HowToBook() {
 /* ---------- Contact CTA (rappel numéro + WhatsApp) ---------- */
 function ContactCTA() {
   return (
-    <section id="contact-rapide" className="relative border-t border-border/40 bg-background py-24 sm:py-28">
+    <section id="contact-rapide" className="relative border-t border-border/40 bg-background py-28 sm:py-36">
       <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
         <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact & Réservation</span>
         <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
