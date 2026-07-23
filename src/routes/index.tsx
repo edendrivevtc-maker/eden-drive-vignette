@@ -332,7 +332,7 @@ function Services() {
     { icon: ShieldCheck, title: "Service VIP", text: "Personnalités, artistes, protocole sur mesure." },
   ];
   return (
-    <section id="services" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
+    <section id="services" className="section-light relative border-t border-border/40 py-28 sm:py-40">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Prestations</span>
@@ -403,7 +403,7 @@ function Testimonials() {
     },
   ];
   return (
-    <section id="avis" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
+    <section id="avis" className="section-light relative border-t border-border/40 py-28 sm:py-40">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Avis clients</span>
@@ -535,7 +535,7 @@ function HowToBook() {
 /* ---------- Contact CTA (rappel numéro + WhatsApp) ---------- */
 function ContactCTA() {
   return (
-    <section id="contact-rapide" className="relative border-t border-border/40 bg-background py-24 sm:py-28">
+    <section id="contact-rapide" className="relative border-t border-border/40 bg-background py-28 sm:py-36">
       <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
         <span className="text-xs uppercase tracking-[0.3em] text-silver">Contact & Réservation</span>
         <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
@@ -601,7 +601,8 @@ function Contact() {
   };
 
   return (
-    <section id="reserver" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
+    <section id="reserver" className="section-light relative border-t border-border/40 py-28 sm:py-40">
+
       <div className="mx-auto max-w-3xl px-5 sm:px-8">
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
