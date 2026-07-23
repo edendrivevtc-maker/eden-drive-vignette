@@ -162,7 +162,7 @@ function Nav() {
 
           <button
             aria-label="Menu"
-            className="rounded-full border border-border p-2 text-silver"
+            className="rounded-full border border-silver/30 p-2 text-silver transition hover:border-silver/60"
             onClick={() => setOpen((v) => !v)}
           >
             <div className="space-y-1">
