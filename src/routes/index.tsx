@@ -130,7 +130,7 @@ function Nav() {
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-silver/15 bg-black/95 shadow-[0_1px_0_0_rgba(192,192,192,0.08)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <Logo className="h-16 w-auto" />
         <nav className="hidden items-center gap-8 md:flex">
@@ -138,14 +138,14 @@ function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-silver"
+              className="text-sm text-silver/70 transition-colors hover:text-silver"
             >
               {l.label}
             </a>
           ))}
           <a
             href={`tel:${PHONE_TEL}`}
-            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest"
+            className="btn-silver inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold uppercase tracking-widest shadow-[0_0_0_1px_rgba(255,255,255,0.15),0_10px_30px_-10px_rgba(192,192,192,0.5)]"
           >
             <Phone className="h-4 w-4" /> {PHONE_DISPLAY_LOCAL}
           </a>
@@ -154,13 +154,15 @@ function Nav() {
           <a
             href={`tel:${PHONE_TEL}`}
             aria-label="Appeler EDEN DRIVE VTC"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-silver/40 bg-silver/10 text-silver transition hover:bg-silver/20"
+            className="btn-silver inline-flex h-10 items-center justify-center gap-2 rounded-full px-4 text-xs font-semibold uppercase tracking-widest"
           >
             <Phone className="h-4 w-4" />
+            <span>Appeler</span>
           </a>
+
           <button
             aria-label="Menu"
-            className="rounded-full border border-border p-2 text-silver"
+            className="rounded-full border border-silver/30 p-2 text-silver transition hover:border-silver/60"
             onClick={() => setOpen((v) => !v)}
           >
             <div className="space-y-1">
@@ -173,7 +175,7 @@ function Nav() {
 
       </div>
       {open && (
-        <div className="border-t border-border/40 bg-background/95 backdrop-blur md:hidden">
+        <div className="border-t border-silver/15 bg-black/95 backdrop-blur md:hidden">
           <div className="flex flex-col gap-4 px-6 py-6">
             {links.map((l) => (
               <a
