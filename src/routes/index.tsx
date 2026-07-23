@@ -332,7 +332,7 @@ function Services() {
     { icon: ShieldCheck, title: "Service VIP", text: "Personnalités, artistes, protocole sur mesure." },
   ];
   return (
-    <section id="services" className="relative border-t border-border/40 bg-onyx py-24 sm:py-32">
+    <section id="services" className="section-light relative border-t border-border/40 py-28 sm:py-40">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">Prestations</span>
