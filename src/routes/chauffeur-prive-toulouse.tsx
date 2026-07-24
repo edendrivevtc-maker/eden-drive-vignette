@@ -117,7 +117,7 @@ function Page() {
 /* ---------- Nav ---------- */
 function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-silver/15 bg-black/95 shadow-[0_1px_0_0_rgba(192,192,192,0.08)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <Link to="/" aria-label="EDEN DRIVE VTC" className="inline-flex items-center">
           <img src="/logo.png" alt="EDEN DRIVE VTC" className="h-16 w-auto object-contain" />
