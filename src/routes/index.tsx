@@ -154,10 +154,9 @@ function Nav() {
           <a
             href={`tel:${PHONE_TEL}`}
             aria-label="Appeler EDEN DRIVE VTC"
-            className="btn-silver inline-flex h-10 items-center justify-center gap-2 rounded-full px-4 text-xs font-semibold uppercase tracking-widest"
+            className="btn-silver inline-flex h-10 w-10 items-center justify-center rounded-full"
           >
             <Phone className="h-4 w-4" />
-            <span>Appeler</span>
           </a>
 
           <button
