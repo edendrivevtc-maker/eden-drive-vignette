@@ -54,6 +54,30 @@ const FAQ = [
     q: "Le service est-il disponible tôt le matin ou tard le soir ?",
     a: "Eden Drive VTC est disponible 24h/24 et 7j/7, y compris pour les vols très matinaux, tardifs, de nuit, week-ends et jours fériés. Aucun supplément horaire n'est facturé de manière opaque.",
   },
+  {
+    q: "Où le chauffeur m'attend-il à l'aéroport Toulouse-Blagnac ?",
+    a: "Votre chauffeur vous accueille dans le hall des arrivées, à la sortie de la zone de récupération des bagages, avec une pancarte à votre nom. Il suit votre vol en direct pour être présent dès votre atterrissage, quel que soit le terminal (Hall B, C ou D).",
+  },
+  {
+    q: "Prenez-vous en charge les bagages et équipements volumineux ?",
+    a: "Bien sûr. Nos berlines premium disposent d'un coffre spacieux permettant d'accueillir valises, bagages cabine, sacs de golf, poussettes ou équipements sportifs. Précisez simplement vos besoins lors de la réservation pour que nous adaptions le véhicule.",
+  },
+  {
+    q: "Quel véhicule est utilisé pour le transfert aéroport ?",
+    a: "Nous mettons à votre disposition une berline haut de gamme récente (type Mercedes Classe E ou équivalent), impeccablement entretenue, climatisée et équipée pour un trajet confortable. Bouteille d'eau offerte et Wi-Fi disponible sur demande.",
+  },
+  {
+    q: "Comment sont fixés les tarifs : au compteur ou au forfait ?",
+    a: "Contrairement à un taxi, Eden Drive VTC applique un tarif forfaitaire connu à l'avance, sans compteur. Le prix communiqué au moment de la réservation est ferme : embouteillages, détours ou temps d'attente lié à un vol en retard ne modifient pas le montant final.",
+  },
+  {
+    q: "Quels sont les moyens de paiement acceptés ?",
+    a: "Nous acceptons la carte bancaire (paiement à bord ou à distance), les espèces et les virements pour les professionnels. Une facture nominative vous est envoyée par e-mail après la course, utile pour vos notes de frais professionnelles.",
+  },
+  {
+    q: "Peut-on annuler ou modifier une réservation de transfert aéroport ?",
+    a: "Oui. Toute modification ou annulation est possible gratuitement jusqu'à quelques heures avant le trajet. Contactez-nous simplement par téléphone, WhatsApp ou e-mail : nous vous confirmons rapidement la mise à jour de votre réservation.",
+  },
 ];
 
 export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
