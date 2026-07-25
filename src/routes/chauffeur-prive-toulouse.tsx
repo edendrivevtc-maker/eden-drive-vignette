@@ -136,6 +136,10 @@ export const Route = createFileRoute("/chauffeur-prive-toulouse")({
           serviceType: "Chauffeur privé VTC Toulouse",
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(buildFaqJsonLd(FAQ)),
+      },
     ],
   }),
   component: Page,
