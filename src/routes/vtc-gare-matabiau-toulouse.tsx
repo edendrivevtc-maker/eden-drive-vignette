@@ -128,6 +128,10 @@ export const Route = createFileRoute("/vtc-gare-matabiau-toulouse")({
           serviceType: "Transfert Gare Toulouse Matabiau",
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(buildFaqJsonLd(FAQ)),
+      },
     ],
   }),
   component: Page,
