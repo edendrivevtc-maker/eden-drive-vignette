@@ -26,6 +26,50 @@ import {
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
 import stationImg from "@/assets/station-transfer.jpg";
+import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
+
+const FAQ: FaqItem[] = [
+  {
+    q: "Où le chauffeur m'attend-il à la gare Matabiau ?",
+    a: "Votre chauffeur vous accueille au point de rencontre convenu lors de la réservation : parvis principal (boulevard Pierre Sémard), sortie voyageurs ou dépose-minute selon la configuration du jour. Il vous contacte par téléphone dès votre descente du train pour vous guider rapidement jusqu'au véhicule.",
+  },
+  {
+    q: "Le chauffeur suit-il l'heure d'arrivée réelle de mon train ?",
+    a: "Oui. Nous suivons en temps réel l'horaire de votre TGV, Intercités ou TER. En cas de retard SNCF, votre chauffeur ajuste automatiquement l'heure de prise en charge : vous n'avez pas à nous prévenir et aucun supplément n'est facturé.",
+  },
+  {
+    q: "Que se passe-t-il si mon train est fortement retardé ou annulé ?",
+    a: "Nous restons en contact avec vous par téléphone ou WhatsApp pour adapter la course. Si votre train est annulé et que vous devez modifier votre trajet, nous ajustons la réservation sans frais dans la mesure du possible.",
+  },
+  {
+    q: "Prenez-vous en charge les bagages volumineux à la gare ?",
+    a: "Bien sûr. Nos berlines premium disposent d'un coffre spacieux pour valises, sacs de voyage ou équipements sportifs. Précisez le nombre de bagages lors de la réservation afin que nous mobilisions le véhicule le plus adapté.",
+  },
+  {
+    q: "Peut-on réserver un transfert depuis Matabiau vers l'aéroport Toulouse-Blagnac ?",
+    a: "Oui. Nous assurons régulièrement les correspondances entre la gare Matabiau et l'aéroport Toulouse-Blagnac dans les deux sens, ainsi que vers Blagnac, Colomiers, Labège, le centre-ville ou toute autre commune de l'Occitanie.",
+  },
+  {
+    q: "Le service est-il disponible pour les trains de nuit ou de très tôt le matin ?",
+    a: "Oui. Eden Drive VTC assure les transferts gare 24h/24 et 7j/7, y compris pour les premiers trains du matin et les arrivées tardives. Aucun supplément horaire opaque : le tarif forfaitaire est connu à l'avance.",
+  },
+  {
+    q: "Comment sont fixés les tarifs pour un transfert gare ?",
+    a: "Nos tarifs sont forfaitaires et transparents. Ils sont calculés selon l'adresse de dépose ou de prise en charge, l'horaire et le nombre de passagers. Le prix confirmé lors de la réservation reste valable, même en cas de retard de train ou de trafic.",
+  },
+  {
+    q: "Comment réserver un VTC pour la gare Matabiau ?",
+    a: "Vous pouvez réserver en ligne via le formulaire, par téléphone au 06 35 58 58 23 ou par WhatsApp. Une confirmation vous est envoyée rapidement avec le nom de votre chauffeur, le véhicule et le point de rendez-vous précis.",
+  },
+  {
+    q: "Le trajet inclut-il un temps d'attente si mon train arrive en avance ?",
+    a: "Oui. Le suivi en temps réel de l'horaire d'arrivée permet à votre chauffeur d'être présent au bon moment, y compris si votre train arrive en avance. Un court temps d'attente est inclus sans frais supplémentaire.",
+  },
+  {
+    q: "Puis-je réserver plusieurs trajets aller-retour depuis la gare ?",
+    a: "Absolument. Nous programmons vos aller-retours ou vos correspondances régulières entre Matabiau et Toulouse, Blagnac ou toute autre destination, avec le même chauffeur si vous le souhaitez pour plus de continuité et de discrétion.",
+  },
+];
 
 const TITLE = "VTC Gare Matabiau Toulouse | Transfert Gare avec Chauffeur Privé";
 const DESCRIPTION =
