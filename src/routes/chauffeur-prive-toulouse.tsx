@@ -156,6 +156,7 @@ function Page() {
       <Areas />
       <BookingForm />
 
+      <FaqSection items={FAQ} title={<><em className="text-silver-gradient not-italic">FAQ</em> chauffeur privé Toulouse</>} />
       <Footer />
       <WhatsAppFloating />
     </div>
