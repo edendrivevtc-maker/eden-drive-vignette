@@ -27,6 +27,50 @@ import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import heroImg from "@/assets/private-driver-toulouse.jpg";
+import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
+
+const FAQ: FaqItem[] = [
+  {
+    q: "Quel est le rôle d'un chauffeur privé à Toulouse ?",
+    a: "Un chauffeur privé VTC à Toulouse vous accompagne dans tous vos déplacements urbains ou longue distance à bord d'un véhicule haut de gamme. Il assure votre confort, votre discrétion et votre ponctualité, contrairement à un taxi classique qui fonctionne à la course sans réservation privilégiée.",
+  },
+  {
+    q: "Comment réserver un chauffeur privé à Toulouse ?",
+    a: "La réservation se fait en ligne via notre formulaire, par téléphone au 06 35 58 58 23 ou par WhatsApp. Vous recevez une confirmation rapide avec un tarif forfaitaire ferme, sans mauvaise surprise à l'arrivée.",
+  },
+  {
+    q: "Vos chauffeurs sont-ils disponibles pour un trajet en centre-ville ?",
+    a: "Oui. Nous assurons tous les trajets urbains à Toulouse : Capitole, Compans-Caffarelli, Saint-Cyprien, Les Carmes, Jean Jaurès, Purpan, Saint-Michel, hôtels du centre, restaurants, bars et lieux culturels. Vos déplacements se font en toute discrétion et confort.",
+  },
+  {
+    q: "Un chauffeur privé peut-il être réservé pour la soirée ?",
+    a: "Absolument. Que ce soit pour un dîner, une soirée entre amis, un événement privé ou une sortie au théâtre, votre chauffeur vous conduit et vous récupère à l'heure de votre choix. Vous profitez pleinement de votre soirée sans vous soucier du retour.",
+  },
+  {
+    q: "Quels sont vos tarifs pour un trajet privé dans Toulouse ?",
+    a: "Nos tarifs sont forfaitaires et communiqués avant la course. Ils varient selon la distance, l'horaire et le nombre de passagers. Aucun compteur, aucun supplément caché : le prix confirmé lors de la réservation est celui que vous payez.",
+  },
+  {
+    q: "Peut-on réserver un chauffeur privé pour un événement (mariage, anniversaire) ?",
+    a: "Oui. Nous accompagnons vos événements privés à Toulouse : mariage, anniversaire, EVJF/EVG, cérémonie, gala. Nous organisons vos trajets sur mesure et pouvons coordonner plusieurs véhicules pour vos invités si nécessaire.",
+  },
+  {
+    q: "Assurez-vous les transferts entre les hôtels toulousains ?",
+    a: "Oui. Nous prenons en charge nos clients depuis et vers les grands hôtels de Toulouse (Grand Hôtel de l'Opéra, Crowne Plaza, Pullman, Novotel, Hôtel de Brienne, etc.), pour un transfert vers l'aéroport, la gare Matabiau ou tout autre lieu.",
+  },
+  {
+    q: "La ponctualité est-elle garantie ?",
+    a: "La ponctualité est notre priorité absolue. Chaque trajet est planifié en tenant compte du trafic toulousain et des imprévus. Votre chauffeur arrive systématiquement quelques minutes en avance pour vous permettre de partir sereinement.",
+  },
+  {
+    q: "Peut-on personnaliser un trajet ou une prestation ?",
+    a: "Bien sûr. Vous pouvez demander un itinéraire spécifique, plusieurs arrêts, une mise à disposition à l'heure, un accueil VIP à l'aéroport ou toute autre attention particulière. Nous adaptons notre prestation à vos exigences.",
+  },
+  {
+    q: "Est-il possible de réserver le même chauffeur pour plusieurs trajets ?",
+    a: "Oui. Pour les clients réguliers ou les journées comportant plusieurs déplacements, nous mettons à votre disposition le même chauffeur privé afin de garantir continuité, confidentialité et confort dans votre relation.",
+  },
+];
 
 const TITLE = "Chauffeur privé Toulouse | VTC premium Eden Drive";
 const DESCRIPTION =
