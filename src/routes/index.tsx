@@ -141,6 +141,7 @@ function Home() {
       <Services />
       <ContactCTA />
       <Testimonials />
+      <FaqSection items={FAQ} title={<><em className="text-silver-gradient not-italic">FAQ</em> — EDEN DRIVE VTC</>} />
       <Footer />
       <WhatsAppFloating />
     </div>
