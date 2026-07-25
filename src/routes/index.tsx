@@ -24,6 +24,50 @@ import { sendBookingRequest } from "@/lib/booking.functions";
 import { PlacesField } from "@/components/places-autocomplete";
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import heroCar from "@/assets/hero-car.jpg";
+import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
+
+const FAQ: FaqItem[] = [
+  {
+    q: "Comment réserver un chauffeur VTC avec EDEN DRIVE VTC ?",
+    a: "Vous pouvez réserver votre chauffeur privé en quelques secondes via notre formulaire de réservation en ligne, par téléphone au 06 35 58 58 23, ou directement par WhatsApp. Nous vous confirmons rapidement votre course avec un tarif ferme et transparent.",
+  },
+  {
+    q: "Quelles zones géographiques desservez-vous autour de Toulouse ?",
+    a: "Nous intervenons à Toulouse, Blagnac, Balma, Colomiers, Labège, Montrabé et dans toute l'Occitanie. Nous assurons également les longs trajets vers d'autres villes françaises ou européennes sur simple demande.",
+  },
+  {
+    q: "Quels sont vos horaires de disponibilité ?",
+    a: "Eden Drive VTC est disponible 24h/24 et 7j/7, y compris les week-ends et jours fériés. Nous prenons en charge les vols matinaux, les trajets de nuit et toutes les demandes urgentes dans la mesure du possible.",
+  },
+  {
+    q: "Quels moyens de paiement acceptez-vous ?",
+    a: "Nous acceptons la carte bancaire (paiement à bord ou à distance sécurisé), les espèces, ainsi que les virements et facturation professionnelle pour les entreprises. Une facture nominative peut vous être envoyée par e-mail.",
+  },
+  {
+    q: "Combien de temps à l'avance faut-il réserver ?",
+    a: "Pour garantir la disponibilité de votre chauffeur, nous recommandons de réserver au moins 24 heures à l'avance. Pour les demandes de dernière minute, contactez-nous directement par téléphone ou WhatsApp : nous ferons notre maximum pour répondre à votre besoin.",
+  },
+  {
+    q: "Comment sont fixés vos tarifs VTC à Toulouse ?",
+    a: "Nos tarifs sont forfaitaires et communiqués à l'avance, sans compteur ni surprise. Le prix dépend du trajet, de l'horaire et du nombre de passagers. Aucun supplément caché ne vient s'ajouter à la course confirmée.",
+  },
+  {
+    q: "Que se passe-t-il si je dois annuler ou modifier ma réservation ?",
+    a: "Toute modification ou annulation est possible gratuitement jusqu'à quelques heures avant le trajet. Il vous suffit de nous prévenir par téléphone, WhatsApp ou e-mail : nous adaptons rapidement votre réservation.",
+  },
+  {
+    q: "Quels types de véhicules utilisez-vous ?",
+    a: "Nous mettons à votre disposition des berlines haut de gamme récentes (type Mercedes Classe E ou équivalent), parfaitement entretenues, climatisées, avec intérieur cuir soigné. Bouteille d'eau offerte et Wi-Fi disponible sur demande.",
+  },
+  {
+    q: "Proposez-vous des services pour les entreprises et les événements ?",
+    a: "Oui. Nous accompagnons les entreprises pour leurs déplacements professionnels, séminaires, dîners d'affaires et transports de clients VIP. Nous proposons également des mises à disposition à l'heure ou à la journée, ainsi que des conventions sur mesure.",
+  },
+  {
+    q: "Que comprennent vos prestations premium ?",
+    a: "Un chauffeur professionnel discret et ponctuel, un véhicule haut de gamme immaculé, la prise en charge à l'adresse de votre choix, le suivi des vols et trains en temps réel, et un accompagnement personnalisé. Confort, sécurité et discrétion sont au cœur de notre engagement.",
+  },
+];
 
 
 const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
