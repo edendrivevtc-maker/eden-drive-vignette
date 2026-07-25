@@ -54,6 +54,26 @@ const FAQ = [
     q: "Travaillez-vous avec des entreprises régulièrement ?",
     a: "Oui. De nombreuses entreprises et cabinets toulousains font appel à Eden Drive VTC pour le transport quotidien de leurs collaborateurs, dirigeants et clients. Nous proposons des conventions sur mesure pour les besoins réguliers.",
   },
+  {
+    q: "Comment fonctionne la mise à disposition d'un chauffeur à l'heure ou à la journée ?",
+    a: "La mise à disposition permet de réserver un chauffeur et son véhicule pour une durée définie (2h, demi-journée, journée entière). Idéal pour les tournées de rendez-vous, réceptions de clients étrangers, salons professionnels ou événements d'entreprise, avec un tarif horaire ou journalier connu à l'avance.",
+  },
+  {
+    q: "La confidentialité de nos échanges à bord est-elle garantie ?",
+    a: "La discrétion est au cœur de notre service. Nos chauffeurs sont formés au strict respect de la confidentialité : conversations professionnelles, appels sensibles ou documents restent totalement privés. Un cadre idéal pour préparer une réunion ou finaliser un dossier en toute sérénité.",
+  },
+  {
+    q: "Comment garantissez-vous la ponctualité pour les rendez-vous d'affaires ?",
+    a: "Chaque trajet est planifié en tenant compte du trafic toulousain, des travaux et des horaires de pointe. Le chauffeur arrive systématiquement 5 à 10 minutes en avance pour vous garantir une prise en charge sans stress et un rendez-vous respecté à la minute près.",
+  },
+  {
+    q: "Proposez-vous des prestations sur mesure pour les événements d'entreprise ?",
+    a: "Oui. Pour un séminaire, un lancement de produit, un dîner client ou une soirée de gala, nous coordonnons plusieurs véhicules, définissons les circuits d'accueil et adaptons le protocole selon votre cahier des charges. Devis personnalisé sur simple demande.",
+  },
+  {
+    q: "Quels véhicules sont mis à disposition pour les déplacements professionnels ?",
+    a: "Nos berlines premium (type Mercedes Classe E, Classe S ou équivalent) offrent un confort haut de gamme, une insonorisation totale et un intérieur cuir soigné. Wi-Fi, chargeurs universels et bouteilles d'eau sont inclus pour un cadre de travail idéal en mobilité.",
+  },
 ];
 
 export const Route = createFileRoute("/chauffeur-vtc-entreprise-toulouse")({
