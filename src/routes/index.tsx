@@ -117,6 +117,10 @@ export const Route = createFileRoute("/")({
           openingHours: "Mo-Su 00:00-23:59",
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(buildFaqJsonLd(FAQ)),
+      },
     ],
   }),
   component: Home,
