@@ -149,6 +149,7 @@ function Page() {
       <Clients />
       <FinalCta />
       <BookingForm />
+      <FaqSection items={FAQ} title={<><em className="text-silver-gradient not-italic">FAQ</em> transfert gare Matabiau</>} />
       <Footer />
       <WhatsAppFloating />
     </div>
