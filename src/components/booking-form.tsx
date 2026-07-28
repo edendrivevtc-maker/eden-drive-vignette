@@ -57,13 +57,15 @@ const eur = (n: number) =>
 export function BookingFormSection({
   id = "reserver",
   eyebrow = "Réservation",
-  title = "Réservation en ligne",
+  title = <em className="text-silver-gradient not-italic">Réservation en ligne</em>,
+  subtitle,
   fromPlaceholder = "Adresse ou aéroport",
   sectionClassName = "section-light relative border-t border-border/40 py-28 sm:py-40",
 }: {
   id?: string;
   eyebrow?: string;
-  title?: string;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
   fromPlaceholder?: string;
   sectionClassName?: string;
 }) {
@@ -127,9 +129,10 @@ export function BookingFormSection({
         <div className="text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-silver">{eyebrow}</span>
           <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            <em className="text-silver-gradient not-italic">{title}</em>
+            {title}
           </h2>
           <div className="hairline mx-auto my-6 w-24" />
+          {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
         </div>
 
         <form onSubmit={handleEstimate} className="luxe-card mt-10 rounded-2xl p-7 sm:p-10">
