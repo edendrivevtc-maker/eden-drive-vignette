@@ -1,7 +1,17 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { sendBookingEmail } from "./booking.server";
 
-const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
+const quoteSchema = z
+  .object({
+    distanceKm: z.number(),
+    durationMin: z.number(),
+    ridePrice: z.number(),
+    tolls: z.number(),
+    total: z.number(),
+  })
+  .nullable()
+  .optional();
 
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Le nom est requis").max(100),
@@ -12,71 +22,9 @@ const bookingSchema = z.object({
   datetime: z.string().trim().min(1, "La date et l'heure sont requises"),
   pax: z.string().trim().max(10).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
+  quote: quoteSchema,
 });
 
 export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
-  .handler(async ({ data }) => {
-    // Clé Brevo directe (xkeysib-...). On ignore une éventuelle clé de connecteur (lovc_...).
-    const candidates = [process.env.BREVO_SMTP_API_KEY, process.env.BREVO_API_KEY];
-    const brevoApiKey = candidates.find((k) => k && k.startsWith("xkeysib-"));
-
-    if (!brevoApiKey) {
-      console.error(`[booking] Missing env: BREVO_SMTP_API_KEY (clé Brevo directe xkeysib-...)`);
-      throw new Error(`Configuration email manquante (clé API Brevo directe).`);
-    }
-
-    const htmlContent = `
-      <html>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
-          <h2 style="color: #111;">Nouvelle demande de réservation — Eden Drive VTC</h2>
-          <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Nom</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(data.name)}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Téléphone</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(data.phone)}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">E-mail</td><td style="padding: 8px; border: 1px solid #ddd;">${data.email ? escapeHtml(data.email) : "Non renseigné"}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Départ</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(data.from)}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Destination</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(data.to)}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Date & heure</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(data.datetime)}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Passagers</td><td style="padding: 8px; border: 1px solid #ddd;">${data.pax ? escapeHtml(data.pax) : "Non renseigné"}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Message</td><td style="padding: 8px; border: 1px solid #ddd;">${data.message ? escapeHtml(data.message).replace(/\n/g, "<br/>") : "Aucun"}</td></tr>
-          </table>
-          <p style="margin-top: 24px; color: #666; font-size: 12px;">
-            Cette demande provient du formulaire de réservation en ligne du site Eden Drive VTC.
-          </p>
-        </body>
-      </html>
-    `;
-
-    const response = await fetch(BREVO_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "api-key": brevoApiKey,
-      },
-      body: JSON.stringify({
-        sender: { name: "Eden Drive VTC", email: "edendrivevtc@gmail.com" },
-        to: [{ email: "edendrivevtc@gmail.com" }],
-        replyTo: data.email ? { email: data.email, name: data.name } : undefined,
-        subject: `Nouvelle demande de réservation — ${data.name}`,
-        htmlContent,
-      }),
-    });
-
-    if (!response.ok) {
-      const body = await response.text().catch(() => "");
-      console.error(`[booking] Brevo API error ${response.status}: ${body}`);
-      throw new Error(`Échec de l'envoi de l'e-mail (${response.status}).`);
-    }
-
-    return { success: true };
-  });
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
+  .handler(async ({ data }) => sendBookingEmail("Demande de réservation", data));
