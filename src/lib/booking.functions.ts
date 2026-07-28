@@ -55,12 +55,13 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
       </html>
     `;
 
-    const response = await fetch(BREVO_API_URL, {
+    const response = await fetch(BREVO_GATEWAY_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "api-key": brevoApiKey,
+        Authorization: `Bearer ${lovableKey}`,
+        "X-Connection-Api-Key": brevoApiKey,
       },
       body: JSON.stringify({
         sender: { name: "Eden Drive VTC", email: "edendrivevtc@gmail.com" },
