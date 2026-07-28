@@ -619,12 +619,15 @@ function ContactCTA() {
 /* ---------- Contact form ---------- */
 function Contact() {
   const sendBooking = useServerFn(sendBookingRequest);
+  const fetchQuote = useServerFn(getPriceQuote);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [quote, setQuote] = useState<PriceQuote | null>(null);
+  const [quoting, setQuoting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status === "loading") return;
+    if (status === "loading" || quoting) return;
 
     const formData = new FormData(e.currentTarget);
     const payload = {
@@ -638,17 +641,44 @@ function Contact() {
       message: String(formData.get("message") ?? ""),
     };
 
+    // Étape 1 : estimation tarifaire
+    if (!quote) {
+      setQuoting(true);
+      setError(null);
+      try {
+        const result = await fetchQuote({
+          data: { from: payload.from, to: payload.to, datetime: payload.datetime },
+        });
+        setQuote(result);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Estimation impossible.");
+      } finally {
+        setQuoting(false);
+      }
+      return;
+    }
+
+    // Étape 2 : envoi de la réservation
     setStatus("loading");
     setError(null);
 
     try {
-      await sendBooking({ data: payload });
+      await sendBooking({
+        data: {
+          ...payload,
+          distanceKm: quote.distanceKm,
+          durationMin: quote.durationMin,
+          priceEstimate: quote.total,
+          rateLabel: `${quote.ratePerKm} €/km (${quote.isNight ? "nuit" : "jour"})`,
+        },
+      });
       setStatus("success");
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Une erreur est survenue.");
     }
   };
+
 
   return (
     <section id="reserver" className="section-light relative border-t border-border/40 py-28 sm:py-40">
