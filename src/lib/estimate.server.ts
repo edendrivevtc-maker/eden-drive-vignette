@@ -20,8 +20,14 @@ export function computePrice(distanceKm: number, datetime: string, tolls: number
 export async function computeRoute(origin: string, destination: string, datetime: string) {
   const lovableKey = process.env.LOVABLE_API_KEY;
   const mapsKey = process.env.GOOGLE_MAPS_API_KEY;
-  if (!lovableKey || !mapsKey) {
-    throw new Error("Configuration itinéraire manquante.");
+  const directKey = process.env.GOOGLE_ROUTES_API_KEY ?? process.env.GOOGLE_API_KEY;
+
+  const useGateway = Boolean(lovableKey && mapsKey);
+  if (!useGateway && !directKey) {
+    console.error(
+      "[estimate] Missing env: set GOOGLE_API_KEY (Routes API) or LOVABLE_API_KEY + GOOGLE_MAPS_API_KEY",
+    );
+    throw new Error("Configuration itinéraire manquante (clé Google Routes absente du serveur).");
   }
 
   const departure = new Date(datetime);
@@ -41,23 +47,37 @@ export async function computeRoute(origin: string, destination: string, datetime
   };
   if (useTraffic) body.departureTime = departure.toISOString();
 
-  const res = await fetch(`${GATEWAY_URL}/routes/directions/v2:computeRoutes`, {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    "X-Goog-FieldMask": "routes.distanceMeters,routes.duration,routes.travelAdvisory.tollInfo",
+  };
+  let url: string;
+  if (useGateway) {
+    url = `${GATEWAY_URL}/routes/directions/v2:computeRoutes`;
+    headers.Authorization = `Bearer ${lovableKey}`;
+    headers["X-Connection-Api-Key"] = mapsKey as string;
+  } else {
+    url = "https://routes.googleapis.com/directions/v2:computeRoutes";
+    headers["X-Goog-Api-Key"] = directKey as string;
+  }
+
+  const res = await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${lovableKey}`,
-      "X-Connection-Api-Key": mapsKey,
-      "X-Goog-FieldMask":
-        "routes.distanceMeters,routes.duration,routes.travelAdvisory.tollInfo",
-    },
+    headers,
     body: JSON.stringify(body),
   });
 
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     console.error(`[estimate] Routes API error ${res.status}: ${text}`);
+    if (res.status === 403) {
+      throw new Error(
+        "Itinéraire refusé par Google (403) : la clé Routes API du serveur est restreinte ou l'API n'est pas activée.",
+      );
+    }
     throw new Error(`Impossible de calculer l'itinéraire (${res.status}).`);
   }
+
 
   const json: any = await res.json();
   const route = json?.routes?.[0];

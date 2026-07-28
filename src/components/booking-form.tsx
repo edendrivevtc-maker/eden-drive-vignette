@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   AlertCircle,
@@ -51,8 +51,6 @@ function Field({
   );
 }
 
-const eur = (n: number) =>
-  n.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export function BookingFormSection({
   id = "reserver",
@@ -72,6 +70,7 @@ export function BookingFormSection({
   const runEstimate = useServerFn(estimateRide);
   const sendBooking = useServerFn(sendBookingRequest);
 
+  const formRef = useRef<HTMLFormElement>(null);
   const [payload, setPayload] = useState<Record<string, string> | null>(null);
   const [quote, setQuote] = useState<Quote | null>(null);
   const [status, setStatus] = useState<"idle" | "estimating" | "estimated" | "booking" | "booked">(
@@ -93,10 +92,14 @@ export function BookingFormSection({
     };
   };
 
-  const handleEstimate = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleEstimate = async (e?: React.SyntheticEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     if (status === "estimating" || status === "booking") return;
-    const data = readForm(e.currentTarget);
+    const form = formRef.current;
+    if (!form) return;
+    if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+    const data = readForm(form);
     setStatus("estimating");
     setError(null);
     try {
@@ -110,7 +113,9 @@ export function BookingFormSection({
     }
   };
 
-  const handleBook = async () => {
+  const handleBook = async (e?: React.SyntheticEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     if (!payload || status === "booking" || status === "booked") return;
     setStatus("booking");
     setError(null);
@@ -122,6 +127,7 @@ export function BookingFormSection({
       setError(err instanceof Error ? err.message : "Une erreur est survenue.");
     }
   };
+
 
   return (
     <section id={id} className={sectionClassName}>
@@ -135,7 +141,13 @@ export function BookingFormSection({
           {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
         </div>
 
-        <form onSubmit={handleEstimate} className="luxe-card mt-10 rounded-2xl p-7 sm:p-10">
+        <form
+          ref={formRef}
+          noValidate={false}
+          action="#"
+          onSubmit={handleEstimate}
+          className="luxe-card mt-10 rounded-2xl p-7 sm:p-10"
+        >
           <div className="space-y-5">
             <Field label="Nom complet" name="name" required />
             <div className="grid gap-5 sm:grid-cols-2">
@@ -163,7 +175,8 @@ export function BookingFormSection({
             </div>
 
             <button
-              type="submit"
+              type="button"
+              onClick={handleEstimate}
               disabled={status === "estimating"}
               className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest disabled:opacity-70"
             >
@@ -179,10 +192,8 @@ export function BookingFormSection({
               <div className="rounded-2xl border border-silver/30 bg-background/60 p-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-silver">Votre estimation</p>
                 <div className="mt-4 space-y-2 text-sm">
-                  <p>Prix de la course : <strong>{eur(quote.ridePrice)} €</strong></p>
-                  {quote.tolls > 0 && <p>Péage estimé : <strong>{eur(quote.tolls)} €</strong></p>}
                   <p className="font-display text-2xl text-silver-gradient">
-                    Tarif total : {quote.total} €
+                    Prix de la course : {quote.total} €
                   </p>
                   <p className="text-muted-foreground">
                     Distance : {quote.distanceKm.toLocaleString("fr-FR")} km · Durée estimée :{" "}
@@ -190,6 +201,7 @@ export function BookingFormSection({
                   </p>
                   <p className="text-xs text-muted-foreground">Sous réserve de frais de péage</p>
                 </div>
+
 
                 <button
                   type="button"
