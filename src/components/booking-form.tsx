@@ -143,7 +143,13 @@ export function BookingFormSection({
           {subtitle && <p className="text-muted-foreground">{subtitle}</p>}
         </div>
 
-        <form onSubmit={handleEstimate} className="luxe-card mt-10 rounded-2xl p-7 sm:p-10">
+        <form
+          ref={formRef}
+          noValidate={false}
+          action="#"
+          onSubmit={handleEstimate}
+          className="luxe-card mt-10 rounded-2xl p-7 sm:p-10"
+        >
           <div className="space-y-5">
             <Field label="Nom complet" name="name" required />
             <div className="grid gap-5 sm:grid-cols-2">
