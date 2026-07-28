@@ -13,7 +13,23 @@ declare global {
   }
 }
 
+const CONNECTOR_KEY = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY as
+  | string
+  | undefined;
+
 let keyPromise: Promise<string | null> | null = null;
+
+/**
+ * Two browser keys exist:
+ * - the Lovable connector key, restricted to *.lovable.app / *.lovableproject.com
+ * - the customer key (GOOGLE_API_KEY), restricted to the production domain
+ * Using the wrong one on a given host returns 403 API_KEY_HTTP_REFERRER_BLOCKED,
+ * so pick the key matching the current hostname.
+ */
+function isLovableHost(): boolean {
+  const h = typeof window !== "undefined" ? window.location.hostname : "";
+  return h.endsWith(".lovable.app") || h.endsWith(".lovableproject.com") || h === "localhost";
+}
 
 async function resolveBrowserKey(): Promise<string | null> {
   if (!keyPromise) {
@@ -21,11 +37,9 @@ async function resolveBrowserKey(): Promise<string | null> {
       .then((r: any) => r?.key ?? null)
       .catch(() => null);
   }
-  const key = await keyPromise;
-  return (
-    key ??
-    ((import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY as string | undefined) ?? null)
-  );
+  const customerKey = await keyPromise;
+  if (isLovableHost()) return CONNECTOR_KEY ?? customerKey ?? null;
+  return customerKey ?? CONNECTOR_KEY ?? null;
 }
 
 async function loadGoogleMaps(): Promise<void> {
