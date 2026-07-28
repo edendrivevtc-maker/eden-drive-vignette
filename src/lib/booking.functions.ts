@@ -23,10 +23,11 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
   .handler(async ({ data }) => {
     const brevoApiKey = process.env.BREVO_API_KEY;
+    const lovableKey = process.env.LOVABLE_API_KEY;
 
-    if (!brevoApiKey) {
-      console.error(`[booking] Missing env: BREVO_API_KEY`);
-      throw new Error(`Configuration email manquante (BREVO_API_KEY).`);
+    if (!brevoApiKey || !lovableKey) {
+      console.error(`[booking] Missing env: BREVO_API_KEY / LOVABLE_API_KEY`);
+      throw new Error(`Configuration email manquante.`);
     }
 
     const htmlContent = `
