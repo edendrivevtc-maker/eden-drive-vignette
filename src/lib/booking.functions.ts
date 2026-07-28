@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
+const BREVO_GATEWAY_URL = "https://connector-gateway.lovable.dev/brevo/smtp/email";
 
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Le nom est requis").max(100),
@@ -23,10 +23,11 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
   .handler(async ({ data }) => {
     const brevoApiKey = process.env.BREVO_API_KEY;
+    const lovableKey = process.env.LOVABLE_API_KEY;
 
-    if (!brevoApiKey) {
-      console.error(`[booking] Missing env: BREVO_API_KEY`);
-      throw new Error(`Configuration email manquante (BREVO_API_KEY).`);
+    if (!brevoApiKey || !lovableKey) {
+      console.error(`[booking] Missing env: BREVO_API_KEY / LOVABLE_API_KEY`);
+      throw new Error(`Configuration email manquante.`);
     }
 
     const htmlContent = `
@@ -54,12 +55,13 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
       </html>
     `;
 
-    const response = await fetch(BREVO_API_URL, {
+    const response = await fetch(BREVO_GATEWAY_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "api-key": brevoApiKey,
+        Authorization: `Bearer ${lovableKey}`,
+        "X-Connection-Api-Key": brevoApiKey,
       },
       body: JSON.stringify({
         sender: { name: "Eden Drive VTC", email: "edendrivevtc@gmail.com" },
