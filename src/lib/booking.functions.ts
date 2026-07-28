@@ -17,11 +17,13 @@ const bookingSchema = z.object({
 export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
   .handler(async ({ data }) => {
-    const brevoApiKey = process.env.BREVO_API_KEY;
+    // Clé Brevo directe (xkeysib-...). On ignore une éventuelle clé de connecteur (lovc_...).
+    const candidates = [process.env.BREVO_SMTP_API_KEY, process.env.BREVO_API_KEY];
+    const brevoApiKey = candidates.find((k) => k && k.startsWith("xkeysib-"));
 
     if (!brevoApiKey) {
-      console.error(`[booking] Missing env: BREVO_API_KEY`);
-      throw new Error(`Configuration email manquante (BREVO_API_KEY).`);
+      console.error(`[booking] Missing env: BREVO_SMTP_API_KEY (clé Brevo directe xkeysib-...)`);
+      throw new Error(`Configuration email manquante (clé API Brevo directe).`);
     }
 
     const htmlContent = `
