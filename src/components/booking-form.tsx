@@ -72,6 +72,7 @@ export function BookingFormSection({
   const runEstimate = useServerFn(estimateRide);
   const sendBooking = useServerFn(sendBookingRequest);
 
+  const formRef = useRef<HTMLFormElement>(null);
   const [payload, setPayload] = useState<Record<string, string> | null>(null);
   const [quote, setQuote] = useState<Quote | null>(null);
   const [status, setStatus] = useState<"idle" | "estimating" | "estimated" | "booking" | "booked">(
@@ -93,10 +94,14 @@ export function BookingFormSection({
     };
   };
 
-  const handleEstimate = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleEstimate = async (e?: React.SyntheticEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     if (status === "estimating" || status === "booking") return;
-    const data = readForm(e.currentTarget);
+    const form = formRef.current;
+    if (!form) return;
+    if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+    const data = readForm(form);
     setStatus("estimating");
     setError(null);
     try {
@@ -110,7 +115,9 @@ export function BookingFormSection({
     }
   };
 
-  const handleBook = async () => {
+  const handleBook = async (e?: React.SyntheticEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     if (!payload || status === "booking" || status === "booked") return;
     setStatus("booking");
     setError(null);
@@ -122,6 +129,7 @@ export function BookingFormSection({
       setError(err instanceof Error ? err.message : "Une erreur est survenue.");
     }
   };
+
 
   return (
     <section id={id} className={sectionClassName}>
