@@ -172,9 +172,18 @@ export function PlacesField({
     try {
       const place = s.placePrediction.toPlace();
       await place.fetchFields({ fields: ["formattedAddress", "displayName"] });
-      const address =
-        place.formattedAddress ||
-        (place.displayName ? String(place.displayName) : s.text);
+      const name = place.displayName ? String(place.displayName) : "";
+      const formatted = place.formattedAddress ? String(place.formattedAddress) : "";
+      // Some POIs return a very short formattedAddress ("Blagnac"), so keep the
+      // place name in front of it for an unambiguous address.
+      let address = s.text;
+      if (formatted && name && !formatted.toLowerCase().includes(name.toLowerCase())) {
+        address = `${name}, ${formatted}`;
+      } else if (formatted) {
+        address = formatted;
+      } else if (name) {
+        address = name;
+      }
       setValue(address);
     } catch {
       setValue(s.text);
@@ -183,6 +192,7 @@ export function PlacesField({
     setSuggestions([]);
     sessionTokenRef.current = null;
   };
+
 
   return (
     <div ref={wrapRef} className="relative">
