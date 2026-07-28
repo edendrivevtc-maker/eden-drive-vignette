@@ -144,7 +144,7 @@ export function PlacesField({
           region: "fr",
           locationBias: {
             center: { lat: 43.6045, lng: 1.4442 },
-            radius: 60000,
+            radius: 50000,
           },
         });
       const mapped: Suggestion[] = (sugg ?? [])
