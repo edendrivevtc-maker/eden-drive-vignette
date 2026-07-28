@@ -12,7 +12,12 @@ const bookingSchema = z.object({
   datetime: z.string().trim().min(1, "La date et l'heure sont requises"),
   pax: z.string().trim().max(10).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
+  distanceKm: z.number().nonnegative().optional(),
+  durationMin: z.number().nonnegative().optional(),
+  priceEstimate: z.number().nonnegative().optional(),
+  rateLabel: z.string().trim().max(60).optional(),
 });
+
 
 export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
