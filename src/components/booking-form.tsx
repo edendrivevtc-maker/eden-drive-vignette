@@ -177,7 +177,8 @@ export function BookingFormSection({
             </div>
 
             <button
-              type="submit"
+              type="button"
+              onClick={handleEstimate}
               disabled={status === "estimating"}
               className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest disabled:opacity-70"
             >
@@ -193,10 +194,8 @@ export function BookingFormSection({
               <div className="rounded-2xl border border-silver/30 bg-background/60 p-6">
                 <p className="text-xs uppercase tracking-[0.3em] text-silver">Votre estimation</p>
                 <div className="mt-4 space-y-2 text-sm">
-                  <p>Prix de la course : <strong>{eur(quote.ridePrice)} €</strong></p>
-                  {quote.tolls > 0 && <p>Péage estimé : <strong>{eur(quote.tolls)} €</strong></p>}
                   <p className="font-display text-2xl text-silver-gradient">
-                    Tarif total : {quote.total} €
+                    Prix de la course : {quote.total} €
                   </p>
                   <p className="text-muted-foreground">
                     Distance : {quote.distanceKm.toLocaleString("fr-FR")} km · Durée estimée :{" "}
@@ -204,6 +203,7 @@ export function BookingFormSection({
                   </p>
                   <p className="text-xs text-muted-foreground">Sous réserve de frais de péage</p>
                 </div>
+
 
                 <button
                   type="button"
