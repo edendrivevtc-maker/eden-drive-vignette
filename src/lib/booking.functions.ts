@@ -42,10 +42,14 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
             <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Date & heure</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(data.datetime)}</td></tr>
             <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Passagers</td><td style="padding: 8px; border: 1px solid #ddd;">${data.pax ? escapeHtml(data.pax) : "Non renseigné"}</td></tr>
             <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Message</td><td style="padding: 8px; border: 1px solid #ddd;">${data.message ? escapeHtml(data.message).replace(/\n/g, "<br/>") : "Aucun"}</td></tr>
+            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Distance Google Maps</td><td style="padding: 8px; border: 1px solid #ddd;">${data.distanceKm != null ? `${escapeHtml(String(data.distanceKm))} km${data.durationMin != null ? ` (~${escapeHtml(String(data.durationMin))} min)` : ""}` : "Non calculée"}</td></tr>
+            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Tarif estimatif affiché</td><td style="padding: 8px; border: 1px solid #ddd;">${data.priceEstimate != null ? `${escapeHtml(String(data.priceEstimate))} € TTC${data.rateLabel ? ` — ${escapeHtml(data.rateLabel)}` : ""}` : "Non calculé"}</td></tr>
           </table>
           <p style="margin-top: 24px; color: #666; font-size: 12px;">
+            Estimation hors péages — à vérifier manuellement avant confirmation définitive.<br/>
             Cette demande provient du formulaire de réservation en ligne du site Eden Drive VTC.
           </p>
+
         </body>
       </html>
     `;
