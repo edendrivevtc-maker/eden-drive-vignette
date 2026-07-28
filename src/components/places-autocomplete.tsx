@@ -42,33 +42,47 @@ async function resolveBrowserKey(): Promise<string | null> {
   return customerKey ?? CONNECTOR_KEY ?? null;
 }
 
+function injectGoogleMaps(): Promise<void> {
+  // Set the shared promise synchronously so two <PlacesField /> instances
+  // never inject the Maps script twice (a double load breaks google.maps).
+  return new Promise<void>((resolve, reject) => {
+    resolveBrowserKey()
+      .then((browserKey) => {
+        if (!browserKey) {
+          reject(new Error("Missing Google Maps browser key"));
+          return;
+        }
+        if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
+          resolve();
+          return;
+        }
+        window.__edenGmapsInit = () => resolve();
+        const s = document.createElement("script");
+        const params = new URLSearchParams({
+          key: browserKey,
+          v: "weekly",
+          libraries: "places",
+          loading: "async",
+          callback: "__edenGmapsInit",
+        });
+        if (TRACKING_ID) params.set("channel", TRACKING_ID);
+        s.src = `https://maps.googleapis.com/maps/api/js?${params.toString()}`;
+        s.async = true;
+        s.defer = true;
+        s.onerror = () => reject(new Error("Failed to load Google Maps"));
+        document.head.appendChild(s);
+      })
+      .catch(reject);
+  });
+}
+
 async function loadGoogleMaps(): Promise<void> {
   if (typeof window === "undefined") return;
   if (window.google?.maps?.importLibrary) return;
-  if (window.__edenGmapsPromise) return window.__edenGmapsPromise;
-
-  const browserKey = await resolveBrowserKey();
-  if (!browserKey) throw new Error("Missing Google Maps browser key");
-
-  window.__edenGmapsPromise = new Promise<void>((resolve, reject) => {
-    window.__edenGmapsInit = () => resolve();
-    const s = document.createElement("script");
-    const params = new URLSearchParams({
-      key: browserKey,
-      v: "weekly",
-      libraries: "places",
-      loading: "async",
-      callback: "__edenGmapsInit",
-    });
-    if (TRACKING_ID) params.set("channel", TRACKING_ID);
-    s.src = `https://maps.googleapis.com/maps/api/js?${params.toString()}`;
-    s.async = true;
-    s.defer = true;
-    s.onerror = () => reject(new Error("Failed to load Google Maps"));
-    document.head.appendChild(s);
-  });
+  if (!window.__edenGmapsPromise) window.__edenGmapsPromise = injectGoogleMaps();
   return window.__edenGmapsPromise;
 }
+
 
 
 type Suggestion = {
