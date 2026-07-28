@@ -19,8 +19,7 @@ import {
   Heart,
   ChevronDown,
 } from "lucide-react";
-import { sendBookingRequest } from "@/lib/booking.functions";
-import { PlacesField } from "@/components/places-autocomplete";
+import { BookingFormSection } from "@/components/booking-form";
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import airportImg from "@/assets/airport-transfer.jpg";
 
@@ -488,113 +487,15 @@ function Faq() {
 
 /* ---------- Booking form ---------- */
 function BookingForm() {
-  const sendBooking = useServerFn(sendBookingRequest);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (status === "loading") return;
-
-    const formData = new FormData(e.currentTarget);
-    const payload = {
-      name: String(formData.get("name") ?? ""),
-      phone: String(formData.get("phone") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      from: String(formData.get("from") ?? ""),
-      to: String(formData.get("to") ?? ""),
-      datetime: String(formData.get("datetime") ?? ""),
-      pax: String(formData.get("pax") ?? ""),
-      message: String(formData.get("message") ?? ""),
-    };
-
-    setStatus("loading");
-    setError(null);
-
-    try {
-      await sendBooking({ data: payload });
-      setStatus("success");
-    } catch (err) {
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Une erreur est survenue.");
-    }
-  };
-
   return (
-    <section id="reserver" className="section-light relative border-t border-border/40 py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl px-5 sm:px-8">
-        <div className="text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-silver">Réservation</span>
-          <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl">
-            <em className="text-silver-gradient not-italic">Réservez</em> votre transfert
-          </h2>
-          <div className="hairline mx-auto my-6 w-24" />
-          <p className="text-muted-foreground">
-            Complétez le formulaire, nous vous confirmons rapidement un tarif ferme.
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="luxe-card mt-10 rounded-2xl p-7 sm:p-10">
-          <div className="space-y-5">
-            <Field label="Nom complet" name="name" required />
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Téléphone" name="phone" type="tel" required />
-              <Field label="E-mail" name="email" type="email" />
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <PlacesField label="Départ" name="from" placeholder="Adresse ou aéroport" required />
-              <PlacesField label="Destination" name="to" required />
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Date & heure" name="datetime" type="datetime-local" required />
-              <Field label="Passagers" name="pax" type="number" placeholder="2" />
-            </div>
-            <div>
-              <label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
-                Message
-              </label>
-              <textarea
-                name="message"
-                rows={3}
-                className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
-                placeholder="N° de vol, bagages, précisions…"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={status === "loading" || status === "success"}
-              className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest disabled:opacity-70"
-            >
-              {status === "loading" ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Calendar className="h-4 w-4" />
-              )}
-              {status === "success"
-                ? "Demande envoyée"
-                : status === "loading"
-                ? "Envoi en cours..."
-                : "Demander un devis"}
-            </button>
-            {status === "success" && (
-              <p className="flex items-center gap-2 text-sm text-silver">
-                <CheckCircle2 className="h-4 w-4" />
-                Merci — nous vous recontactons très vite.
-              </p>
-            )}
-            {status === "error" && (
-              <p className="flex items-center gap-2 text-sm text-red-400">
-                <AlertCircle className="h-4 w-4" />
-                {error ?? "L'envoi a échoué. Veuillez réessayer ou nous appeler."}
-              </p>
-            )}
-          </div>
-        </form>
-      </div>
-    </section>
+    <BookingFormSection
+      sectionClassName="section-light relative border-t border-border/40 py-24 sm:py-32"
+      title={<><em className="text-silver-gradient not-italic">Réservez</em> votre transfert</>}
+      subtitle="Complétez le formulaire, nous vous confirmons rapidement un tarif ferme."
+      fromPlaceholder="Adresse ou aéroport"
+    />
   );
 }
-
 function Field({
   label,
   name,
