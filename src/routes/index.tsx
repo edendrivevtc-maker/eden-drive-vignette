@@ -21,10 +21,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
-import { getPriceQuote } from "@/lib/pricing.functions";
-import type { PriceQuote } from "@/lib/pricing";
 import { PlacesField } from "@/components/places-autocomplete";
-
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import heroCar from "@/assets/hero-car.jpg";
 import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
@@ -622,15 +619,12 @@ function ContactCTA() {
 /* ---------- Contact form ---------- */
 function Contact() {
   const sendBooking = useServerFn(sendBookingRequest);
-  const fetchQuote = useServerFn(getPriceQuote);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
-  const [quote, setQuote] = useState<PriceQuote | null>(null);
-  const [quoting, setQuoting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status === "loading" || quoting) return;
+    if (status === "loading") return;
 
     const formData = new FormData(e.currentTarget);
     const payload = {
@@ -644,44 +638,17 @@ function Contact() {
       message: String(formData.get("message") ?? ""),
     };
 
-    // Étape 1 : estimation tarifaire
-    if (!quote) {
-      setQuoting(true);
-      setError(null);
-      try {
-        const result = await fetchQuote({
-          data: { from: payload.from, to: payload.to, datetime: payload.datetime },
-        });
-        setQuote(result);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Estimation impossible.");
-      } finally {
-        setQuoting(false);
-      }
-      return;
-    }
-
-    // Étape 2 : envoi de la réservation
     setStatus("loading");
     setError(null);
 
     try {
-      await sendBooking({
-        data: {
-          ...payload,
-          distanceKm: quote.distanceKm,
-          durationMin: quote.durationMin,
-          priceEstimate: quote.total,
-          rateLabel: `${quote.ratePerKm} €/km (${quote.isNight ? "nuit" : "jour"})`,
-        },
-      });
+      await sendBooking({ data: payload });
       setStatus("success");
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Une erreur est survenue.");
     }
   };
-
 
   return (
     <section id="reserver" className="section-light relative border-t border-border/40 py-28 sm:py-40">
@@ -697,9 +664,6 @@ function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          onChange={() => {
-            if (quote && status !== "success") setQuote(null);
-          }}
           className="luxe-card mt-10 rounded-2xl p-7 sm:p-10"
         >
           <div className="space-y-5">
@@ -727,33 +691,12 @@ function Contact() {
                 placeholder="Précisions, bagages, vol, etc."
               />
             </div>
-            {quote && (
-              <div className="rounded-2xl border border-silver/30 bg-onyx px-6 py-5 text-center">
-                <p className="text-xs uppercase tracking-[0.3em] text-silver">
-                  Votre estimation
-                </p>
-                <p className="mt-2 font-display text-4xl text-ivory">
-                  {quote.total} € <span className="text-2xl">TTC</span>
-                </p>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {quote.distanceKm} km · itinéraire recommandé
-                  {quote.durationMin ? ` · ~${quote.durationMin} min` : ""} ·{" "}
-                  {quote.ratePerKm} €/km ({quote.isNight ? "tarif nuit" : "tarif jour"})
-                </p>
-                <p className="mt-3 text-xs text-muted-foreground">
-                  Tarif calculé selon l'itinéraire Google Maps recommandé.
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Péages éventuels à ajouter selon l'itinéraire choisi.
-                </p>
-              </div>
-            )}
             <button
               type="submit"
-              disabled={status === "loading" || status === "success" || quoting}
+              disabled={status === "loading" || status === "success"}
               className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest disabled:opacity-70"
             >
-              {status === "loading" || quoting ? (
+              {status === "loading" ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
                 <Calendar className="h-4 w-4" />
@@ -762,11 +705,7 @@ function Contact() {
                 ? "Demande envoyée"
                 : status === "loading"
                 ? "Envoi en cours..."
-                : quoting
-                ? "Calcul du tarif..."
-                : quote
-                ? "Réserver"
-                : "Calculer mon tarif"}
+                : "Demander un devis"}
             </button>
             {status === "success" && (
               <p className="flex items-center gap-2 text-sm text-silver">
@@ -774,13 +713,12 @@ function Contact() {
                 Merci — nous vous recontactons très vite.
               </p>
             )}
-            {(status === "error" || (error && !quoting)) && (
+            {status === "error" && (
               <p className="flex items-center gap-2 text-sm text-red-400">
                 <AlertCircle className="h-4 w-4" />
                 {error ?? "L'envoi a échoué. Veuillez réessayer ou nous appeler."}
               </p>
             )}
-
           </div>
         </form>
       </div>

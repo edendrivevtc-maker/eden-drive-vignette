@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const BREVO_GATEWAY_URL = "https://connector-gateway.lovable.dev/brevo/smtp/email";
+const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
 
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Le nom est requis").max(100),
@@ -12,22 +12,16 @@ const bookingSchema = z.object({
   datetime: z.string().trim().min(1, "La date et l'heure sont requises"),
   pax: z.string().trim().max(10).optional().or(z.literal("")),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
-  distanceKm: z.number().nonnegative().optional(),
-  durationMin: z.number().nonnegative().optional(),
-  priceEstimate: z.number().nonnegative().optional(),
-  rateLabel: z.string().trim().max(60).optional(),
 });
-
 
 export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
   .handler(async ({ data }) => {
     const brevoApiKey = process.env.BREVO_API_KEY;
-    const lovableKey = process.env.LOVABLE_API_KEY;
 
-    if (!brevoApiKey || !lovableKey) {
-      console.error(`[booking] Missing env: BREVO_API_KEY / LOVABLE_API_KEY`);
-      throw new Error(`Configuration email manquante.`);
+    if (!brevoApiKey) {
+      console.error(`[booking] Missing env: BREVO_API_KEY`);
+      throw new Error(`Configuration email manquante (BREVO_API_KEY).`);
     }
 
     const htmlContent = `
@@ -43,25 +37,20 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
             <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Date & heure</td><td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(data.datetime)}</td></tr>
             <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Passagers</td><td style="padding: 8px; border: 1px solid #ddd;">${data.pax ? escapeHtml(data.pax) : "Non renseigné"}</td></tr>
             <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Message</td><td style="padding: 8px; border: 1px solid #ddd;">${data.message ? escapeHtml(data.message).replace(/\n/g, "<br/>") : "Aucun"}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Distance Google Maps</td><td style="padding: 8px; border: 1px solid #ddd;">${data.distanceKm != null ? `${escapeHtml(String(data.distanceKm))} km${data.durationMin != null ? ` (~${escapeHtml(String(data.durationMin))} min)` : ""}` : "Non calculée"}</td></tr>
-            <tr><td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Tarif estimatif affiché</td><td style="padding: 8px; border: 1px solid #ddd;">${data.priceEstimate != null ? `${escapeHtml(String(data.priceEstimate))} € TTC${data.rateLabel ? ` — ${escapeHtml(data.rateLabel)}` : ""}` : "Non calculé"}</td></tr>
           </table>
           <p style="margin-top: 24px; color: #666; font-size: 12px;">
-            Estimation hors péages — à vérifier manuellement avant confirmation définitive.<br/>
             Cette demande provient du formulaire de réservation en ligne du site Eden Drive VTC.
           </p>
-
         </body>
       </html>
     `;
 
-    const response = await fetch(BREVO_GATEWAY_URL, {
+    const response = await fetch(BREVO_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        Authorization: `Bearer ${lovableKey}`,
-        "X-Connection-Api-Key": brevoApiKey,
+        "api-key": brevoApiKey,
       },
       body: JSON.stringify({
         sender: { name: "Eden Drive VTC", email: "edendrivevtc@gmail.com" },
