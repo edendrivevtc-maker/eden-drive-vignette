@@ -141,7 +141,8 @@ export function PlacesField({
         }));
       setSuggestions(mapped);
       setOpen(mapped.length > 0);
-    } catch {
+    } catch (err) {
+      console.error("[places] autocomplete failed", err);
       setSuggestions([]);
     }
   };
