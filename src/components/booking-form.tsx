@@ -51,8 +51,6 @@ function Field({
   );
 }
 
-const eur = (n: number) =>
-  n.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export function BookingFormSection({
   id = "reserver",
