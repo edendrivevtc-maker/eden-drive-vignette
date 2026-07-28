@@ -21,7 +21,10 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { sendBookingRequest } from "@/lib/booking.functions";
+import { getPriceQuote } from "@/lib/pricing.functions";
+import type { PriceQuote } from "@/lib/pricing";
 import { PlacesField } from "@/components/places-autocomplete";
+
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import heroCar from "@/assets/hero-car.jpg";
 import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
