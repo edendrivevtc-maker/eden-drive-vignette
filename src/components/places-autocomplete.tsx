@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { getPlacesBrowserKey } from "@/lib/estimate.functions";
 
-const BROWSER_KEY = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY as
-  | string
-  | undefined;
 const TRACKING_ID = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID as
   | string
   | undefined;
@@ -15,17 +13,34 @@ declare global {
   }
 }
 
-function loadGoogleMaps(): Promise<void> {
-  if (typeof window === "undefined") return Promise.resolve();
-  if (window.google?.maps?.importLibrary) return Promise.resolve();
+let keyPromise: Promise<string | null> | null = null;
+
+async function resolveBrowserKey(): Promise<string | null> {
+  if (!keyPromise) {
+    keyPromise = getPlacesBrowserKey()
+      .then((r: any) => r?.key ?? null)
+      .catch(() => null);
+  }
+  const key = await keyPromise;
+  return (
+    key ??
+    ((import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY as string | undefined) ?? null)
+  );
+}
+
+async function loadGoogleMaps(): Promise<void> {
+  if (typeof window === "undefined") return;
+  if (window.google?.maps?.importLibrary) return;
   if (window.__edenGmapsPromise) return window.__edenGmapsPromise;
-  if (!BROWSER_KEY) return Promise.reject(new Error("Missing Google Maps browser key"));
+
+  const browserKey = await resolveBrowserKey();
+  if (!browserKey) throw new Error("Missing Google Maps browser key");
 
   window.__edenGmapsPromise = new Promise<void>((resolve, reject) => {
     window.__edenGmapsInit = () => resolve();
     const s = document.createElement("script");
     const params = new URLSearchParams({
-      key: BROWSER_KEY,
+      key: browserKey,
       v: "weekly",
       libraries: "places",
       loading: "async",
@@ -40,6 +55,7 @@ function loadGoogleMaps(): Promise<void> {
   });
   return window.__edenGmapsPromise;
 }
+
 
 type Suggestion = {
   placePrediction: any;
