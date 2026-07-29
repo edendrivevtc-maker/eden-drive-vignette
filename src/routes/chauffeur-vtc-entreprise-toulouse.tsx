@@ -455,7 +455,7 @@ function BookingForm() {
     <BookingFormSection
       sectionClassName="section-light relative border-t border-border/40 py-24 sm:py-32"
       eyebrow="Devis professionnel"
-      title={<><em className="text-silver-gradient not-italic">Réservez</em> votre chauffeur</>}
+      title={<em className="text-silver-gradient not-italic">Estimation/Réservation en ligne</em>}
       subtitle="Complétez le formulaire, nous vous confirmons rapidement un tarif ferme et un devis professionnel adapté."
       fromPlaceholder="Adresse, bureau, hôtel…"
     />
