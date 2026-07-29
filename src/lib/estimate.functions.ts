@@ -17,7 +17,7 @@ const estimateSchema = z.object({
 export const estimateRide = createServerFn({ method: "POST" })
   .inputValidator((data) => estimateSchema.parse(data))
   .handler(async ({ data }) => {
-    const quote = await computeRoute(data.from, data.to, data.datetime);
+    const quote = await computeRoute(data.from, data.to, data.datetime, data.pax);
     try {
       await sendBookingEmail("Un client vient d'estimer une course", { ...data, quote });
     } catch (err) {
