@@ -65,10 +65,10 @@ export function computePrice(
   pax?: string | number,
 ): Estimate {
   const night = isNightRate(datetime);
-  const rate = night ? 3 : distanceKm > 30 ? 2.2 : 2;
-  const raw = 5 + distanceKm * rate;
+  const rate = night ? 3 : 2.2;
+  const raw = distanceKm * rate;
   const paxCount = Number(pax);
-  const paxSurcharge = Number.isFinite(paxCount) && paxCount > 4 ? 10 : 0;
+  const paxSurcharge = Number.isFinite(paxCount) && paxCount > 4 ? 20 : 0;
   const ridePrice = Math.max(20, Math.round(raw * 100) / 100) + paxSurcharge;
   const total = Math.ceil((ridePrice + tolls) / 5) * 5;
   return { distanceKm, durationMin: 0, ridePrice, tolls, total };
