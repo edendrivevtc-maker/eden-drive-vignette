@@ -154,6 +154,6 @@ export async function computeRoute(
     ? Math.round((Number(eur.units ?? 0) + Number(eur.nanos ?? 0) / 1e9) * 100) / 100
     : 0;
 
-  const priced = computePrice(distanceKm, datetime, tolls);
+  const priced = computePrice(distanceKm, datetime, tolls, pax);
   return { ...priced, durationMin };
 }
