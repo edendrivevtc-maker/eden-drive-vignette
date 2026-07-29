@@ -108,6 +108,14 @@ export function BookingFormSection({
     if (!form) return;
     if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
     const data = readForm(form);
+    const when = new Date(data.datetime);
+    if (Number.isNaN(when.getTime()) || when.getTime() < Date.now() - 60_000) {
+      setQuote(null);
+      setPayload(null);
+      setStatus("idle");
+      setError("La date et l'heure de départ ne peuvent pas être dans le passé.");
+      return;
+    }
     setStatus("estimating");
     setError(null);
     try {
@@ -167,7 +175,7 @@ export function BookingFormSection({
               <PlacesField label="Destination" name="to" required />
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Date & heure" name="datetime" type="datetime-local" required />
+              <Field label="Date & heure" name="datetime" type="datetime-local" required min={minDatetime} />
               <Field label="Passagers" name="pax" type="number" placeholder="2" />
             </div>
             <div>
