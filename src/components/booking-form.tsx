@@ -177,7 +177,7 @@ export function BookingFormSection({
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="Date & heure" name="datetime" type="datetime-local" required min={minDatetime} />
-              <Field label="Passagers" name="pax" type="number" placeholder="2" />
+              <Field label="Passagers" name="pax" type="number" placeholder="2" required min="1" />
             </div>
             <div>
               <label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
