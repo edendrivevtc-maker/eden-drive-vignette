@@ -23,6 +23,13 @@ export type BookingPayload = {
   } | null;
 };
 
+export function formatFrDatetime(value: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/.exec(value ?? "");
+  if (!m) return value;
+  const [, y, mo, d, h, mi] = m;
+  return `${d}/${mo}/${y} à ${Number(h)}:${mi}`;
+}
+
 export function buildBookingRows(data: BookingPayload): Array<[string, string]> {
   const rows: Array<[string, string]> = [
     ["Nom", escapeHtml(data.name)],
