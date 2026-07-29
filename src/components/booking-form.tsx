@@ -85,6 +85,7 @@ export function BookingFormSection({
     "idle",
   );
   const [error, setError] = useState<string | null>(null);
+  const [minDatetime] = useState(() => localNowvalue());
 
   const readForm = (form: HTMLFormElement) => {
     const fd = new FormData(form);
