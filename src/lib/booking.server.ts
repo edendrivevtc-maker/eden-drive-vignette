@@ -115,6 +115,32 @@ export function buildBookingPdf(data: BookingPayload): string {
 }
 
 
+export function buildBookingIcs(data: BookingPayload): string {
+  const summary = `Course VTC — ${data.from} → ${data.to}`;
+  const description = [
+    `Client : ${data.name}`,
+    `Téléphone : ${data.phone}`,
+    data.email ? `E-mail : ${data.email}` : null,
+    `Départ : ${data.from}`,
+    `Destination : ${data.to}`,
+    `Passagers : ${data.pax ?? "Non renseigné"}`,
+    data.quote ? `Prix de la course : ${data.quote.total} €` : null,
+    data.quote ? `Distance : ${data.quote.distanceKm.toFixed(1)} km` : null,
+    data.message ? `Message : ${data.message.replace(/\n/g, " ")}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return buildIcs({
+    uid: `${Date.now()}-${Math.random().toString(36).slice(2)}@edendrivevtc`,
+    start: data.datetime,
+    durationMin: data.quote?.durationMin ?? 60,
+    title: summary,
+    location: data.from,
+    description,
+  });
+}
+
 export async function sendBookingEmail(
   subject: string,
   data: BookingPayload,
@@ -136,7 +162,10 @@ export async function sendBookingEmail(
     html,
     replyTo: data.email ? { email: data.email, name: data.name } : undefined,
     attachments: options?.attachPdf
-      ? [{ name: "bon-de-commande.pdf", content: buildBookingPdf(data) }]
+      ? [
+          { name: "bon-de-commande.pdf", content: buildBookingPdf(data) },
+          { name: "course-vtc.ics", content: toBase64Utf8(buildBookingIcs(data)) },
+        ]
       : undefined,
   });
 }
