@@ -20,18 +20,25 @@ export type Quote = {
   total: number;
 };
 
+function localNowvalue() {
+  const d = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+  return d.toISOString().slice(0, 16);
+}
+
 function Field({
   label,
   name,
   type = "text",
   required,
   placeholder,
+  min,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   placeholder?: string;
+  min?: string;
 }) {
   return (
     <div>

@@ -63,7 +63,7 @@ export function computePrice(distanceKm: number, datetime: string, tolls: number
   const rate = night ? 3 : distanceKm > 30 ? 2.2 : 2;
   const raw = 5 + distanceKm * rate;
   const ridePrice = Math.max(20, Math.round(raw * 100) / 100);
-  const total = Math.ceil(ridePrice + tolls);
+  const total = Math.ceil((ridePrice + tolls) / 5) * 5;
   return { distanceKm, durationMin: 0, ridePrice, tolls, total };
 }
 
