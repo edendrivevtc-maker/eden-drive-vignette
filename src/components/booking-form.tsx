@@ -63,7 +63,7 @@ function Field({
 export function BookingFormSection({
   id = "reserver",
   eyebrow = "Réservation",
-  title = <em className="text-silver-gradient not-italic">Réservation en ligne</em>,
+  title = <em className="text-silver-gradient not-italic">Estimation/Réservation en ligne</em>,
   subtitle,
   fromPlaceholder = "Adresse ou aéroport",
   sectionClassName = "section-light relative border-t border-border/40 py-28 sm:py-40",

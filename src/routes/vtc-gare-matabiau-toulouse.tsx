@@ -465,7 +465,7 @@ function BookingForm() {
   return (
     <BookingFormSection
       sectionClassName="section-light relative border-t border-border/40 py-24 sm:py-32"
-      title={<><em className="text-silver-gradient not-italic">Réservez</em> votre transfert gare</>}
+      title={<em className="text-silver-gradient not-italic">Estimation/Réservation en ligne</em>}
       subtitle="Complétez le formulaire, nous vous confirmons rapidement un tarif ferme."
       fromPlaceholder="Gare Matabiau, adresse…"
     />

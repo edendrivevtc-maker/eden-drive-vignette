@@ -456,7 +456,7 @@ function BookingForm() {
   return (
     <BookingFormSection
       sectionClassName="relative border-t border-border/40 bg-onyx py-24 sm:py-32"
-      title={<><em className="text-silver-gradient not-italic">Réservez</em> votre chauffeur privé</>}
+      title={<em className="text-silver-gradient not-italic">Estimation/Réservation en ligne</em>}
       subtitle="Complétez le formulaire, nous vous confirmons rapidement un tarif ferme."
       fromPlaceholder="Adresse de départ…"
     />
