@@ -243,7 +243,7 @@ export function BookingFormSection({
             {status === "booked" && (
               <p className="flex items-center gap-2 text-sm text-silver">
                 <CheckCircle2 className="h-4 w-4" />
-                Merci — nous vous recontactons très vite.
+                Merci — Nous avons reçu votre réservation
               </p>
             )}
             {error && (
