@@ -63,12 +63,6 @@ export function buildBookingRows(
   return rows;
 }
 
-function formatFrDatetimePadded(value: string): string {
-  const m = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/.exec(value ?? "");
-  if (!m) return value;
-  const [, y, mo, d, h, mi] = m;
-  return `${d}/${mo}/${y} à ${h}:${mi}`;
-}
 
 function nowInParis(): string {
   const parts = new Intl.DateTimeFormat("fr-FR", {
@@ -93,17 +87,20 @@ export function buildBookingPdf(data: BookingPayload): string {
     { kind: "row", label: "Tél", value: "0603508950" },
     { kind: "row", label: "SIREN", value: "938872017" },
     { kind: "row", label: "REVTC", value: "EVTC031250058" },
-    { kind: "row", label: "Carte VTC", value: "03122026801" },
     { kind: "rule" },
     {
       kind: "note",
-      text: `Réservation le ${nowInParis()} — Prise en charge le ${formatFrDatetimePadded(data.datetime)}`,
+      text: `Réservation le ${nowInParis()}`,
     },
     { kind: "space" },
     { kind: "rule" },
   ];
   for (const [label, value] of buildBookingRows(data, { plain: true })) {
-    lines.push({ kind: "row", label, value });
+    lines.push({
+      kind: "row",
+      label: label === "Date & heure" ? "Date et heure de prise en charge" : label,
+      value,
+    });
   }
   lines.push(
     { kind: "space" },
@@ -112,12 +109,6 @@ export function buildBookingPdf(data: BookingPayload): string {
       kind: "note",
       text: "Course effectuée sur réservation préalable. Arrêté du 6 août 2025 (JORF n°200) · Art. L.3122-9 · Art. L.3120-2 Code des transports",
     },
-    { kind: "space" },
-    {
-      kind: "note",
-      text: "Document généré automatiquement lors de la demande de réservation en ligne. Le prix indiqué est le tarif de la course, arrondi, péages inclus.",
-    },
-    { kind: "note", text: `Contact : ${BOOKING_RECIPIENT} — 06 35 58 58 23` },
   );
   return buildSimplePdf(lines);
 }
