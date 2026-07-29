@@ -20,18 +20,25 @@ export type Quote = {
   total: number;
 };
 
+function localNowvalue() {
+  const d = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
+  return d.toISOString().slice(0, 16);
+}
+
 function Field({
   label,
   name,
   type = "text",
   required,
   placeholder,
+  min,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   placeholder?: string;
+  min?: string;
 }) {
   return (
     <div>
@@ -45,6 +52,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
+        min={min}
         className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
       />
     </div>
@@ -77,6 +85,7 @@ export function BookingFormSection({
     "idle",
   );
   const [error, setError] = useState<string | null>(null);
+  const [minDatetime] = useState(() => localNowvalue());
 
   const readForm = (form: HTMLFormElement) => {
     const fd = new FormData(form);
@@ -100,6 +109,14 @@ export function BookingFormSection({
     if (!form) return;
     if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
     const data = readForm(form);
+    const when = new Date(data.datetime);
+    if (Number.isNaN(when.getTime()) || when.getTime() < Date.now() - 60_000) {
+      setQuote(null);
+      setPayload(null);
+      setStatus("idle");
+      setError("La date et l'heure de départ ne peuvent pas être dans le passé.");
+      return;
+    }
     setStatus("estimating");
     setError(null);
     try {
@@ -159,7 +176,7 @@ export function BookingFormSection({
               <PlacesField label="Destination" name="to" required />
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Date & heure" name="datetime" type="datetime-local" required />
+              <Field label="Date & heure" name="datetime" type="datetime-local" required min={minDatetime} />
               <Field label="Passagers" name="pax" type="number" placeholder="2" />
             </div>
             <div>
