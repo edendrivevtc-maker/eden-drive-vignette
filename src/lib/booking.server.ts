@@ -4,6 +4,7 @@ import {
   rowsToTable,
   sendBrevoEmail,
 } from "./email.server";
+import { buildSimplePdf, type PdfLine } from "./pdf.server";
 
 export type BookingPayload = {
   name: string;
@@ -30,18 +31,26 @@ export function formatFrDatetime(value: string): string {
   return `${d}/${mo}/${y} à ${Number(h)}:${mi}`;
 }
 
-export function buildBookingRows(data: BookingPayload): Array<[string, string]> {
+export function buildBookingRows(
+  data: BookingPayload,
+  options?: { plain?: boolean },
+): Array<[string, string]> {
+  const esc = (v: string) => (options?.plain ? v : escapeHtml(v));
   const rows: Array<[string, string]> = [
-    ["Nom", escapeHtml(data.name)],
-    ["Téléphone", escapeHtml(data.phone)],
-    ["E-mail", data.email ? escapeHtml(data.email) : "Non renseigné"],
-    ["Départ", escapeHtml(data.from)],
-    ["Destination", escapeHtml(data.to)],
-    ["Date & heure", escapeHtml(formatFrDatetime(data.datetime))],
-    ["Passagers", data.pax ? escapeHtml(data.pax) : "Non renseigné"],
+    ["Nom", esc(data.name)],
+    ["Téléphone", esc(data.phone)],
+    ["E-mail", data.email ? esc(data.email) : "Non renseigné"],
+    ["Départ", esc(data.from)],
+    ["Destination", esc(data.to)],
+    ["Date & heure", esc(formatFrDatetime(data.datetime))],
+    ["Passagers", data.pax ? esc(data.pax) : "Non renseigné"],
     [
       "Message",
-      data.message ? escapeHtml(data.message).replace(/\n/g, "<br/>") : "Aucun",
+      data.message
+        ? options?.plain
+          ? data.message.replace(/\n/g, " ")
+          : escapeHtml(data.message).replace(/\n/g, "<br/>")
+        : "Aucun",
     ],
   ];
   if (data.quote) {

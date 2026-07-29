@@ -27,4 +27,6 @@ const bookingSchema = z.object({
 
 export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
-  .handler(async ({ data }) => sendBookingEmail("Demande de réservation", data));
+  .handler(async ({ data }) =>
+    sendBookingEmail("Demande de réservation", data, { attachPdf: true }),
+  );
