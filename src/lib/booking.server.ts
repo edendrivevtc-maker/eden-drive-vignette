@@ -23,6 +23,13 @@ export type BookingPayload = {
   } | null;
 };
 
+export function formatFrDatetime(value: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/.exec(value ?? "");
+  if (!m) return value;
+  const [, y, mo, d, h, mi] = m;
+  return `${d}/${mo}/${y} à ${Number(h)}:${mi}`;
+}
+
 export function buildBookingRows(data: BookingPayload): Array<[string, string]> {
   const rows: Array<[string, string]> = [
     ["Nom", escapeHtml(data.name)],
@@ -30,7 +37,7 @@ export function buildBookingRows(data: BookingPayload): Array<[string, string]> 
     ["E-mail", data.email ? escapeHtml(data.email) : "Non renseigné"],
     ["Départ", escapeHtml(data.from)],
     ["Destination", escapeHtml(data.to)],
-    ["Date & heure", escapeHtml(data.datetime)],
+    ["Date & heure", escapeHtml(formatFrDatetime(data.datetime))],
     ["Passagers", data.pax ? escapeHtml(data.pax) : "Non renseigné"],
     [
       "Message",
@@ -41,9 +48,7 @@ export function buildBookingRows(data: BookingPayload): Array<[string, string]> 
     rows.push(
       ["Distance", `${data.quote.distanceKm.toFixed(1)} km`],
       ["Durée estimée", `${data.quote.durationMin} min`],
-      ["Prix de la course", `${data.quote.ridePrice.toFixed(2)} €`],
-      ["Péage estimé", `${data.quote.tolls.toFixed(2)} €`],
-      ["Tarif total", `${data.quote.total} €`],
+      ["Prix de la course", `${data.quote.total} €`],
     );
   }
   return rows;
