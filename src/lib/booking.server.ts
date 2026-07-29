@@ -93,17 +93,20 @@ export function buildBookingPdf(data: BookingPayload): string {
     { kind: "row", label: "Tél", value: "0603508950" },
     { kind: "row", label: "SIREN", value: "938872017" },
     { kind: "row", label: "REVTC", value: "EVTC031250058" },
-    { kind: "row", label: "Carte VTC", value: "03122026801" },
     { kind: "rule" },
     {
       kind: "note",
-      text: `Réservation le ${nowInParis()} — Prise en charge le ${formatFrDatetimePadded(data.datetime)}`,
+      text: `Réservation le ${nowInParis()}`,
     },
     { kind: "space" },
     { kind: "rule" },
   ];
   for (const [label, value] of buildBookingRows(data, { plain: true })) {
-    lines.push({ kind: "row", label, value });
+    lines.push({
+      kind: "row",
+      label: label === "Date & heure" ? "Date et heure de prise en charge" : label,
+      value,
+    });
   }
   lines.push(
     { kind: "space" },
