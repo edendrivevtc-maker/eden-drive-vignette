@@ -52,6 +52,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
+        min={min}
         className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
       />
     </div>
