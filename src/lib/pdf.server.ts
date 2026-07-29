@@ -114,13 +114,18 @@ export function buildSimplePdf(lines: PdfLine[]): string {
         y -= 13;
       }
     } else {
+      const labelLines = wrap(line.label, 24);
       const valueLines = wrap(line.value, 52);
-      text(line.label, MARGIN, 11, true);
+      const startY = y;
+      labelLines.forEach((l, i) => {
+        y = startY - i * 15;
+        text(l, MARGIN, 11, true);
+      });
       valueLines.forEach((l, i) => {
-        if (i > 0) y -= 15;
+        y = startY - i * 15;
         text(l, MARGIN + 170, 11, false);
       });
-      y -= 20;
+      y = startY - (Math.max(labelLines.length, valueLines.length) - 1) * 15 - 20;
     }
   }
 
