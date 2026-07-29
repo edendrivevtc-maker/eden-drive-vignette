@@ -52,6 +52,7 @@ export async function sendBrevoEmail(opts: {
       replyTo: opts.replyTo,
       subject: opts.subject,
       htmlContent: opts.html,
+      ...(opts.attachments?.length ? { attachment: opts.attachments } : {}),
     }),
   });
 
