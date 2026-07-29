@@ -138,6 +138,7 @@ export function buildBookingIcs(data: BookingPayload): string {
     title: summary,
     location: data.from,
     description,
+    organizerEmail: BOOKING_RECIPIENT,
   });
 }
 
