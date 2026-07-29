@@ -115,12 +115,6 @@ export function buildBookingPdf(data: BookingPayload): string {
       kind: "note",
       text: "Course effectuée sur réservation préalable. Arrêté du 6 août 2025 (JORF n°200) · Art. L.3122-9 · Art. L.3120-2 Code des transports",
     },
-    { kind: "space" },
-    {
-      kind: "note",
-      text: "Document généré automatiquement lors de la demande de réservation en ligne. Le prix indiqué est le tarif de la course, arrondi, péages inclus.",
-    },
-    { kind: "note", text: `Contact : ${BOOKING_RECIPIENT} — 06 35 58 58 23` },
   );
   return buildSimplePdf(lines);
 }
