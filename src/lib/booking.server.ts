@@ -63,10 +63,43 @@ export function buildBookingRows(
   return rows;
 }
 
+function formatFrDatetimePadded(value: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/.exec(value ?? "");
+  if (!m) return value;
+  const [, y, mo, d, h, mi] = m;
+  return `${d}/${mo}/${y} à ${h}:${mi}`;
+}
+
+function nowInParis(): string {
+  const parts = new Intl.DateTimeFormat("fr-FR", {
+    timeZone: "Europe/Paris",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(new Date());
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
+  return `${get("day")}/${get("month")}/${get("year")} à ${get("hour")}:${get("minute")}`;
+}
+
 export function buildBookingPdf(data: BookingPayload): string {
   const lines: PdfLine[] = [
     { kind: "title", text: "Bon de commande" },
-    { kind: "subtitle", text: "EDEN DRIVE VTC — Toulouse et ses environs" },
+    { kind: "subtitle", text: "EXPLOITANT" },
+    { kind: "row", label: "Société", value: "EDEN DRIVE VTC" },
+    { kind: "row", label: "Adresse", value: "3 Rue Suzanne Valadon" },
+    { kind: "row", label: "Tél", value: "0603508950" },
+    { kind: "row", label: "SIREN", value: "938872017" },
+    { kind: "row", label: "REVTC", value: "EVTC031250058" },
+    { kind: "row", label: "Carte VTC", value: "03122026801" },
+    { kind: "rule" },
+    {
+      kind: "note",
+      text: `Réservation le ${nowInParis()} — Prise en charge le ${formatFrDatetimePadded(data.datetime)}`,
+    },
+    { kind: "space" },
     { kind: "rule" },
   ];
   for (const [label, value] of buildBookingRows(data, { plain: true })) {
@@ -77,12 +110,17 @@ export function buildBookingPdf(data: BookingPayload): string {
     { kind: "rule" },
     {
       kind: "note",
+      text: "Course effectuée sur réservation préalable. Arrêté du 6 août 2025 (JORF n°200) · Art. L.3122-9 · Art. L.3120-2 Code des transports",
+    },
+    {
+      kind: "note",
       text: "Document généré automatiquement lors de la demande de réservation en ligne. Le prix indiqué est le tarif de la course, arrondi, péages inclus.",
     },
     { kind: "note", text: `Contact : ${BOOKING_RECIPIENT} — 06 35 58 58 23` },
   );
   return buildSimplePdf(lines);
 }
+
 
 export async function sendBookingEmail(
   subject: string,
