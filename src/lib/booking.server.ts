@@ -54,7 +54,32 @@ export function buildBookingRows(data: BookingPayload): Array<[string, string]> 
   return rows;
 }
 
-export async function sendBookingEmail(subject: string, data: BookingPayload) {
+export function buildBookingPdf(data: BookingPayload): string {
+  const lines: PdfLine[] = [
+    { kind: "title", text: "Bon de commande" },
+    { kind: "subtitle", text: "EDEN DRIVE VTC — Toulouse et ses environs" },
+    { kind: "rule" },
+  ];
+  for (const [label, value] of buildBookingRows(data, { plain: true })) {
+    lines.push({ kind: "row", label, value });
+  }
+  lines.push(
+    { kind: "space" },
+    { kind: "rule" },
+    {
+      kind: "note",
+      text: "Document généré automatiquement lors de la demande de réservation en ligne. Le prix indiqué est le tarif de la course, arrondi, péages inclus.",
+    },
+    { kind: "note", text: `Contact : ${BOOKING_RECIPIENT} — 06 35 58 58 23` },
+  );
+  return buildSimplePdf(lines);
+}
+
+export async function sendBookingEmail(
+  subject: string,
+  data: BookingPayload,
+  options?: { attachPdf?: boolean },
+) {
   const html = `
     <html>
       <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
@@ -70,5 +95,9 @@ export async function sendBookingEmail(subject: string, data: BookingPayload) {
     subject,
     html,
     replyTo: data.email ? { email: data.email, name: data.name } : undefined,
+    attachments: options?.attachPdf
+      ? [{ name: "bon-de-commande.pdf", content: buildBookingPdf(data) }]
+      : undefined,
   });
 }
+
