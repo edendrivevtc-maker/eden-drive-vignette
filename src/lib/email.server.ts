@@ -37,6 +37,7 @@ export async function sendBrevoEmail(opts: {
   subject: string;
   html: string;
   replyTo?: { email: string; name?: string };
+  attachments?: Array<{ name: string; content: string }>;
 }) {
   const response = await fetch(BREVO_API_URL, {
     method: "POST",
