@@ -1,4 +1,6 @@
 // Générateur de fichier .ics (RFC 5545), sans dépendance, Worker-safe.
+// Compatible Apple Mail / Calendrier iOS : METHOD:REQUEST, UID, DTSTAMP,
+// DTSTART/DTEND en UTC (suffixe Z), STATUS:CONFIRMED, SEQUENCE:0.
 
 export type IcsEvent = {
   uid: string;
@@ -7,6 +9,7 @@ export type IcsEvent = {
   title: string;
   location: string;
   description: string;
+  organizerEmail?: string;
 };
 
 function escapeIcs(text: string): string {
@@ -31,49 +34,81 @@ function foldLine(line: string): string {
   return parts.join("\r\n");
 }
 
-function localStamp(value: string): string | null {
+function pad(n: number): string {
+  return String(n).padStart(2, "0");
+}
+
+function utcStamp(date: Date): string {
+  return (
+    `${date.getUTCFullYear()}${pad(date.getUTCMonth() + 1)}${pad(date.getUTCDate())}` +
+    `T${pad(date.getUTCHours())}${pad(date.getUTCMinutes())}${pad(date.getUTCSeconds())}Z`
+  );
+}
+
+// Décalage (en minutes) d'Europe/Paris pour un instant donné.
+function parisOffsetMinutes(utcDate: Date): number {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Europe/Paris",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  }).formatToParts(utcDate);
+  const get = (t: string) => Number(parts.find((p) => p.type === t)?.value ?? "0");
+  const asUtc = Date.UTC(
+    get("year"),
+    get("month") - 1,
+    get("day"),
+    get("hour") % 24,
+    get("minute"),
+    get("second"),
+  );
+  return (asUtc - utcDate.getTime()) / 60000;
+}
+
+// Convertit une heure locale Paris "YYYY-MM-DDTHH:mm" en Date UTC.
+function parisLocalToUtc(value: string): Date | null {
   const m = /^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/.exec(value ?? "");
   if (!m) return null;
-  const [, y, mo, d, h, mi] = m;
-  return `${y}${mo}${d}T${h}${mi}00`;
-}
-
-function addMinutes(stamp: string, minutes: number): string {
-  const y = Number(stamp.slice(0, 4));
-  const mo = Number(stamp.slice(4, 6));
-  const d = Number(stamp.slice(6, 8));
-  const h = Number(stamp.slice(9, 11));
-  const mi = Number(stamp.slice(11, 13));
-  const dt = new Date(Date.UTC(y, mo - 1, d, h, mi) + minutes * 60000);
-  const p = (n: number) => String(n).padStart(2, "0");
-  return `${dt.getUTCFullYear()}${p(dt.getUTCMonth() + 1)}${p(dt.getUTCDate())}T${p(dt.getUTCHours())}${p(dt.getUTCMinutes())}00`;
-}
-
-function utcNowStamp(): string {
-  return new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const [, y, mo, d, h, mi] = m.map(Number) as unknown as number[];
+  const naive = Date.UTC(y, mo - 1, d, h, mi);
+  // Deux passes pour gérer les bascules d'heure d'été.
+  let offset = parisOffsetMinutes(new Date(naive));
+  offset = parisOffsetMinutes(new Date(naive - offset * 60000));
+  return new Date(naive - offset * 60000);
 }
 
 export function buildIcs(event: IcsEvent): string {
-  const start = localStamp(event.start);
+  const startDate = parisLocalToUtc(event.start) ?? new Date();
   const duration = event.durationMin > 0 ? Math.round(event.durationMin) : 60;
+  const endDate = new Date(startDate.getTime() + duration * 60000);
+
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//Eden Drive VTC//Reservation//FR",
     "CALSCALE:GREGORIAN",
-    "METHOD:PUBLISH",
+    "METHOD:REQUEST",
     "BEGIN:VEVENT",
     `UID:${event.uid}`,
-    `DTSTAMP:${utcNowStamp()}`,
-    start
-      ? `DTSTART;TZID=Europe/Paris:${start}`
-      : `DTSTART:${utcNowStamp()}`,
-    start
-      ? `DTEND;TZID=Europe/Paris:${addMinutes(start, duration)}`
-      : `DURATION:PT${duration}M`,
+    `DTSTAMP:${utcStamp(new Date())}`,
+    `DTSTART:${utcStamp(startDate)}`,
+    `DTEND:${utcStamp(endDate)}`,
     `SUMMARY:${escapeIcs(event.title)}`,
     `LOCATION:${escapeIcs(event.location)}`,
     `DESCRIPTION:${escapeIcs(event.description)}`,
+    ...(event.organizerEmail
+      ? [
+          `ORGANIZER;CN=EDEN DRIVE VTC:mailto:${event.organizerEmail}`,
+          `ATTENDEE;CN=EDEN DRIVE VTC;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=FALSE:mailto:${event.organizerEmail}`,
+        ]
+      : []),
+    "STATUS:CONFIRMED",
+    "SEQUENCE:0",
+    "TRANSP:OPAQUE",
     "END:VEVENT",
     "END:VCALENDAR",
   ];
