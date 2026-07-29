@@ -39,6 +39,11 @@ export async function sendBrevoEmail(opts: {
   replyTo?: { email: string; name?: string };
   attachments?: Array<{ name: string; content: string }>;
 }) {
+  // Garde-fou : une seule pièce jointe par nom de fichier (évite les doublons).
+  const attachments = opts.attachments?.filter(
+    (a, i, all) => all.findIndex((b) => b.name === a.name) === i,
+  );
+
   const response = await fetch(BREVO_API_URL, {
     method: "POST",
     headers: {
@@ -52,7 +57,7 @@ export async function sendBrevoEmail(opts: {
       replyTo: opts.replyTo,
       subject: opts.subject,
       htmlContent: opts.html,
-      ...(opts.attachments?.length ? { attachment: opts.attachments } : {}),
+      ...(attachments?.length ? { attachment: attachments } : {}),
     }),
   });
 
