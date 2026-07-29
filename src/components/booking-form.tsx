@@ -189,17 +189,17 @@ export function BookingFormSection({
             </button>
 
             {quote && (
-              <div className="rounded-2xl border border-silver/30 bg-background/60 p-6">
-                <p className="text-xs uppercase tracking-[0.3em] text-silver">Votre estimation</p>
+              <div className="rounded-2xl border border-silver/30 bg-background/60 p-6 text-center">
+                <p className="text-xs uppercase tracking-[0.3em] text-silver">Votre tarif</p>
                 <div className="mt-4 space-y-2 text-sm">
-                  <p className="font-display text-2xl text-silver-gradient">
-                    Prix de la course : {quote.total} €
+                  <p className="font-bold">Prix de la course :</p>
+                  <p className="text-3xl font-bold text-silver-gradient">{quote.total} €</p>
+                  <p className="text-muted-foreground">
+                    Distance : {quote.distanceKm.toLocaleString("fr-FR")} km
                   </p>
                   <p className="text-muted-foreground">
-                    Distance : {quote.distanceKm.toLocaleString("fr-FR")} km · Durée estimée :{" "}
-                    {quote.durationMin} min
+                    Durée estimée : {quote.durationMin} minutes
                   </p>
-                  <p className="text-xs text-muted-foreground">Sous réserve de frais de péage</p>
                 </div>
 
 

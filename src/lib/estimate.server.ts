@@ -8,9 +8,59 @@ export type Estimate = {
   total: number;
 };
 
-export function computePrice(distanceKm: number, datetime: string, tolls: number): Estimate {
+function easterSunday(year: number): Date {
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31);
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(Date.UTC(year, month - 1, day));
+}
+
+function isFrenchHoliday(year: number, month: number, day: number): boolean {
+  const fixed = [
+    [1, 1],
+    [5, 1],
+    [5, 8],
+    [7, 14],
+    [8, 15],
+    [11, 1],
+    [11, 11],
+    [12, 25],
+  ];
+  if (fixed.some(([m, d]) => m === month && d === day)) return true;
+  const easter = easterSunday(year);
+  const offsets = [1, 39, 50]; // lundi de Pâques, Ascension, lundi de Pentecôte
+  return offsets.some((o) => {
+    const dt = new Date(easter.getTime() + o * 86400000);
+    return dt.getUTCMonth() + 1 === month && dt.getUTCDate() === day;
+  });
+}
+
+export function isNightRate(datetime: string): boolean {
+  const year = Number(datetime.slice(0, 4));
+  const month = Number(datetime.slice(5, 7));
+  const day = Number(datetime.slice(8, 10));
   const hour = Number(datetime.slice(11, 13));
-  const rate = hour >= 6 && hour < 19 ? 2 : 3;
+  if (hour >= 19 || hour < 6) return true;
+  if (!year || !month || !day) return false;
+  const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+  if (weekday === 0) return true;
+  return isFrenchHoliday(year, month, day);
+}
+
+export function computePrice(distanceKm: number, datetime: string, tolls: number): Estimate {
+  const night = isNightRate(datetime);
+  const rate = night ? 3 : distanceKm > 30 ? 2.2 : 2;
   const raw = 5 + distanceKm * rate;
   const ridePrice = Math.max(20, Math.round(raw * 100) / 100);
   const total = Math.ceil(ridePrice + tolls);
