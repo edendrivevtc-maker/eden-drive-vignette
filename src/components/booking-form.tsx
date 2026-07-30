@@ -169,7 +169,7 @@ export function BookingFormSection({
             <Field label="Nom complet" name="name" required />
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="Téléphone" name="phone" type="tel" required />
-              <Field label="E-mail" name="email" type="email" />
+              <Field label="E-mail" name="email" type="email" required />
             </div>
             <div className="grid gap-5 sm:grid-cols-2">
               <PlacesField label="Départ" name="from" placeholder={fromPlaceholder} required />
