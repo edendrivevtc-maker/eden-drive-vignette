@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { BookingFormSection } from "@/components/booking-form";
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
+import { googleReviewsQueryOptions } from "@/lib/google-reviews.query";
 import heroCar from "@/assets/hero-car.jpg";
 import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
 
@@ -122,6 +123,9 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData(googleReviewsQueryOptions());
+  },
   component: Home,
 });
 
