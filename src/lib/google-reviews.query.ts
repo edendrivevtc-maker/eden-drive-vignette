@@ -4,16 +4,15 @@ import {
   type GoogleReviewsStats,
 } from "@/lib/google-reviews.functions";
 
-export const GOOGLE_REVIEWS_FALLBACK: GoogleReviewsStats = {
-  rating: 5,
-  userRatingCount: 50,
-};
+export type { GoogleReviewsStats };
 
 export const googleReviewsQueryOptions = () =>
   queryOptions({
     queryKey: ["google-reviews-stats"],
     queryFn: () => getGoogleReviewsStats(),
-    staleTime: 60 * 60 * 1000,
-    gcTime: 2 * 60 * 60 * 1000,
-    placeholderData: GOOGLE_REVIEWS_FALLBACK,
+    // Rafraîchissement automatique : données considérées fraîches 6 h,
+    // puis re-fetch au chargement de page suivant.
+    staleTime: 6 * 60 * 60 * 1000,
+    gcTime: 24 * 60 * 60 * 1000,
+    refetchOnMount: true,
   });
