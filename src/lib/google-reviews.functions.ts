@@ -29,7 +29,9 @@ export const getGoogleReviewsStats = createServerFn({ method: "GET" }).handler(
     if (cache && cache.expires > now) return cache.data;
 
     // 1) Clé serveur directe (production Cloudflare) — jamais exposée au client.
-    const directKey = process.env.GOOGLE_PLACES_API_KEY ?? process.env.GOOGLE_API_KEY;
+    // GOOGLE_API_KEY reste réservée au navigateur (restriction référent HTTP) :
+    // on n'utilise ici que la clé serveur dédiée.
+    const directKey = process.env.GOOGLE_PLACES_API_KEY;
     // 2) Fallback connector gateway Lovable (preview).
     const lovableKey = process.env.LOVABLE_API_KEY;
     const gmapsKey = process.env.GOOGLE_MAPS_API_KEY;
@@ -56,7 +58,7 @@ export const getGoogleReviewsStats = createServerFn({ method: "GET" }).handler(
 
     if (attempts.length === 0) {
       console.error(
-        "[google-reviews] Aucune clé disponible: définir GOOGLE_API_KEY (Places API New) ou LOVABLE_API_KEY + GOOGLE_MAPS_API_KEY. Affichage du fallback.",
+        "[google-reviews] Aucune clé disponible: définir GOOGLE_PLACES_API_KEY (Places API New, sans restriction applicative) ou LOVABLE_API_KEY + GOOGLE_MAPS_API_KEY. Affichage du fallback.",
       );
       return cache?.data ?? DISPLAY_FALLBACK;
     }

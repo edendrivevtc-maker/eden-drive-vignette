@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   AlertCircle,
@@ -85,7 +85,11 @@ export function BookingFormSection({
     "idle",
   );
   const [error, setError] = useState<string | null>(null);
-  const [minDatetime] = useState(() => localNowvalue());
+  // Calculé après hydratation : le fuseau du serveur diffère de celui du client.
+  const [minDatetime, setMinDatetime] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    setMinDatetime(localNowvalue());
+  }, []);
 
   const readForm = (form: HTMLFormElement) => {
     const fd = new FormData(form);
