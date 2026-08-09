@@ -123,8 +123,8 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  loader: ({ context }) => {
-    context.queryClient.ensureQueryData(googleReviewsQueryOptions());
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData(googleReviewsQueryOptions());
   },
   component: Home,
 });

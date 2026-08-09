@@ -142,8 +142,8 @@ export const Route = createFileRoute("/chauffeur-prive-toulouse")({
       },
     ],
   }),
-  loader: ({ context }) => {
-    context.queryClient.ensureQueryData(googleReviewsQueryOptions());
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData(googleReviewsQueryOptions());
   },
   component: Page,
 });
