@@ -4,45 +4,51 @@ const PLACE_ID = "ChIJNwxPMyNDmSMRqfrpaqAitZY";
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/google_maps";
 const PLACES_URL = "https://places.googleapis.com/v1/places";
 const FIELD_MASK = "rating,userRatingCount";
+const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // rafraîchissement automatique (< 24 h)
 
 export type GoogleReviewsStats = {
   rating: number;
   userRatingCount: number;
 };
 
-const DISPLAY_FALLBACK: GoogleReviewsStats = { rating: 5, userRatingCount: 50 };
-
+// Dernière valeur réellement obtenue de Google. Aucune valeur codée en dur :
+// si Google est injoignable, on renvoie null et l'UI masque le compteur.
 let cache: { data: GoogleReviewsStats; expires: number } | null = null;
 
 function parseStats(json: unknown): GoogleReviewsStats | null {
   const j = json as { rating?: number; userRatingCount?: number } | null;
   if (!j || typeof j.userRatingCount !== "number") return null;
   return {
-    rating: typeof j.rating === "number" ? j.rating : DISPLAY_FALLBACK.rating,
+    rating: typeof j.rating === "number" ? j.rating : 5,
     userRatingCount: j.userRatingCount,
   };
 }
 
 export const getGoogleReviewsStats = createServerFn({ method: "GET" }).handler(
-  async (): Promise<GoogleReviewsStats> => {
+  async (): Promise<GoogleReviewsStats | null> => {
     const now = Date.now();
     if (cache && cache.expires > now) return cache.data;
 
-    // 1) Clé serveur directe (production Cloudflare) — jamais exposée au client.
-    // GOOGLE_API_KEY reste réservée au navigateur (restriction référent HTTP) :
-    // on n'utilise ici que la clé serveur dédiée.
-    const directKey = process.env.GOOGLE_PLACES_API_KEY;
-    // 2) Fallback connector gateway Lovable (preview).
+    // 1) Clé serveur dédiée (aucune restriction applicative) — recommandée en production.
+    const serverKey = process.env.GOOGLE_PLACES_API_KEY;
+    // 2) Clé Google existante (peut échouer si restreinte par référent HTTP).
+    const browserKey = process.env.GOOGLE_API_KEY;
+    // 3) Passerelle Lovable (aperçu).
     const lovableKey = process.env.LOVABLE_API_KEY;
     const gmapsKey = process.env.GOOGLE_MAPS_API_KEY;
 
     const attempts: Array<{ label: string; url: string; headers: Record<string, string> }> = [];
-    if (directKey) {
-      attempts.push({
-        label: "places-direct",
-        url: `${PLACES_URL}/${PLACE_ID}?languageCode=fr`,
-        headers: { "X-Goog-Api-Key": directKey, "X-Goog-FieldMask": FIELD_MASK },
-      });
+    for (const [label, key] of [
+      ["places-server-key", serverKey],
+      ["places-google-api-key", browserKey],
+    ] as const) {
+      if (key) {
+        attempts.push({
+          label,
+          url: `${PLACES_URL}/${PLACE_ID}?languageCode=fr`,
+          headers: { "X-Goog-Api-Key": key, "X-Goog-FieldMask": FIELD_MASK },
+        });
+      }
     }
     if (lovableKey && gmapsKey) {
       attempts.push({
@@ -58,9 +64,9 @@ export const getGoogleReviewsStats = createServerFn({ method: "GET" }).handler(
 
     if (attempts.length === 0) {
       console.error(
-        "[google-reviews] Aucune clé disponible: définir GOOGLE_PLACES_API_KEY (Places API New, sans restriction applicative) ou LOVABLE_API_KEY + GOOGLE_MAPS_API_KEY. Affichage du fallback.",
+        "[google-reviews] Aucune clé disponible: définir GOOGLE_PLACES_API_KEY (Places API New, sans restriction applicative) dans l'environnement serveur.",
       );
-      return cache?.data ?? DISPLAY_FALLBACK;
+      return cache?.data ?? null;
     }
 
     for (const attempt of attempts) {
@@ -80,16 +86,14 @@ export const getGoogleReviewsStats = createServerFn({ method: "GET" }).handler(
           );
           continue;
         }
-        cache = { data: stats, expires: now + 60 * 60 * 1000 };
+        cache = { data: stats, expires: now + CACHE_TTL_MS };
         return stats;
       } catch (err) {
         console.error(`[google-reviews] ${attempt.label}: erreur réseau`, err);
       }
     }
 
-    console.error(
-      "[google-reviews] Toutes les tentatives Google Places ont échoué — affichage du fallback (50).",
-    );
-    return cache?.data ?? DISPLAY_FALLBACK;
+    console.error("[google-reviews] Toutes les tentatives Google Places ont échoué.");
+    return cache?.data ?? null;
   },
 );
