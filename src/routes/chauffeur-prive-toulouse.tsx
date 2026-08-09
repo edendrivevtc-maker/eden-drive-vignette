@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { BookingFormSection } from "@/components/booking-form";
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
+import { googleReviewsQueryOptions } from "@/lib/google-reviews.query";
 import heroImg from "@/assets/private-driver-toulouse.jpg";
 import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
 
