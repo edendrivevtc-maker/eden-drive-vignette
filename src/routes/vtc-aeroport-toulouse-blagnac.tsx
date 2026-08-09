@@ -144,6 +144,9 @@ export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
       },
     ],
   }),
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(googleReviewsQueryOptions());
+  },
   component: Page,
 });
 
