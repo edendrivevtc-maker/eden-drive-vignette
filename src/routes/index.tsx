@@ -122,6 +122,9 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: ({ context }) => {
+    context.queryClient.ensureQueryData(googleReviewsQueryOptions());
+  },
   component: Home,
 });
 
