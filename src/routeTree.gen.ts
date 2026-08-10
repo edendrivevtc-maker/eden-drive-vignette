@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VtcGareMatabiauToulouseRouteImport } from './routes/vtc-gare-matabiau-toulouse'
 import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
@@ -28,6 +29,11 @@ const VtcAeroportToulouseBlagnacRoute =
     path: '/vtc-aeroport-toulouse-blagnac',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PolitiqueConfidentialiteRoute =
   PolitiqueConfidentialiteRouteImport.update({
     id: '/politique-confidentialite',
@@ -62,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
 }
@@ -71,6 +78,7 @@ export interface FileRoutesByTo {
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
 }
@@ -81,6 +89,7 @@ export interface FileRoutesById {
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
 }
@@ -92,6 +101,7 @@ export interface FileRouteTypes {
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
+    | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
   fileRoutesByTo: FileRoutesByTo
@@ -101,6 +111,7 @@ export interface FileRouteTypes {
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
+    | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
   id:
@@ -110,6 +121,7 @@ export interface FileRouteTypes {
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
+    | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
   fileRoutesById: FileRoutesById
@@ -120,6 +132,7 @@ export interface RootRouteChildren {
   ChauffeurVtcEntrepriseToulouseRoute: typeof ChauffeurVtcEntrepriseToulouseRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VtcAeroportToulouseBlagnacRoute: typeof VtcAeroportToulouseBlagnacRoute
   VtcGareMatabiauToulouseRoute: typeof VtcGareMatabiauToulouseRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       path: '/vtc-aeroport-toulouse-blagnac'
       fullPath: '/vtc-aeroport-toulouse-blagnac'
       preLoaderRoute: typeof VtcAeroportToulouseBlagnacRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politique-confidentialite': {
@@ -184,19 +204,10 @@ const rootRouteChildren: RootRouteChildren = {
   ChauffeurVtcEntrepriseToulouseRoute: ChauffeurVtcEntrepriseToulouseRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   VtcAeroportToulouseBlagnacRoute: VtcAeroportToulouseBlagnacRoute,
   VtcGareMatabiauToulouseRoute: VtcGareMatabiauToulouseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
