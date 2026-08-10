@@ -24,10 +24,9 @@ export function GoogleReviewsRating({ className }: { className?: string }) {
 
 export function GoogleReviewsCount({ className }: { className?: string }) {
   const { data } = useQuery(googleReviewsQueryOptions());
-  if (!data) return null;
   return (
-    <p className={className ?? "text-sm text-muted-foreground"}>
-      {data.userRatingCount} avis vérifiés
+    <p className={className ?? "text-sm text-muted-foreground"} suppressHydrationWarning>
+      {data ? `${data.userRatingCount} avis vérifiés` : ""}
     </p>
   );
 }
