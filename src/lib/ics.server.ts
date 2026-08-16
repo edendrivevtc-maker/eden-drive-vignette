@@ -112,20 +112,19 @@ export function buildIcs(event: IcsEvent): string {
     "VERSION:2.0",
     "PRODID:-//Eden Drive VTC//Reservation//FR",
     "CALSCALE:GREGORIAN",
-    "METHOD:REQUEST",
+    // PUBLISH : événement à ajouter au calendrier (pas une invitation RSVP),
+    // c'est ce que Gmail sait afficher dans sa carte d'aperçu.
+    "METHOD:PUBLISH",
     "BEGIN:VEVENT",
-    `UID:${event.uid}`,
+    `UID:${sanitize(event.uid)}`,
     `DTSTAMP:${utcStamp(new Date())}`,
     `DTSTART:${utcStamp(startDate)}`,
     `DTEND:${utcStamp(endDate)}`,
-    `SUMMARY:${escapeIcs(event.title)}`,
+    `SUMMARY:${escapeIcs(event.title) || "Course VTC"}`,
     `LOCATION:${escapeIcs(event.location)}`,
     `DESCRIPTION:${escapeIcs(event.description)}`,
     ...(event.organizerEmail
-      ? [
-          `ORGANIZER;CN=EDEN DRIVE VTC:mailto:${event.organizerEmail}`,
-          `ATTENDEE;CN=EDEN DRIVE VTC;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=FALSE:mailto:${event.organizerEmail}`,
-        ]
+      ? [`ORGANIZER;CN="EDEN DRIVE VTC":mailto:${sanitize(event.organizerEmail)}`]
       : []),
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
@@ -133,6 +132,7 @@ export function buildIcs(event: IcsEvent): string {
     "END:VEVENT",
     "END:VCALENDAR",
   ];
+
   return lines.map(foldLine).join("\r\n") + "\r\n";
 }
 
