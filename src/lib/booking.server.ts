@@ -141,8 +141,10 @@ function buildBookingIcsEvent(data: BookingPayload) {
     title: summary,
     location: data.from,
     description,
-    organizerEmail: BOOKING_RECIPIENT,
+    organizerEmail: data.email || "reservation@edendrive-vtc.fr",
+    organizerName: data.name || "Client",
     attendeeEmail: BOOKING_RECIPIENT,
+
   };
 }
 
