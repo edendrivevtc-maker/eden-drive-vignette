@@ -113,10 +113,12 @@ export function buildIcs(event: IcsEvent): string {
     "VERSION:2.0",
     "PRODID:-//Eden Drive VTC//Reservation//FR",
     "CALSCALE:GREGORIAN",
-    // REQUEST : Gmail ne relie la carte d'aperçu à Google Agenda que pour une
-    // invitation (ORGANIZER + ATTENDEE). Avec PUBLISH, l'ajout échoue
-    // ("Impossible de se connecter à agenda").
+    // REQUEST + ORGANIZER/ATTENDEE : Gmail et Apple Mail n'affichent le
+    // bandeau « Ajouter au calendrier » que pour une véritable invitation.
+    // L'organisateur doit être différent du destinataire, sinon Apple Mail
+    // considère l'invitation comme émise par nous et n'affiche rien.
     "METHOD:REQUEST",
+    "X-WR-CALNAME:EDEN DRIVE VTC",
     "BEGIN:VEVENT",
     `UID:${sanitize(event.uid)}`,
     `DTSTAMP:${utcStamp(new Date())}`,
@@ -126,7 +128,9 @@ export function buildIcs(event: IcsEvent): string {
     `LOCATION:${escapeIcs(event.location)}`,
     `DESCRIPTION:${escapeIcs(event.description)}`,
     ...(event.organizerEmail
-      ? [`ORGANIZER;CN="EDEN DRIVE VTC":mailto:${sanitize(event.organizerEmail)}`]
+      ? [
+          `ORGANIZER;CN="${escapeIcs(event.organizerName ?? "Client")}":mailto:${sanitize(event.organizerEmail)}`,
+        ]
       : []),
     ...(event.attendeeEmail
       ? [
@@ -140,6 +144,7 @@ export function buildIcs(event: IcsEvent): string {
     "END:VEVENT",
     "END:VCALENDAR",
   ];
+
 
   return lines.map(foldLine).join("\r\n") + "\r\n";
 }
