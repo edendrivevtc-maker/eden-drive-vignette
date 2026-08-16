@@ -142,6 +142,7 @@ export function buildBookingIcs(data: BookingPayload): string {
     location: data.from,
     description,
     organizerEmail: BOOKING_RECIPIENT,
+    attendeeEmail: BOOKING_RECIPIENT,
   });
 }
 
