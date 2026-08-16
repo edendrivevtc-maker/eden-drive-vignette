@@ -11,6 +11,7 @@ const estimateSchema = z.object({
   to: z.string().trim().min(3, "L'adresse de destination est requise").max(200),
   datetime: z.string().trim().min(1, "La date et l'heure sont requises"),
   pax: z.string().trim().min(1, "Le nombre de passagers est requis").max(10),
+  luggage: z.string().trim().min(1, "Le nombre de bagages est requis").max(10),
   message: z.string().trim().max(2000).optional().or(z.literal("")),
 });
 
