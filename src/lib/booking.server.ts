@@ -5,7 +5,7 @@ import {
   sendBrevoEmail,
 } from "./email.server";
 import { buildSimplePdf, type PdfLine } from "./pdf.server";
-import { buildIcs, toBase64Utf8 } from "./ics.server";
+import { buildIcs, buildGoogleCalendarUrl, toBase64Utf8 } from "./ics.server";
 
 export type BookingPayload = {
   name: string;
@@ -117,7 +117,7 @@ export function buildBookingPdf(data: BookingPayload): string {
 }
 
 
-export function buildBookingIcs(data: BookingPayload): string {
+function buildBookingIcsEvent(data: BookingPayload) {
   const summary = `Course VTC — ${data.from} → ${data.to}`;
   const description = [
     `Client : ${data.name}`,
@@ -134,7 +134,7 @@ export function buildBookingIcs(data: BookingPayload): string {
     .filter(Boolean)
     .join("\n");
 
-  return buildIcs({
+  return {
     uid: `${Date.now()}-${Math.random().toString(36).slice(2)}@edendrive-vtc.fr`,
     start: data.datetime,
     durationMin: data.quote?.durationMin ?? 60,
@@ -143,7 +143,15 @@ export function buildBookingIcs(data: BookingPayload): string {
     description,
     organizerEmail: BOOKING_RECIPIENT,
     attendeeEmail: BOOKING_RECIPIENT,
-  });
+  };
+}
+
+export function buildBookingIcs(data: BookingPayload): string {
+  return buildIcs(buildBookingIcsEvent(data));
+}
+
+export function buildBookingCalendarUrl(data: BookingPayload): string {
+  return buildGoogleCalendarUrl(buildBookingIcsEvent(data));
 }
 
 export async function sendBookingEmail(
@@ -156,6 +164,11 @@ export async function sendBookingEmail(
       <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
         <h2 style="color:#111;">${escapeHtml(subject)} — Eden Drive VTC</h2>
         ${rowsToTable(buildBookingRows(data))}
+        ${
+          options?.attachPdf
+            ? `<p style="margin-top:20px;"><a href="${buildBookingCalendarUrl(data)}" style="background:#111;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;">Ajouter à Google Agenda</a></p>`
+            : ""
+        }
         <p style="margin-top:24px;color:#666;font-size:12px;">
           Envoyé depuis le formulaire de réservation du site Eden Drive VTC (${BOOKING_RECIPIENT}).
         </p>

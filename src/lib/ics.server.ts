@@ -144,6 +144,23 @@ export function buildIcs(event: IcsEvent): string {
   return lines.map(foldLine).join("\r\n") + "\r\n";
 }
 
+// Lien "Ajouter à Google Agenda" (fallback fiable si Gmail n'affiche pas la carte).
+export function buildGoogleCalendarUrl(event: IcsEvent): string {
+  const startDate = parisLocalToUtc(event.start) ?? new Date();
+  const duration = event.durationMin > 0 ? Math.round(event.durationMin) : 60;
+  const endDate = new Date(startDate.getTime() + duration * 60000);
+  const fmt = (d: Date) => utcStamp(d).replace(/[-:]/g, "");
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: sanitize(event.title),
+    dates: `${fmt(startDate)}/${fmt(endDate)}`,
+    details: sanitize(event.description),
+    location: sanitize(event.location),
+    ctz: "Europe/Paris",
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
 export function toBase64Utf8(text: string): string {
   const bytes = new TextEncoder().encode(text);
   let binary = "";
