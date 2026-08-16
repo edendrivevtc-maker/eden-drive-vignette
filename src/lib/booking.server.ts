@@ -135,7 +135,7 @@ export function buildBookingIcs(data: BookingPayload): string {
     .join("\n");
 
   return buildIcs({
-    uid: `${Date.now()}-${Math.random().toString(36).slice(2)}@edendrivevtc`,
+    uid: `${Date.now()}-${Math.random().toString(36).slice(2)}@edendrive-vtc.fr`,
     start: data.datetime,
     durationMin: data.quote?.durationMin ?? 60,
     title: summary,

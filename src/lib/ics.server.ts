@@ -12,27 +12,48 @@ export type IcsEvent = {
   organizerEmail?: string;
 };
 
+function sanitize(text: string): string {
+  // Supprime BOM et caractères de contrôle (hors retours à la ligne).
+  return (text ?? "").replace(/\uFEFF/g, "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
+}
+
 function escapeIcs(text: string): string {
-  return text
+  return sanitize(text)
     .replace(/\\/g, "\\\\")
     .replace(/;/g, "\\;")
     .replace(/,/g, "\\,")
     .replace(/\r?\n/g, "\\n");
 }
 
+// Pliage RFC 5545 : max 75 octets par ligne, sans couper un caractère
+// multi-octets ni une séquence d'échappement ("\n", "\,", "\;", "\\").
 function foldLine(line: string): string {
-  if (line.length <= 75) return line;
-  const parts: string[] = [];
-  let rest = line;
-  parts.push(rest.slice(0, 75));
-  rest = rest.slice(75);
-  while (rest.length > 74) {
-    parts.push(" " + rest.slice(0, 74));
-    rest = rest.slice(74);
+  const encoder = new TextEncoder();
+  const chars = Array.from(line);
+  const out: string[] = [];
+  let current = "";
+  let bytes = 0;
+  let limit = 75;
+  for (let i = 0; i < chars.length; i += 1) {
+    let chunk = chars[i]!;
+    if (chunk === "\\" && i + 1 < chars.length) {
+      chunk += chars[i + 1]!;
+      i += 1;
+    }
+    const size = encoder.encode(chunk).length;
+    if (bytes + size > limit) {
+      out.push(current);
+      current = " ";
+      bytes = 1;
+      limit = 75;
+    }
+    current += chunk;
+    bytes += size;
   }
-  if (rest.length) parts.push(" " + rest);
-  return parts.join("\r\n");
+  if (current.length) out.push(current);
+  return out.join("\r\n");
 }
+
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");
@@ -91,20 +112,19 @@ export function buildIcs(event: IcsEvent): string {
     "VERSION:2.0",
     "PRODID:-//Eden Drive VTC//Reservation//FR",
     "CALSCALE:GREGORIAN",
-    "METHOD:REQUEST",
+    // PUBLISH : événement à ajouter au calendrier (pas une invitation RSVP),
+    // c'est ce que Gmail sait afficher dans sa carte d'aperçu.
+    "METHOD:PUBLISH",
     "BEGIN:VEVENT",
-    `UID:${event.uid}`,
+    `UID:${sanitize(event.uid)}`,
     `DTSTAMP:${utcStamp(new Date())}`,
     `DTSTART:${utcStamp(startDate)}`,
     `DTEND:${utcStamp(endDate)}`,
-    `SUMMARY:${escapeIcs(event.title)}`,
+    `SUMMARY:${escapeIcs(event.title) || "Course VTC"}`,
     `LOCATION:${escapeIcs(event.location)}`,
     `DESCRIPTION:${escapeIcs(event.description)}`,
     ...(event.organizerEmail
-      ? [
-          `ORGANIZER;CN=EDEN DRIVE VTC:mailto:${event.organizerEmail}`,
-          `ATTENDEE;CN=EDEN DRIVE VTC;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=FALSE:mailto:${event.organizerEmail}`,
-        ]
+      ? [`ORGANIZER;CN="EDEN DRIVE VTC":mailto:${sanitize(event.organizerEmail)}`]
       : []),
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
@@ -112,6 +132,7 @@ export function buildIcs(event: IcsEvent): string {
     "END:VEVENT",
     "END:VCALENDAR",
   ];
+
   return lines.map(foldLine).join("\r\n") + "\r\n";
 }
 
