@@ -10,7 +10,9 @@ export type IcsEvent = {
   location: string;
   description: string;
   organizerEmail?: string;
+  organizerName?: string;
   attendeeEmail?: string;
+
 };
 
 function sanitize(text: string): string {
