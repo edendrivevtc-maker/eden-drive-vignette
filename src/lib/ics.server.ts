@@ -10,6 +10,7 @@ export type IcsEvent = {
   location: string;
   description: string;
   organizerEmail?: string;
+  attendeeEmail?: string;
 };
 
 function sanitize(text: string): string {
@@ -112,9 +113,10 @@ export function buildIcs(event: IcsEvent): string {
     "VERSION:2.0",
     "PRODID:-//Eden Drive VTC//Reservation//FR",
     "CALSCALE:GREGORIAN",
-    // PUBLISH : événement à ajouter au calendrier (pas une invitation RSVP),
-    // c'est ce que Gmail sait afficher dans sa carte d'aperçu.
-    "METHOD:PUBLISH",
+    // REQUEST : Gmail ne relie la carte d'aperçu à Google Agenda que pour une
+    // invitation (ORGANIZER + ATTENDEE). Avec PUBLISH, l'ajout échoue
+    // ("Impossible de se connecter à agenda").
+    "METHOD:REQUEST",
     "BEGIN:VEVENT",
     `UID:${sanitize(event.uid)}`,
     `DTSTAMP:${utcStamp(new Date())}`,
@@ -126,6 +128,12 @@ export function buildIcs(event: IcsEvent): string {
     ...(event.organizerEmail
       ? [`ORGANIZER;CN="EDEN DRIVE VTC":mailto:${sanitize(event.organizerEmail)}`]
       : []),
+    ...(event.attendeeEmail
+      ? [
+          "ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;" +
+            `RSVP=TRUE;CN="EDEN DRIVE VTC":mailto:${sanitize(event.attendeeEmail)}`,
+        ]
+      : []),
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
     "TRANSP:OPAQUE",
@@ -134,6 +142,23 @@ export function buildIcs(event: IcsEvent): string {
   ];
 
   return lines.map(foldLine).join("\r\n") + "\r\n";
+}
+
+// Lien "Ajouter à Google Agenda" (fallback fiable si Gmail n'affiche pas la carte).
+export function buildGoogleCalendarUrl(event: IcsEvent): string {
+  const startDate = parisLocalToUtc(event.start) ?? new Date();
+  const duration = event.durationMin > 0 ? Math.round(event.durationMin) : 60;
+  const endDate = new Date(startDate.getTime() + duration * 60000);
+  const fmt = (d: Date) => utcStamp(d).replace(/[-:]/g, "");
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: sanitize(event.title),
+    dates: `${fmt(startDate)}/${fmt(endDate)}`,
+    details: sanitize(event.description),
+    location: sanitize(event.location),
+    ctz: "Europe/Paris",
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
 export function toBase64Utf8(text: string): string {
