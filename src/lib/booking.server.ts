@@ -15,6 +15,7 @@ export type BookingPayload = {
   to: string;
   datetime: string;
   pax?: string;
+  luggage?: string;
   message?: string;
   quote?: {
     distanceKm: number;
@@ -45,6 +46,7 @@ export function buildBookingRows(
     ["Destination", esc(data.to)],
     ["Date & heure", esc(formatFrDatetime(data.datetime))],
     ["Passagers", data.pax ? esc(data.pax) : "Non renseigné"],
+    ["Bagages", data.luggage ? esc(data.luggage) : "Non renseigné"],
     [
       "Message",
       data.message
@@ -124,6 +126,7 @@ export function buildBookingIcs(data: BookingPayload): string {
     `Départ : ${data.from}`,
     `Destination : ${data.to}`,
     `Passagers : ${data.pax ?? "Non renseigné"}`,
+    `Bagages : ${data.luggage ?? "Non renseigné"}`,
     data.quote ? `Prix de la course : ${data.quote.total} €` : null,
     data.quote ? `Distance : ${data.quote.distanceKm.toFixed(1)} km` : null,
     data.message ? `Message : ${data.message.replace(/\n/g, " ")}` : null,
