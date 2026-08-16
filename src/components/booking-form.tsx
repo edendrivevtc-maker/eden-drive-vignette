@@ -101,6 +101,7 @@ export function BookingFormSection({
       to: String(fd.get("to") ?? ""),
       datetime: String(fd.get("datetime") ?? ""),
       pax: String(fd.get("pax") ?? ""),
+      luggage: String(fd.get("luggage") ?? ""),
       message: String(fd.get("message") ?? ""),
     };
   };
@@ -138,10 +139,17 @@ export function BookingFormSection({
     e?.preventDefault();
     e?.stopPropagation();
     if (!payload || status === "booking" || status === "booked") return;
+    const form = formRef.current;
+    if (form && typeof form.reportValidity === "function" && !form.reportValidity()) return;
+    const current = form ? readForm(form) : payload;
+    if (!current.luggage.trim()) {
+      setError("Le nombre de bagages est requis.");
+      return;
+    }
     setStatus("booking");
     setError(null);
     try {
-      await sendBooking({ data: { ...payload, quote } });
+      await sendBooking({ data: { ...payload, luggage: current.luggage.trim(), quote } });
       setStatus("booked");
     } catch (err) {
       setStatus("estimated");
@@ -183,6 +191,7 @@ export function BookingFormSection({
               <Field label="Date & heure" name="datetime" type="datetime-local" required min={minDatetime} />
               <Field label="Passagers" name="pax" type="number" placeholder="2" required min="1" />
             </div>
+            <Field label="Nombre de bagages" name="luggage" type="number" placeholder="1" required min="0" />
             <div>
               <label className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">
                 Message
