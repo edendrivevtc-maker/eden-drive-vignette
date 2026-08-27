@@ -190,3 +190,33 @@ export async function sendBookingEmail(
   });
 }
 
+export async function sendClientConfirmationEmail(data: BookingPayload) {
+  if (!data.email) {
+    throw new Error("L'adresse e-mail du client est requise.");
+  }
+  const price = data.quote ? `${data.quote.total} €` : "À confirmer";
+  const html = `
+    <html>
+      <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #111;">
+        <p>Bonjour ${escapeHtml(data.name)},</p>
+        <p>Nous vous confirmons la bonne prise en compte de votre réservation.</p>
+        <h3 style="margin-top:24px;">Récapitulatif de votre course</h3>
+        <ul style="line-height:1.8;">
+          <li><strong>Départ :</strong> ${escapeHtml(data.from)}</li>
+          <li><strong>Destination :</strong> ${escapeHtml(data.to)}</li>
+          <li><strong>Date et heure de prise en charge :</strong> ${escapeHtml(formatFrDatetime(data.datetime))}</li>
+          <li><strong>Prix de la course :</strong> ${escapeHtml(price)}</li>
+        </ul>
+        <p>Votre chauffeur vous contactera si besoin avant le départ. Pour toute question ou modification, vous pouvez nous joindre au <a href="tel:+33635585823" style="color:#111;">06 35 58 58 23</a>.</p>
+        <p>Merci de votre confiance,</p>
+        <p><strong>L'équipe Eden Drive VTC</strong></p>
+      </body>
+    </html>`;
+
+  return sendBrevoEmail({
+    subject: "Confirmation de votre réservation — Eden Drive VTC",
+    html,
+    to: [{ email: data.email, name: data.name }],
+  });
+}
+

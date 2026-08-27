@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { sendBookingEmail } from "./booking.server";
+import { sendBookingEmail, sendClientConfirmationEmail } from "./booking.server";
 
 const quoteSchema = z
   .object({
@@ -28,6 +28,17 @@ const bookingSchema = z.object({
 
 export const sendBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((data) => bookingSchema.parse(data))
-  .handler(async ({ data }) =>
-    sendBookingEmail("Demande de réservation", data, { attachPdf: true }),
-  );
+  .handler(async ({ data }) => {
+    // Envoi simultané et indépendant : bon de commande (exploitant) + confirmation (client).
+    const [owner, client] = await Promise.allSettled([
+      sendBookingEmail("Demande de réservation", data, { attachPdf: true }),
+      sendClientConfirmationEmail(data),
+    ]);
+    if (client.status === "rejected") {
+      console.error("[booking] client confirmation email failed", client.reason);
+    }
+    if (owner.status === "rejected") {
+      throw owner.reason;
+    }
+    return { success: true };
+  });
