@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { sendBookingEmail } from "./booking.server";
+import { sendBookingEmail, sendClientConfirmationEmail } from "./booking.server";
 
 const quoteSchema = z
   .object({
