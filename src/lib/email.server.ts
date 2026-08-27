@@ -37,6 +37,7 @@ export async function sendBrevoEmail(opts: {
   subject: string;
   html: string;
   replyTo?: { email: string; name?: string };
+  to?: Array<{ email: string; name?: string }>;
   attachments?: Array<{ name: string; content: string }>;
 }) {
   // Garde-fou : une seule pièce jointe par nom de fichier (évite les doublons).
@@ -53,7 +54,7 @@ export async function sendBrevoEmail(opts: {
     },
     body: JSON.stringify({
       sender: { name: "Eden Drive VTC", email: BOOKING_RECIPIENT },
-      to: [{ email: BOOKING_RECIPIENT }],
+      to: opts.to ?? [{ email: BOOKING_RECIPIENT }],
       replyTo: opts.replyTo,
       subject: opts.subject,
       htmlContent: opts.html,
