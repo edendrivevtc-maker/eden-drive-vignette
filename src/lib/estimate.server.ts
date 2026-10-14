@@ -46,12 +46,18 @@ function isFrenchHoliday(year: number, month: number, day: number): boolean {
   });
 }
 
+/** Tarif de nuit : de NIGHT_START_HOUR (inclus) à NIGHT_END_HOUR (exclu), heure de Paris. */
+export const NIGHT_START_HOUR = 19;
+export const NIGHT_END_HOUR = 8;
+
+// `datetime` est la valeur "AAAA-MM-JJTHH:MM" saisie par le client : c'est déjà l'heure
+// murale de Paris (prise en charge), donc indépendante de l'heure actuelle et du changement d'heure.
 export function isNightRate(datetime: string): boolean {
   const year = Number(datetime.slice(0, 4));
   const month = Number(datetime.slice(5, 7));
   const day = Number(datetime.slice(8, 10));
   const hour = Number(datetime.slice(11, 13));
-  if (hour >= 19 || hour < 6) return true;
+  if (hour >= NIGHT_START_HOUR || hour < NIGHT_END_HOUR) return true;
   if (!year || !month || !day) return false;
   const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
   if (weekday === 0) return true;
