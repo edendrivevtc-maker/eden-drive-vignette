@@ -1,94 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { getPlacesBrowserKey } from "@/lib/estimate.functions";
+import { useServerFn } from "@tanstack/react-start";
+import { resolveAddress, suggestAddresses } from "@/lib/estimate.functions";
 
-const TRACKING_ID = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID as
-  | string
-  | undefined;
+type Suggestion = { placeId: string; text: string };
 
-declare global {
-  interface Window {
-    google?: any;
-    __edenGmapsPromise?: Promise<void>;
-    __edenGmapsInit?: () => void;
-  }
+function newToken() {
+  return typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
-
-const CONNECTOR_KEY = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY as
-  | string
-  | undefined;
-
-let keyPromise: Promise<string | null> | null = null;
-
-/**
- * Two browser keys exist:
- * - the Lovable connector key, restricted to *.lovable.app / *.lovableproject.com
- * - the customer key (GOOGLE_API_KEY), restricted to the production domain
- * Using the wrong one on a given host returns 403 API_KEY_HTTP_REFERRER_BLOCKED,
- * so pick the key matching the current hostname.
- */
-function isLovableHost(): boolean {
-  const h = typeof window !== "undefined" ? window.location.hostname : "";
-  return h.endsWith(".lovable.app") || h.endsWith(".lovableproject.com") || h === "localhost";
-}
-
-async function resolveBrowserKey(): Promise<string | null> {
-  if (!keyPromise) {
-    keyPromise = getPlacesBrowserKey()
-      .then((r: any) => r?.key ?? null)
-      .catch(() => null);
-  }
-  const customerKey = await keyPromise;
-  if (isLovableHost()) return CONNECTOR_KEY ?? customerKey ?? null;
-  return customerKey ?? CONNECTOR_KEY ?? null;
-}
-
-function injectGoogleMaps(): Promise<void> {
-  // Set the shared promise synchronously so two <PlacesField /> instances
-  // never inject the Maps script twice (a double load breaks google.maps).
-  return new Promise<void>((resolve, reject) => {
-    resolveBrowserKey()
-      .then((browserKey) => {
-        if (!browserKey) {
-          reject(new Error("Missing Google Maps browser key"));
-          return;
-        }
-        if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
-          resolve();
-          return;
-        }
-        window.__edenGmapsInit = () => resolve();
-        const s = document.createElement("script");
-        const params = new URLSearchParams({
-          key: browserKey,
-          v: "weekly",
-          libraries: "places",
-          loading: "async",
-          callback: "__edenGmapsInit",
-        });
-        if (TRACKING_ID) params.set("channel", TRACKING_ID);
-        s.src = `https://maps.googleapis.com/maps/api/js?${params.toString()}`;
-        s.async = true;
-        s.defer = true;
-        s.onerror = () => reject(new Error("Failed to load Google Maps"));
-        document.head.appendChild(s);
-      })
-      .catch(reject);
-  });
-}
-
-async function loadGoogleMaps(): Promise<void> {
-  if (typeof window === "undefined") return;
-  if (window.google?.maps?.importLibrary) return;
-  if (!window.__edenGmapsPromise) window.__edenGmapsPromise = injectGoogleMaps();
-  return window.__edenGmapsPromise;
-}
-
-
-
-type Suggestion = {
-  placePrediction: any;
-  text: string;
-};
 
 export function PlacesField({
   label,
@@ -103,19 +23,15 @@ export function PlacesField({
   placeholder?: string;
   defaultValue?: string;
 }) {
+  const suggest = useServerFn(suggestAddresses);
+  const resolve = useServerFn(resolveAddress);
   const [value, setValue] = useState(defaultValue ?? "");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [open, setOpen] = useState(false);
-  const [ready, setReady] = useState(false);
-  const sessionTokenRef = useRef<any>(null);
+  const tokenRef = useRef<string | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    loadGoogleMaps()
-      .then(() => setReady(true))
-      .catch(() => setReady(false));
-  }, []);
+  const reqIdRef = useRef(0);
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
@@ -126,35 +42,18 @@ export function PlacesField({
   }, []);
 
   const fetchSuggestions = async (input: string) => {
-    if (!ready || !window.google?.maps || input.trim().length < 2) {
+    if (input.trim().length < 3) {
       setSuggestions([]);
+      setOpen(false);
       return;
     }
+    if (!tokenRef.current) tokenRef.current = newToken();
+    const id = ++reqIdRef.current;
     try {
-      const { AutocompleteSuggestion, AutocompleteSessionToken } =
-        await window.google.maps.importLibrary("places");
-      if (!sessionTokenRef.current) {
-        sessionTokenRef.current = new AutocompleteSessionToken();
-      }
-      const { suggestions: sugg } =
-        await AutocompleteSuggestion.fetchAutocompleteSuggestions({
-          input,
-          sessionToken: sessionTokenRef.current,
-          language: "fr",
-          region: "fr",
-          locationBias: {
-            center: { lat: 43.6045, lng: 1.4442 },
-            radius: 50000,
-          },
-        });
-      const mapped: Suggestion[] = (sugg ?? [])
-        .filter((s: any) => s.placePrediction)
-        .map((s: any) => ({
-          placePrediction: s.placePrediction,
-          text: s.placePrediction.text?.toString() ?? "",
-        }));
-      setSuggestions(mapped);
-      setOpen(mapped.length > 0);
+      const res = await suggest({ data: { input: input.trim().slice(0, 120), sessionToken: tokenRef.current } });
+      if (id !== reqIdRef.current) return;
+      setSuggestions(res ?? []);
+      setOpen((res ?? []).length > 0);
     } catch (err) {
       console.error("[places] autocomplete failed", err);
       setSuggestions([]);
@@ -165,34 +64,31 @@ export function PlacesField({
     const v = e.target.value;
     setValue(v);
     if (debounceRef.current) window.clearTimeout(debounceRef.current);
-    debounceRef.current = window.setTimeout(() => fetchSuggestions(v), 200);
+    debounceRef.current = window.setTimeout(() => fetchSuggestions(v), 300);
   };
 
   const onSelect = async (s: Suggestion) => {
+    reqIdRef.current++;
+    setValue(s.text);
+    setOpen(false);
+    setSuggestions([]);
+    const token = tokenRef.current ?? newToken();
+    tokenRef.current = null;
     try {
-      const place = s.placePrediction.toPlace();
-      await place.fetchFields({ fields: ["formattedAddress", "displayName"] });
-      const name = place.displayName ? String(place.displayName) : "";
-      const formatted = place.formattedAddress ? String(place.formattedAddress) : "";
-      // Some POIs return a very short formattedAddress ("Blagnac"), so keep the
-      // place name in front of it for an unambiguous address.
+      const place = await resolve({ data: { placeId: s.placeId, sessionToken: token } });
+      if (!place) return;
+      const { name: n, formatted } = place;
       let address = s.text;
-      if (formatted && name && !formatted.toLowerCase().includes(name.toLowerCase())) {
-        address = `${name}, ${formatted}`;
+      if (formatted && n && !formatted.toLowerCase().includes(n.toLowerCase())) {
+        address = `${n}, ${formatted}`;
       } else if (formatted) {
         address = formatted;
-      } else if (name) {
-        address = name;
       }
       setValue(address);
     } catch {
-      setValue(s.text);
+      /* garde le texte de la suggestion */
     }
-    setOpen(false);
-    setSuggestions([]);
-    sessionTokenRef.current = null;
   };
-
 
   return (
     <div ref={wrapRef} className="relative">
@@ -217,8 +113,8 @@ export function PlacesField({
       />
       {open && suggestions.length > 0 && (
         <ul className="absolute left-0 right-0 z-50 mt-1 max-h-64 overflow-auto rounded-md border border-border bg-background shadow-lg">
-          {suggestions.map((s, i) => (
-            <li key={i}>
+          {suggestions.map((s) => (
+            <li key={s.placeId}>
               <button
                 type="button"
                 onClick={() => onSelect(s)}
