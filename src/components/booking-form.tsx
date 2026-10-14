@@ -106,13 +106,27 @@ export function BookingFormSection({
     };
   };
 
+  const checkValidity = (form: HTMLFormElement) => {
+    const invalid = Array.from(form.elements).find(
+      (el) => (el as HTMLInputElement).willValidate && !(el as HTMLInputElement).checkValidity(),
+    ) as HTMLInputElement | undefined;
+    if (!invalid) return true;
+    const label = form.querySelector(`label[for="${invalid.name}"]`)?.textContent?.replace("*", "").trim();
+    setError(
+      `Veuillez vérifier le champ « ${label || invalid.name} » : ${invalid.validationMessage || "valeur invalide"}`,
+    );
+    if (typeof form.reportValidity === "function") form.reportValidity();
+    invalid.focus();
+    return false;
+  };
+
   const handleEstimate = async (e?: React.SyntheticEvent) => {
     e?.preventDefault();
     e?.stopPropagation();
     if (status === "estimating" || status === "booking") return;
     const form = formRef.current;
     if (!form) return;
-    if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+    if (!checkValidity(form)) return;
     const data = readForm(form);
     const when = new Date(data.datetime);
     if (Number.isNaN(when.getTime()) || when.getTime() < Date.now() - 60_000) {
@@ -140,7 +154,7 @@ export function BookingFormSection({
     e?.stopPropagation();
     if (!payload || status === "booking" || status === "booked") return;
     const form = formRef.current;
-    if (form && typeof form.reportValidity === "function" && !form.reportValidity()) return;
+    if (form && !checkValidity(form)) return;
     const current = form ? readForm(form) : payload;
     if (!current.luggage.trim()) {
       setError("Le nombre de bagages est requis.");
