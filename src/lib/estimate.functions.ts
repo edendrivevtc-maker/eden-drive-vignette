@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { computeRoute } from "./estimate.server";
 import { sendBookingEmail } from "./booking.server";
+import { placeAddress, placesAutocomplete } from "./places.server";
 
 const estimateSchema = z.object({
   name: z.string().trim().min(2, "Le nom est requis").max(100),
@@ -19,11 +20,11 @@ export const estimateRide = createServerFn({ method: "POST" })
   .inputValidator((data) => estimateSchema.parse(data))
   .handler(async ({ data }) => {
     const quote = await computeRoute(data.from, data.to, data.datetime, data.pax);
-    try {
-      await sendBookingEmail("Un client vient d'estimer une course", { ...data, quote });
-    } catch (err) {
-      console.error("[estimate] notification email failed", err);
-    }
+    // La notification ne doit jamais bloquer l'affichage du tarif : délai max 4 s.
+    const notify = sendBookingEmail("Un client vient d'estimer une course", { ...data, quote }).catch(
+      (err) => console.error("[estimate] notification email failed", err),
+    );
+    await Promise.race([notify, new Promise((r) => setTimeout(r, 4000))]);
     return quote;
   });
 
@@ -35,3 +36,31 @@ export const getPlacesBrowserKey = createServerFn({ method: "GET" }).handler(asy
     null;
   return { key };
 });
+
+const tokenSchema = z.string().trim().min(8).max(64);
+
+export const suggestAddresses = createServerFn({ method: "POST" })
+  .inputValidator((data) =>
+    z.object({ input: z.string().trim().min(2).max(120), sessionToken: tokenSchema }).parse(data),
+  )
+  .handler(async ({ data }) => {
+    try {
+      return await placesAutocomplete(data.input, data.sessionToken);
+    } catch (err) {
+      console.error("[places] autocomplete failed", err);
+      return [];
+    }
+  });
+
+export const resolveAddress = createServerFn({ method: "POST" })
+  .inputValidator((data) =>
+    z.object({ placeId: z.string().trim().min(5).max(300), sessionToken: tokenSchema }).parse(data),
+  )
+  .handler(async ({ data }) => {
+    try {
+      return await placeAddress(data.placeId, data.sessionToken);
+    } catch (err) {
+      console.error("[places] details failed", err);
+      return null;
+    }
+  });
