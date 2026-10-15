@@ -1,23 +1,33 @@
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/google_maps";
+const DIRECT_URL = "https://places.googleapis.com";
 
-function gatewayHeaders(fieldMask: string): Record<string, string> {
+// Hébergement Lovable : passerelle (LOVABLE_API_KEY + GOOGLE_MAPS_API_KEY).
+// Hébergement Cloudflare : appel direct Google avec la clé serveur GOOGLE_PLACES_API_KEY
+// (même clé que le compteur d'avis), à défaut GOOGLE_API_KEY.
+function endpoint(fieldMask: string): { base: string; headers: Record<string, string> } {
+  const common = { "Content-Type": "application/json", "X-Goog-FieldMask": fieldMask };
   const lovableKey = process.env.LOVABLE_API_KEY;
   const mapsKey = process.env.GOOGLE_MAPS_API_KEY;
-  if (!lovableKey || !mapsKey) throw new Error("Configuration Google manquante");
-  return {
-    Authorization: `Bearer ${lovableKey}`,
-    "X-Connection-Api-Key": mapsKey,
-    "Content-Type": "application/json",
-    "X-Goog-FieldMask": fieldMask,
-  };
+  if (lovableKey && mapsKey) {
+    return {
+      base: `${GATEWAY_URL}/places/v1`,
+      headers: { ...common, Authorization: `Bearer ${lovableKey}`, "X-Connection-Api-Key": mapsKey },
+    };
+  }
+  const directKey = process.env.GOOGLE_PLACES_API_KEY ?? process.env.GOOGLE_API_KEY;
+  if (directKey) {
+    return { base: `${DIRECT_URL}/v1`, headers: { ...common, "X-Goog-Api-Key": directKey } };
+  }
+  throw new Error("Configuration Google manquante (aucune clé Places côté serveur)");
 }
 
 export async function placesAutocomplete(input: string, sessionToken: string) {
-  const res = await fetch(`${GATEWAY_URL}/places/v1/places:autocomplete`, {
+  const { base, headers } = endpoint(
+    "suggestions.placePrediction.placeId,suggestions.placePrediction.text.text",
+  );
+  const res = await fetch(`${base}/places:autocomplete`, {
     method: "POST",
-    headers: gatewayHeaders(
-      "suggestions.placePrediction.placeId,suggestions.placePrediction.text.text",
-    ),
+    headers,
     body: JSON.stringify({
       input,
       sessionToken,
@@ -41,8 +51,9 @@ export async function placesAutocomplete(input: string, sessionToken: string) {
 }
 
 export async function placeAddress(placeId: string, sessionToken: string) {
-  const url = `${GATEWAY_URL}/places/v1/places/${encodeURIComponent(placeId)}?sessionToken=${encodeURIComponent(sessionToken)}&languageCode=fr`;
-  const res = await fetch(url, { headers: gatewayHeaders("displayName,formattedAddress") });
+  const { base, headers } = endpoint("displayName,formattedAddress");
+  const url = `${base}/places/${encodeURIComponent(placeId)}?sessionToken=${encodeURIComponent(sessionToken)}&languageCode=fr`;
+  const res = await fetch(url, { headers });
   if (!res.ok) {
     console.error(`[places] details ${res.status}: ${await res.text().catch(() => "")}`);
     return null;
