@@ -87,7 +87,7 @@ export function buildBookingPdf(data: BookingPayload): string {
     { kind: "subtitle", text: "EXPLOITANT" },
     { kind: "row", label: "Société", value: "EDEN DRIVE VTC" },
     { kind: "row", label: "Adresse", value: "3 rue Suzanne Valadon 31850 Montrabé" },
-    { kind: "row", label: "Téléphone", value: "0603508950" },
+    { kind: "row", label: "Téléphone", value: "06 35 58 58 23" },
     { kind: "row", label: "SIREN", value: "938872017" },
     { kind: "row", label: "REVTC", value: "EVTC031250058" },
     { kind: "rule" },
