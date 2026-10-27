@@ -9,40 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VtcGareMatabiauToulouseRouteImport } from './routes/vtc-gare-matabiau-toulouse'
-import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
-import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
-import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
-import { Route as ChauffeurPriveToulouseRouteImport } from './routes/chauffeur-prive-toulouse'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChauffeurPriveToulouseRouteImport } from './routes/chauffeur-prive-toulouse'
+import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
+import { Route as VtcGareMatabiauToulouseRouteImport } from './routes/vtc-gare-matabiau-toulouse'
 
-const VtcGareMatabiauToulouseRoute = VtcGareMatabiauToulouseRouteImport.update({
-  id: '/vtc-gare-matabiau-toulouse',
-  path: '/vtc-gare-matabiau-toulouse',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VtcAeroportToulouseBlagnacRoute =
-  VtcAeroportToulouseBlagnacRouteImport.update({
-    id: '/vtc-aeroport-toulouse-blagnac',
-    path: '/vtc-aeroport-toulouse-blagnac',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PolitiqueConfidentialiteRoute =
-  PolitiqueConfidentialiteRouteImport.update({
-    id: '/politique-confidentialite',
-    path: '/politique-confidentialite',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
-  id: '/mentions-legales',
-  path: '/mentions-legales',
+const ChauffeurPriveToulouseRoute = ChauffeurPriveToulouseRouteImport.update({
+  id: '/chauffeur-prive-toulouse',
+  path: '/chauffeur-prive-toulouse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChauffeurVtcEntrepriseToulouseRoute =
@@ -51,14 +34,31 @@ const ChauffeurVtcEntrepriseToulouseRoute =
     path: '/chauffeur-vtc-entreprise-toulouse',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ChauffeurPriveToulouseRoute = ChauffeurPriveToulouseRouteImport.update({
-  id: '/chauffeur-prive-toulouse',
-  path: '/chauffeur-prive-toulouse',
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const PolitiqueConfidentialiteRoute =
+  PolitiqueConfidentialiteRouteImport.update({
+    id: '/politique-confidentialite',
+    path: '/politique-confidentialite',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VtcAeroportToulouseBlagnacRoute =
+  VtcAeroportToulouseBlagnacRouteImport.update({
+    id: '/vtc-aeroport-toulouse-blagnac',
+    path: '/vtc-aeroport-toulouse-blagnac',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VtcGareMatabiauToulouseRoute = VtcGareMatabiauToulouseRouteImport.update({
+  id: '/vtc-gare-matabiau-toulouse',
+  path: '/vtc-gare-matabiau-toulouse',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -139,46 +139,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/vtc-gare-matabiau-toulouse': {
-      id: '/vtc-gare-matabiau-toulouse'
-      path: '/vtc-gare-matabiau-toulouse'
-      fullPath: '/vtc-gare-matabiau-toulouse'
-      preLoaderRoute: typeof VtcGareMatabiauToulouseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/vtc-aeroport-toulouse-blagnac': {
-      id: '/vtc-aeroport-toulouse-blagnac'
-      path: '/vtc-aeroport-toulouse-blagnac'
-      fullPath: '/vtc-aeroport-toulouse-blagnac'
-      preLoaderRoute: typeof VtcAeroportToulouseBlagnacRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/politique-confidentialite': {
-      id: '/politique-confidentialite'
-      path: '/politique-confidentialite'
-      fullPath: '/politique-confidentialite'
-      preLoaderRoute: typeof PolitiqueConfidentialiteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mentions-legales': {
-      id: '/mentions-legales'
-      path: '/mentions-legales'
-      fullPath: '/mentions-legales'
-      preLoaderRoute: typeof MentionsLegalesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chauffeur-vtc-entreprise-toulouse': {
-      id: '/chauffeur-vtc-entreprise-toulouse'
-      path: '/chauffeur-vtc-entreprise-toulouse'
-      fullPath: '/chauffeur-vtc-entreprise-toulouse'
-      preLoaderRoute: typeof ChauffeurVtcEntrepriseToulouseRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chauffeur-prive-toulouse': {
@@ -188,11 +153,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChauffeurPriveToulouseRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/chauffeur-vtc-entreprise-toulouse': {
+      id: '/chauffeur-vtc-entreprise-toulouse'
+      path: '/chauffeur-vtc-entreprise-toulouse'
+      fullPath: '/chauffeur-vtc-entreprise-toulouse'
+      preLoaderRoute: typeof ChauffeurVtcEntrepriseToulouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politique-confidentialite': {
+      id: '/politique-confidentialite'
+      path: '/politique-confidentialite'
+      fullPath: '/politique-confidentialite'
+      preLoaderRoute: typeof PolitiqueConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vtc-aeroport-toulouse-blagnac': {
+      id: '/vtc-aeroport-toulouse-blagnac'
+      path: '/vtc-aeroport-toulouse-blagnac'
+      fullPath: '/vtc-aeroport-toulouse-blagnac'
+      preLoaderRoute: typeof VtcAeroportToulouseBlagnacRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vtc-gare-matabiau-toulouse': {
+      id: '/vtc-gare-matabiau-toulouse'
+      path: '/vtc-gare-matabiau-toulouse'
+      fullPath: '/vtc-gare-matabiau-toulouse'
+      preLoaderRoute: typeof VtcGareMatabiauToulouseRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
