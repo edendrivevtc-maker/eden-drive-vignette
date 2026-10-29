@@ -75,7 +75,11 @@ export function computePrice(
   const raw = distanceKm * rate;
   const paxCount = Number(pax);
   const paxSurcharge = Number.isFinite(paxCount) && paxCount > 4 ? 20 : 0;
-  const ridePrice = Math.max(20, Math.round(raw * 100) / 100) + paxSurcharge;
+  // Minimum 30 € sur la plage horaire de nuit (19h–8h), 20 € sinon.
+  const hour = Number(datetime.slice(11, 13));
+  const nightHours = hour >= NIGHT_START_HOUR || hour < NIGHT_END_HOUR;
+  const minimum = nightHours ? 30 : 20;
+  const ridePrice = Math.max(minimum, Math.round(raw * 100) / 100) + paxSurcharge;
   const total = Math.ceil((ridePrice + tolls) / 5) * 5;
   return { distanceKm, durationMin: 0, ridePrice, tolls, total };
 }
