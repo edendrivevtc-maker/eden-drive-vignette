@@ -19,3 +19,14 @@ describe("minimum de course", () => {
   it("jour 18h59 : 5 km → 20 €", () => expect(computePrice(5, at("18:59"), 0).total).toBe(20));
   it("nuit + 5 passagers : 5 km → 50 €", () => expect(computePrice(5, at("23:00"), 0, 5).total).toBe(50));
 });
+
+describe("minimum de jour selon la distance", () => {
+  const day = at("10:00");
+  it("2 km → 20 €", () => expect(computePrice(2, day, 0).total).toBe(20));
+  it("5 km → 20 €", () => expect(computePrice(5, day, 0).total).toBe(20));
+  it("5,01 km → 25 €", () => expect(computePrice(5.01, day, 0).total).toBe(25));
+  it("7 km → 25 €", () => expect(computePrice(7, day, 0).total).toBe(25));
+  it("10 km → 25 €", () => expect(computePrice(10, day, 0).total).toBe(25));
+  it("15 km → 35 € (calcul conservé)", () => expect(computePrice(15, day, 0).total).toBe(35));
+  it("nuit 10 km reste 30 €", () => expect(computePrice(10, at("19:00"), 0).total).toBe(30));
+});
