@@ -75,10 +75,9 @@ export function computePrice(
   const raw = distanceKm * rate;
   const paxCount = Number(pax);
   const paxSurcharge = Number.isFinite(paxCount) && paxCount > 4 ? 20 : 0;
-  // Minimum : 30 € de 19h à 8h ; en journée 20 € jusqu'à 5 km inclus, 25 € au-delà.
-  const hour = Number(datetime.slice(11, 13));
-  const nightHours = hour >= NIGHT_START_HOUR || hour < NIGHT_END_HOUR;
-  const minimum = nightHours ? 30 : distanceKm > 5 ? 25 : 20;
+  // Minimum : 30 € au tarif nuit (19h–8h, dimanche et jour férié toute la journée) ;
+  // en journée 20 € jusqu'à 5 km inclus, 25 € au-delà.
+  const minimum = night ? 30 : distanceKm > 5 ? 25 : 20;
   const ridePrice = Math.max(minimum, Math.round(raw * 100) / 100) + paxSurcharge;
   const total = Math.ceil((ridePrice + tolls) / 5) * 5;
   return { distanceKm, durationMin: 0, ridePrice, tolls, total };
