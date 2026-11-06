@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Optimisation taxi de l’accueil : titre, description, paragraphe Services ; vérifier HTML et H1 sans changement visuel ou fonctionnel
+- [x] Optimisation taxi de l’accueil : titre, description, paragraphe Services ; HTML, H1 unique et affichage mobile/ordinateur vérifiés sans changement visuel ou fonctionnel
 - [x] URLs SEO absolues et images de partage sur les 7 pages
 - [x] FAQ SSR aéroport, gare et entreprise ; H1 accueil ; suppression keywords
 - [x] Liens prestations avant formulaire et dans les footers aéroport/gare/entreprise
