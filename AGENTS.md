@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep page-specific SEO metadata on leaf routes only; share images use 1200×630 public renditions of the displayed photo or logo so crawlers receive lightweight absolute URLs.
+- Serve the existing font files and font-face definitions from public/fonts through the root stylesheet link to preserve typography without third-party font requests.

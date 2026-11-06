@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { Link } from "@tanstack/react-router";
 import {
   AlertCircle,
   Calculator,
@@ -231,6 +232,13 @@ export function BookingFormSection({
               )}
               {status === "estimating" ? "Calcul en cours..." : "Estimer mon trajet"}
             </button>
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              Les informations transmises sont utilisées pour traiter votre demande de devis et
+              organiser votre prestation. Consultez notre{" "}
+              <Link to="/politique-confidentialite" className="underline underline-offset-2 hover:text-foreground">
+                politique de confidentialité
+              </Link>.
+            </p>
 
             {quote && (
               <div className="rounded-2xl border border-silver/30 bg-background/60 p-6 text-center">
