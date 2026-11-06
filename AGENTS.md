@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep page-specific SEO metadata on leaf routes only; share images use 1200×630 public renditions of the displayed photo or logo so crawlers receive lightweight absolute URLs.
