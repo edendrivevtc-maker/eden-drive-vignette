@@ -70,9 +70,9 @@ const FAQ: FaqItem[] = [
 ];
 
 
-const TITLE = "EDEN DRIVE VTC — Chauffeur privé haut de gamme à Toulouse & Occitanie";
+const TITLE = "EDEN DRIVE VTC | Alternative au taxi à Toulouse";
 const DESCRIPTION =
-  "EDEN DRIVE VTC : chauffeur privé premium à Toulouse, Blagnac et en Occitanie. Transferts aéroport, gares, longs trajets, mise à disposition. Discrétion, ponctualité, luxe.";
+  "Taxi à Toulouse ? EDEN DRIVE VTC, chauffeur privé VTC et alternative au taxi : transferts aéroport et gare, tarif annoncé et réservation simple.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -392,6 +392,13 @@ function Services() {
           <div className="hairline mx-auto my-6 w-24" />
           <p className="text-muted-foreground">
             Une flotte premium et des chauffeurs d'exception, pour chaque occasion.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Vous recherchez un taxi à Toulouse ou dans ses environs, ou un taxi pour
+            l'aéroport Toulouse-Blagnac ? EDEN DRIVE VTC vous propose une alternative
+            premium au taxi traditionnel : un service de chauffeur privé VTC et de
+            transport privé à Toulouse, sur réservation, avec un tarif annoncé à
+            l'avance.
           </p>
         </div>
         <div className="mt-16 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
