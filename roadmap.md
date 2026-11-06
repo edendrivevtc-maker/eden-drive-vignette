@@ -1,4 +1,7 @@
 # Roadmap
+- [ ] Compléter la politique RGPD sans inventer durées ou garanties non vérifiées
+- [ ] Ajouter la mention liée à la politique sous l’estimation, sur tous les formulaires partagés
+- [ ] Héberger les polices identiques localement et vérifier rendu, connexions et absence de régression ; ne pas publier
 - [x] Optimisation taxi de l’accueil : titre, description, paragraphe Services ; HTML, H1 unique et affichage mobile/ordinateur vérifiés sans changement visuel ou fonctionnel
 - [x] URLs SEO absolues et images de partage sur les 7 pages
 - [x] FAQ SSR aéroport, gare et entreprise ; H1 accueil ; suppression keywords
