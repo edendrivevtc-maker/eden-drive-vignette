@@ -79,21 +79,17 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      {
-        name: "keywords",
-        content:
-          "chauffeur privé Toulouse, VTC Toulouse, chauffeur privé Blagnac, transfert aéroport Toulouse-Blagnac, chauffeur premium Toulouse, VTC haut de gamme Toulouse, EDEN DRIVE VTC",
-      },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://edendrive-vtc.fr/" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroCar },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://edendrive-vtc.fr/share/home.jpg" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: heroCar },
+      { name: "twitter:image", content: "https://edendrive-vtc.fr/share/home.jpg" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://edendrive-vtc.fr/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -293,6 +289,7 @@ function Hero() {
           </div>
 
           <h1 className="font-display text-4xl leading-[1.05] text-ivory sm:text-6xl md:text-7xl">
+            <span className="mb-3 block text-lg leading-relaxed sm:text-xl md:text-2xl">Chauffeur VTC privé à Toulouse —</span>{" "}
             EDEN DRIVE <span className="text-silver-gradient tracking-[0.08em]">VTC</span>
           </h1>
           <div className="hairline my-6 w-40" />

@@ -87,19 +87,15 @@ export const Route = createFileRoute("/chauffeur-prive-toulouse")({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      {
-        name: "keywords",
-        content:
-          "chauffeur privé Toulouse, VTC Toulouse, chauffeur VTC Toulouse, chauffeur privé Toulouse métropole, VTC premium Toulouse, Eden Drive VTC",
-      },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: "https://edendrive-vtc.fr/chauffeur-prive-toulouse" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroImg },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://edendrive-vtc.fr/share/private-driver.jpg" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: heroImg },
+      { name: "twitter:image", content: "https://edendrive-vtc.fr/share/private-driver.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://edendrive-vtc.fr/chauffeur-prive-toulouse" }],
     scripts: [

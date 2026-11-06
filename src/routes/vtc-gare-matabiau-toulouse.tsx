@@ -83,19 +83,15 @@ export const Route = createFileRoute("/vtc-gare-matabiau-toulouse")({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      {
-        name: "keywords",
-        content:
-          "VTC Gare Matabiau Toulouse, chauffeur privé Gare Matabiau, transfert gare Toulouse, chauffeur gare Toulouse, transport Gare Matabiau, Eden Drive VTC",
-      },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: "https://edendrive-vtc.fr/vtc-gare-matabiau-toulouse" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: stationImg },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://edendrive-vtc.fr/share/station.jpg" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: stationImg },
+      { name: "twitter:image", content: "https://edendrive-vtc.fr/share/station.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://edendrive-vtc.fr/vtc-gare-matabiau-toulouse" }],
     scripts: [
@@ -147,6 +143,7 @@ function Page() {
       <WhyUs />
       <Clients />
       <FinalCta />
+      <OtherServices />
       <BookingForm />
       <FaqSection items={FAQ} title={<><em className="text-silver-gradient not-italic">FAQ</em> transfert gare Matabiau</>} />
       <Footer />
@@ -460,6 +457,22 @@ function FinalCta() {
   );
 }
 
+function OtherServices() {
+  return (
+    <section className="section-light border-t border-border/40 py-12 sm:py-16">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <h2 className="font-display text-2xl sm:text-3xl">Nos autres prestations</h2>
+        <p className="mt-3 text-sm text-muted-foreground">Découvrez également nos autres services de chauffeur privé à Toulouse.</p>
+        <nav aria-label="Nos autres prestations" className="mt-5 flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-8">
+            <Link to="/chauffeur-prive-toulouse" className="underline underline-offset-4 transition-colors hover:text-silver">Chauffeur privé Toulouse</Link>
+            <Link to="/vtc-aeroport-toulouse-blagnac" className="underline underline-offset-4 transition-colors hover:text-silver">Transfert Aéroport Toulouse-Blagnac</Link>
+            <Link to="/chauffeur-vtc-entreprise-toulouse" className="underline underline-offset-4 transition-colors hover:text-silver">Déplacements professionnels</Link>
+        </nav>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Booking form ---------- */
 function BookingForm() {
   return (
@@ -536,11 +549,25 @@ function Footer() {
 
         <div className="hairline my-8" />
 
-        <nav className="flex flex-col items-center gap-2 text-center text-xs uppercase tracking-widest text-muted-foreground">
-          <Link to="/" className="transition-colors hover:text-silver">Accueil</Link>
-          <Link to="/mentions-legales" className="transition-colors hover:text-silver">Mentions légales</Link>
-          <Link to="/politique-confidentialite" className="transition-colors hover:text-silver">Politique de confidentialité</Link>
-        </nav>
+        <div className="grid gap-6 text-center sm:grid-cols-2">
+          <div>
+            <div className="mb-3 text-xs uppercase tracking-[0.25em] text-silver">Services</div>
+            <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <Link to="/chauffeur-prive-toulouse" className="hover:text-silver">Chauffeur privé Toulouse</Link>
+              <Link to="/vtc-aeroport-toulouse-blagnac" className="hover:text-silver">Transfert Aéroport Toulouse-Blagnac</Link>
+              <Link to="/vtc-gare-matabiau-toulouse" className="hover:text-silver">Transfert Gare Toulouse Matabiau</Link>
+              <Link to="/chauffeur-vtc-entreprise-toulouse" className="hover:text-silver">Déplacements professionnels</Link>
+            </nav>
+          </div>
+          <div>
+            <div className="mb-3 text-xs uppercase tracking-[0.25em] text-silver">Liens utiles</div>
+            <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <Link to="/" className="hover:text-silver">Accueil</Link>
+              <Link to="/mentions-legales" className="hover:text-silver">Mentions légales</Link>
+              <Link to="/politique-confidentialite" className="hover:text-silver">Politique de confidentialité</Link>
+            </nav>
+          </div>
+        </div>
 
         <div className="mt-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} EDEN DRIVE VTC — Chauffeur VTC Toulouse. Tous droits réservés.
