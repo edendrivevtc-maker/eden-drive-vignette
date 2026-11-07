@@ -17,6 +17,7 @@ import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
 import { Route as VtcGareMatabiauToulouseRouteImport } from './routes/vtc-gare-matabiau-toulouse'
+import { Route as ApiPublicGoogleReviewsRefreshRouteImport } from './routes/api/public/google-reviews-refresh'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -61,6 +62,12 @@ const VtcGareMatabiauToulouseRoute = VtcGareMatabiauToulouseRouteImport.update({
   path: '/vtc-gare-matabiau-toulouse',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicGoogleReviewsRefreshRoute =
+  ApiPublicGoogleReviewsRefreshRouteImport.update({
+    id: '/api/public/google-reviews-refresh',
+    path: '/api/public/google-reviews-refresh',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
+  '/api/public/google-reviews-refresh': typeof ApiPublicGoogleReviewsRefreshRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -81,6 +89,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
+  '/api/public/google-reviews-refresh': typeof ApiPublicGoogleReviewsRefreshRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -92,6 +101,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
+  '/api/public/google-reviews-refresh': typeof ApiPublicGoogleReviewsRefreshRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
+    | '/api/public/google-reviews-refresh'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
+    | '/api/public/google-reviews-refresh'
   id:
     | '__root__'
     | '/'
@@ -124,6 +136,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
+    | '/api/public/google-reviews-refresh'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -135,6 +148,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VtcAeroportToulouseBlagnacRoute: typeof VtcAeroportToulouseBlagnacRoute
   VtcGareMatabiauToulouseRoute: typeof VtcGareMatabiauToulouseRoute
+  ApiPublicGoogleReviewsRefreshRoute: typeof ApiPublicGoogleReviewsRefreshRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -195,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VtcGareMatabiauToulouseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/google-reviews-refresh': {
+      id: '/api/public/google-reviews-refresh'
+      path: '/api/public/google-reviews-refresh'
+      fullPath: '/api/public/google-reviews-refresh'
+      preLoaderRoute: typeof ApiPublicGoogleReviewsRefreshRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -207,6 +228,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VtcAeroportToulouseBlagnacRoute: VtcAeroportToulouseBlagnacRoute,
   VtcGareMatabiauToulouseRoute: VtcGareMatabiauToulouseRoute,
+  ApiPublicGoogleReviewsRefreshRoute: ApiPublicGoogleReviewsRefreshRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
