@@ -54,6 +54,10 @@ export type Database = {
         Args: { p_count: number; p_rating: number; p_token: string }
         Returns: boolean
       }
+      configure_google_reviews_schedule: {
+        Args: { p_secret: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
