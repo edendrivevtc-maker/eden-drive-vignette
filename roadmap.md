@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Cache durable partagé des avis : verrou atomique 24 h, conservation après échec, contrôle concurrent et affichage inchangé
 - [x] Compléter la politique RGPD sans inventer durées ou garanties non vérifiées
 - [x] Ajouter la mention liée à la politique sous l’estimation, sur tous les formulaires partagés
 - [x] Héberger les polices identiques localement ; rendu, connexions, champs, lien et 25 tests tarifaires vérifiés ; aucune publication
