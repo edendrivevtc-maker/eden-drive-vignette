@@ -14,13 +14,46 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      google_reviews_cache: {
+        Row: {
+          fetched_at: string | null
+          last_attempt_at: string | null
+          next_attempt_at: string
+          place_id: string
+          rating: number | null
+          refresh_token: string | null
+          user_rating_count: number | null
+        }
+        Insert: {
+          fetched_at?: string | null
+          last_attempt_at?: string | null
+          next_attempt_at?: string
+          place_id: string
+          rating?: number | null
+          refresh_token?: string | null
+          user_rating_count?: number | null
+        }
+        Update: {
+          fetched_at?: string | null
+          last_attempt_at?: string | null
+          next_attempt_at?: string
+          place_id?: string
+          rating?: number | null
+          refresh_token?: string | null
+          user_rating_count?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_google_reviews_refresh: { Args: never; Returns: string }
+      complete_google_reviews_refresh: {
+        Args: { p_count: number; p_rating: number; p_token: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
