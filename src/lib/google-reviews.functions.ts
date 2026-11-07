@@ -5,8 +5,10 @@ export type { GoogleReviewsStats } from "./google-reviews-cache";
 
 export const getGoogleReviewsStats = createServerFn({ method: "GET" }).handler(
   async (): Promise<GoogleReviewsStats | null> => {
-    const url = process.env.SUPABASE_URL;
-    const key = process.env.SUPABASE_PUBLISHABLE_KEY;
+    // External Cloudflare deployments can use the same compiled public connection.
+    // Prefer server URLs when supplied (in particular for isolated draft backends).
+    const url = process.env.SUPABASE_URL ?? import.meta.env.VITE_SUPABASE_URL;
+    const key = process.env.SUPABASE_PUBLISHABLE_KEY ?? import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
     if (!url || !key) {
       console.error("[google-reviews] Shared cache configuration missing");
       return null;
