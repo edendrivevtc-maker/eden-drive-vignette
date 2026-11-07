@@ -10,9 +10,8 @@ export const googleReviewsQueryOptions = () =>
   queryOptions({
     queryKey: ["google-reviews-stats"],
     queryFn: () => getGoogleReviewsStats(),
-    // Rafraîchissement automatique : données considérées fraîches 6 h,
-    // puis re-fetch au chargement de page suivant.
-    staleTime: 6 * 60 * 60 * 1000,
+    // Browser freshness only; Google refresh is exclusively scheduled and DB-locked.
+    staleTime: 24 * 60 * 60 * 1000,
     gcTime: 24 * 60 * 60 * 1000,
     refetchOnMount: true,
   });
