@@ -14,6 +14,7 @@ import { Route as ChauffeurPriveToulouseRouteImport } from './routes/chauffeur-p
 import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
 import { Route as LongTrajetVtcToulouseRouteImport } from './routes/long-trajet-vtc-toulouse'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as MiseADispositionChauffeurToulouseRouteImport } from './routes/mise-a-disposition-chauffeur-toulouse'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
@@ -46,6 +47,12 @@ const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MiseADispositionChauffeurToulouseRoute =
+  MiseADispositionChauffeurToulouseRouteImport.update({
+    id: '/mise-a-disposition-chauffeur-toulouse',
+    path: '/mise-a-disposition-chauffeur-toulouse',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PolitiqueConfidentialiteRoute =
   PolitiqueConfidentialiteRouteImport.update({
     id: '/politique-confidentialite',
@@ -81,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/long-trajet-vtc-toulouse': typeof LongTrajetVtcToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/mise-a-disposition-chauffeur-toulouse': typeof MiseADispositionChauffeurToulouseRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
@@ -93,6 +101,7 @@ export interface FileRoutesByTo {
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/long-trajet-vtc-toulouse': typeof LongTrajetVtcToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/mise-a-disposition-chauffeur-toulouse': typeof MiseADispositionChauffeurToulouseRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
@@ -106,6 +115,7 @@ export interface FileRoutesById {
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
   '/long-trajet-vtc-toulouse': typeof LongTrajetVtcToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/mise-a-disposition-chauffeur-toulouse': typeof MiseADispositionChauffeurToulouseRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/long-trajet-vtc-toulouse'
     | '/mentions-legales'
+    | '/mise-a-disposition-chauffeur-toulouse'
     | '/politique-confidentialite'
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/long-trajet-vtc-toulouse'
     | '/mentions-legales'
+    | '/mise-a-disposition-chauffeur-toulouse'
     | '/politique-confidentialite'
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
@@ -144,6 +156,7 @@ export interface FileRouteTypes {
     | '/chauffeur-vtc-entreprise-toulouse'
     | '/long-trajet-vtc-toulouse'
     | '/mentions-legales'
+    | '/mise-a-disposition-chauffeur-toulouse'
     | '/politique-confidentialite'
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
@@ -157,6 +170,7 @@ export interface RootRouteChildren {
   ChauffeurVtcEntrepriseToulouseRoute: typeof ChauffeurVtcEntrepriseToulouseRoute
   LongTrajetVtcToulouseRoute: typeof LongTrajetVtcToulouseRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
+  MiseADispositionChauffeurToulouseRoute: typeof MiseADispositionChauffeurToulouseRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VtcAeroportToulouseBlagnacRoute: typeof VtcAeroportToulouseBlagnacRoute
@@ -199,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/mentions-legales'
       fullPath: '/mentions-legales'
       preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mise-a-disposition-chauffeur-toulouse': {
+      id: '/mise-a-disposition-chauffeur-toulouse'
+      path: '/mise-a-disposition-chauffeur-toulouse'
+      fullPath: '/mise-a-disposition-chauffeur-toulouse'
+      preLoaderRoute: typeof MiseADispositionChauffeurToulouseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politique-confidentialite': {
@@ -245,6 +266,8 @@ const rootRouteChildren: RootRouteChildren = {
   ChauffeurVtcEntrepriseToulouseRoute: ChauffeurVtcEntrepriseToulouseRoute,
   LongTrajetVtcToulouseRoute: LongTrajetVtcToulouseRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
+  MiseADispositionChauffeurToulouseRoute:
+    MiseADispositionChauffeurToulouseRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VtcAeroportToulouseBlagnacRoute: VtcAeroportToulouseBlagnacRoute,
