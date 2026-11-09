@@ -12,6 +12,7 @@ import {
 import { PlacesField } from "@/components/places-autocomplete";
 import { sendBookingRequest } from "@/lib/booking.functions";
 import { estimateRide } from "@/lib/estimate.functions";
+import { sendDisposalQuote } from "@/lib/disposal-quote.functions";
 
 export type Quote = {
   distanceKm: number;
@@ -67,6 +68,9 @@ export function BookingFormSection({
   title = <em className="text-silver-gradient not-italic">Estimation/Réservation en ligne</em>,
   subtitle,
   fromPlaceholder = "Adresse ou aéroport",
+  personalizedQuote = false,
+  estimateLabel = "Estimer mon trajet",
+  messagePlaceholder = "Précisions, bagages, vol, etc.",
   sectionClassName = "section-light relative border-t border-border/40 py-28 sm:py-40",
 }: {
   id?: string;
@@ -74,10 +78,14 @@ export function BookingFormSection({
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   fromPlaceholder?: string;
+  personalizedQuote?: boolean;
+  estimateLabel?: string;
+  messagePlaceholder?: string;
   sectionClassName?: string;
 }) {
   const runEstimate = useServerFn(estimateRide);
   const sendBooking = useServerFn(sendBookingRequest);
+  const requestDisposalQuote = useServerFn(sendDisposalQuote);
 
   const formRef = useRef<HTMLFormElement>(null);
   const [payload, setPayload] = useState<Record<string, string> | null>(null);
@@ -124,7 +132,7 @@ export function BookingFormSection({
   const handleEstimate = async (e?: React.SyntheticEvent) => {
     e?.preventDefault();
     e?.stopPropagation();
-    if (status === "estimating" || status === "booking") return;
+    if (status === "estimating" || status === "booking" || (personalizedQuote && status === "booked")) return;
     const form = formRef.current;
     if (!form) return;
     if (!checkValidity(form)) return;
@@ -140,6 +148,11 @@ export function BookingFormSection({
     setStatus("estimating");
     setError(null);
     try {
+      if (personalizedQuote) {
+        await requestDisposalQuote({ data });
+        setStatus("booked");
+        return;
+      }
       const result = (await runEstimate({ data })) as Quote;
       setQuote(result);
       setPayload(data);
@@ -215,14 +228,14 @@ export function BookingFormSection({
                 name="message"
                 rows={3}
                 className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
-                placeholder="Précisions, bagages, vol, etc."
+                placeholder={messagePlaceholder}
               />
             </div>
 
             <button
               type="button"
               onClick={handleEstimate}
-              disabled={status === "estimating"}
+              disabled={status === "estimating" || (personalizedQuote && status === "booked")}
               className="btn-silver inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-medium uppercase tracking-widest disabled:opacity-70"
             >
               {status === "estimating" ? (
@@ -230,7 +243,7 @@ export function BookingFormSection({
               ) : (
                 <Calculator className="h-4 w-4" />
               )}
-              {status === "estimating" ? "Calcul en cours..." : "Estimer mon trajet"}
+              {status === "estimating" ? (personalizedQuote ? "Envoi en cours..." : "Calcul en cours...") : personalizedQuote && status === "booked" ? "Demande envoyée" : estimateLabel}
             </button>
             <p className="text-xs leading-relaxed text-muted-foreground">
               Les informations transmises sont utilisées pour traiter votre demande de devis et
@@ -278,7 +291,7 @@ export function BookingFormSection({
             {status === "booked" && (
               <p className="flex items-center gap-2 text-sm text-silver">
                 <CheckCircle2 className="h-4 w-4" />
-                Merci — Nous avons reçu votre réservation
+                {personalizedQuote ? "Merci — Nous avons reçu votre demande de devis" : "Merci — Nous avons reçu votre réservation"}
               </p>
             )}
             {error && (

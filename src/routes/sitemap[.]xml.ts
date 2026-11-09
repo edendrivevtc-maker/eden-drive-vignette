@@ -16,6 +16,7 @@ const entries: SitemapEntry[] = [
   { path: "/chauffeur-vtc-entreprise-toulouse", changefreq: "monthly", priority: "0.9" },
   { path: "/chauffeur-prive-toulouse", changefreq: "monthly", priority: "0.9" },
   { path: "/long-trajet-vtc-toulouse", changefreq: "monthly", priority: "0.9" },
+  { path: "/mise-a-disposition-chauffeur-toulouse", changefreq: "monthly", priority: "0.9" },
   { path: "/mentions-legales", changefreq: "yearly", priority: "0.3" },
   { path: "/politique-confidentialite", changefreq: "yearly", priority: "0.3" },
 ];
