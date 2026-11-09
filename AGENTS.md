@@ -12,3 +12,4 @@
 - Keep page-specific SEO metadata on leaf routes only; share images use 1200×630 public renditions of the displayed photo or logo so crawlers receive lightweight absolute URLs.
 - Serve the existing font files and font-face definitions from public/fonts through the root stylesheet link to preserve typography without third-party font requests.
 - Google review badges only read the shared database cache; a secret-authenticated daily callback refreshes it after an atomic database claim that reserves 24 hours even on failure, preventing visitor-driven or cross-worker duplicate Google requests.
+- The long-distance leaf route reuses the unchanged booking component and isolated copies of the existing homepage footer and testimonials, so its content does not alter the homepage beyond its service-card destination.

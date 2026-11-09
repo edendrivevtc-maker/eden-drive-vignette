@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChauffeurPriveToulouseRouteImport } from './routes/chauffeur-prive-toulouse'
 import { Route as ChauffeurVtcEntrepriseToulouseRouteImport } from './routes/chauffeur-vtc-entreprise-toulouse'
+import { Route as LongTrajetVtcToulouseRouteImport } from './routes/long-trajet-vtc-toulouse'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -35,6 +36,11 @@ const ChauffeurVtcEntrepriseToulouseRoute =
     path: '/chauffeur-vtc-entreprise-toulouse',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LongTrajetVtcToulouseRoute = LongTrajetVtcToulouseRouteImport.update({
+  id: '/long-trajet-vtc-toulouse',
+  path: '/long-trajet-vtc-toulouse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   id: '/mentions-legales',
   path: '/mentions-legales',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chauffeur-prive-toulouse': typeof ChauffeurPriveToulouseRoute
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
+  '/long-trajet-vtc-toulouse': typeof LongTrajetVtcToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chauffeur-prive-toulouse': typeof ChauffeurPriveToulouseRoute
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
+  '/long-trajet-vtc-toulouse': typeof LongTrajetVtcToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/chauffeur-prive-toulouse': typeof ChauffeurPriveToulouseRoute
   '/chauffeur-vtc-entreprise-toulouse': typeof ChauffeurVtcEntrepriseToulouseRoute
+  '/long-trajet-vtc-toulouse': typeof LongTrajetVtcToulouseRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chauffeur-prive-toulouse'
     | '/chauffeur-vtc-entreprise-toulouse'
+    | '/long-trajet-vtc-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/sitemap.xml'
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chauffeur-prive-toulouse'
     | '/chauffeur-vtc-entreprise-toulouse'
+    | '/long-trajet-vtc-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/sitemap.xml'
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chauffeur-prive-toulouse'
     | '/chauffeur-vtc-entreprise-toulouse'
+    | '/long-trajet-vtc-toulouse'
     | '/mentions-legales'
     | '/politique-confidentialite'
     | '/sitemap.xml'
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChauffeurPriveToulouseRoute: typeof ChauffeurPriveToulouseRoute
   ChauffeurVtcEntrepriseToulouseRoute: typeof ChauffeurVtcEntrepriseToulouseRoute
+  LongTrajetVtcToulouseRoute: typeof LongTrajetVtcToulouseRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       path: '/chauffeur-vtc-entreprise-toulouse'
       fullPath: '/chauffeur-vtc-entreprise-toulouse'
       preLoaderRoute: typeof ChauffeurVtcEntrepriseToulouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/long-trajet-vtc-toulouse': {
+      id: '/long-trajet-vtc-toulouse'
+      path: '/long-trajet-vtc-toulouse'
+      fullPath: '/long-trajet-vtc-toulouse'
+      preLoaderRoute: typeof LongTrajetVtcToulouseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mentions-legales': {
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChauffeurPriveToulouseRoute: ChauffeurPriveToulouseRoute,
   ChauffeurVtcEntrepriseToulouseRoute: ChauffeurVtcEntrepriseToulouseRoute,
+  LongTrajetVtcToulouseRoute: LongTrajetVtcToulouseRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
