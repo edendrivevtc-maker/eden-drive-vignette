@@ -14,3 +14,4 @@
 - Google review badges only read the shared database cache; a secret-authenticated daily callback refreshes it after an atomic database claim that reserves 24 hours even on failure, preventing visitor-driven or cross-worker duplicate Google requests.
 - The long-distance leaf route reuses the unchanged booking component and isolated copies of the existing homepage footer and testimonials, so its content does not alter the homepage beyond its service-card destination.
 - The disposal leaf page uses route-local direct contact instead of the shared booking form; keep booking and email modules unchanged for other pages.
+- The event leaf page reuses the standard booking form with presentation-only props and the existing isolated reviews/footer; keep event copy local so homepage content and booking rules remain unchanged.
