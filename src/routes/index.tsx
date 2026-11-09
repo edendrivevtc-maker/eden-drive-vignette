@@ -78,6 +78,10 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
+      { name: "geo.region", content: "FR-OCC" },
+      { name: "geo.placename", content: "Montrabé" },
+      { name: "geo.position", content: "43.6425;1.525" },
+      { name: "ICBM", content: "43.6425, 1.525" },
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
