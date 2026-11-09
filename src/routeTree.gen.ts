@@ -19,6 +19,7 @@ import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as VtcAeroportToulouseBlagnacRouteImport } from './routes/vtc-aeroport-toulouse-blagnac'
 import { Route as VtcGareMatabiauToulouseRouteImport } from './routes/vtc-gare-matabiau-toulouse'
+import { Route as VtcMariageEvenementToulouseRouteImport } from './routes/vtc-mariage-evenement-toulouse'
 import { Route as ApiPublicGoogleReviewsRefreshRouteImport } from './routes/api/public/google-reviews-refresh'
 
 const IndexRoute = IndexRouteImport.update({
@@ -75,6 +76,12 @@ const VtcGareMatabiauToulouseRoute = VtcGareMatabiauToulouseRouteImport.update({
   path: '/vtc-gare-matabiau-toulouse',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VtcMariageEvenementToulouseRoute =
+  VtcMariageEvenementToulouseRouteImport.update({
+    id: '/vtc-mariage-evenement-toulouse',
+    path: '/vtc-mariage-evenement-toulouse',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicGoogleReviewsRefreshRoute =
   ApiPublicGoogleReviewsRefreshRouteImport.update({
     id: '/api/public/google-reviews-refresh',
@@ -93,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
+  '/vtc-mariage-evenement-toulouse': typeof VtcMariageEvenementToulouseRoute
   '/api/public/google-reviews-refresh': typeof ApiPublicGoogleReviewsRefreshRoute
 }
 export interface FileRoutesByTo {
@@ -106,6 +114,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
+  '/vtc-mariage-evenement-toulouse': typeof VtcMariageEvenementToulouseRoute
   '/api/public/google-reviews-refresh': typeof ApiPublicGoogleReviewsRefreshRoute
 }
 export interface FileRoutesById {
@@ -120,6 +129,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/vtc-aeroport-toulouse-blagnac': typeof VtcAeroportToulouseBlagnacRoute
   '/vtc-gare-matabiau-toulouse': typeof VtcGareMatabiauToulouseRoute
+  '/vtc-mariage-evenement-toulouse': typeof VtcMariageEvenementToulouseRoute
   '/api/public/google-reviews-refresh': typeof ApiPublicGoogleReviewsRefreshRoute
 }
 export interface FileRouteTypes {
@@ -135,6 +145,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
+    | '/vtc-mariage-evenement-toulouse'
     | '/api/public/google-reviews-refresh'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
+    | '/vtc-mariage-evenement-toulouse'
     | '/api/public/google-reviews-refresh'
   id:
     | '__root__'
@@ -161,6 +173,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/vtc-aeroport-toulouse-blagnac'
     | '/vtc-gare-matabiau-toulouse'
+    | '/vtc-mariage-evenement-toulouse'
     | '/api/public/google-reviews-refresh'
   fileRoutesById: FileRoutesById
 }
@@ -175,6 +188,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VtcAeroportToulouseBlagnacRoute: typeof VtcAeroportToulouseBlagnacRoute
   VtcGareMatabiauToulouseRoute: typeof VtcGareMatabiauToulouseRoute
+  VtcMariageEvenementToulouseRoute: typeof VtcMariageEvenementToulouseRoute
   ApiPublicGoogleReviewsRefreshRoute: typeof ApiPublicGoogleReviewsRefreshRoute
 }
 
@@ -250,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VtcGareMatabiauToulouseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vtc-mariage-evenement-toulouse': {
+      id: '/vtc-mariage-evenement-toulouse'
+      path: '/vtc-mariage-evenement-toulouse'
+      fullPath: '/vtc-mariage-evenement-toulouse'
+      preLoaderRoute: typeof VtcMariageEvenementToulouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/google-reviews-refresh': {
       id: '/api/public/google-reviews-refresh'
       path: '/api/public/google-reviews-refresh'
@@ -272,6 +293,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VtcAeroportToulouseBlagnacRoute: VtcAeroportToulouseBlagnacRoute,
   VtcGareMatabiauToulouseRoute: VtcGareMatabiauToulouseRoute,
+  VtcMariageEvenementToulouseRoute: VtcMariageEvenementToulouseRoute,
   ApiPublicGoogleReviewsRefreshRoute: ApiPublicGoogleReviewsRefreshRoute,
 }
 export const routeTree = rootRouteImport
