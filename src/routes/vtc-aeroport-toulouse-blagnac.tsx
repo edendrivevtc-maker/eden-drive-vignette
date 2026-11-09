@@ -104,19 +104,21 @@ export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "TaxiService",
-          name: "Eden Drive VTC — Transfert aéroport Toulouse-Blagnac",
-          description: DESCRIPTION,
-          image: airportImg,
+          "@type": "Service",
+          serviceType: "Transfert aéroport en VTC",
+          name: "Transfert aéroport Toulouse-Blagnac en VTC privé",
+          description:
+            "Transfert privé entre l'aéroport Toulouse-Blagnac et Toulouse, avec suivi de vol, accueil pancarte et tarif ferme annoncé à l'avance. Chauffeur privé EDEN DRIVE VTC, disponible 24h/24 et 7j/7.",
           provider: {
             "@type": "LocalBusiness",
             name: "EDEN DRIVE VTC",
-            telephone: "+33 6 35 58 58 23",
-            email: "edendrivevtc@gmail.com",
-            priceRange: "€€€",
+            telephone: "+33635585823",
+            url: "https://www.edendrive-vtc.fr",
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Toulouse",
+              streetAddress: "3 rue Suzanne Valadon",
+              postalCode: "31850",
+              addressLocality: "Montrabé",
               addressRegion: "Occitanie",
               addressCountry: "FR",
             },
@@ -124,9 +126,17 @@ export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
           areaServed: [
             { "@type": "City", name: "Toulouse" },
             { "@type": "City", name: "Blagnac" },
-            { "@type": "AdministrativeArea", name: "Occitanie" },
+            { "@type": "City", name: "Montrabé" },
+            { "@type": "City", name: "Colomiers" },
+            { "@type": "City", name: "Balma" },
           ],
-          serviceType: "Transfert aéroport Toulouse-Blagnac",
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "EUR",
+            description:
+              "Tarif ferme annoncé à l'avance, incluant le suivi de vol, l'accueil pancarte et l'attente.",
+            availability: "https://schema.org/InStock",
+          },
         }),
       },
       {
