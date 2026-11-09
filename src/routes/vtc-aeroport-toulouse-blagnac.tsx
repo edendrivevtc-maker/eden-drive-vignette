@@ -24,9 +24,9 @@ import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-rev
 import { googleReviewsQueryOptions } from "@/lib/google-reviews.query";
 import airportImg from "@/assets/airport-transfer.jpg";
 
-const TITLE = "Chauffeur VTC Aéroport Toulouse-Blagnac | Eden Drive";
+const TITLE = "Transfert aéroport Toulouse-Blagnac et hôtels — Chauffeur privé | EDEN DRIVE VTC";
 const DESCRIPTION =
-  "Réservez votre chauffeur VTC pour vos transferts vers l'aéroport Toulouse-Blagnac. Service privé, ponctuel et confortable avec Eden Drive.";
+  "Transfert aéroport Toulouse-Blagnac et transferts hôtels en VTC privé. Suivi de vol, accueil pancarte, tarif ferme. Chauffeur privé à Toulouse. Devis immédiat.";
 
 const PHONE_DISPLAY_LOCAL = "06 35 58 58 23";
 const PHONE_TEL = "+33635585823";
@@ -78,6 +78,9 @@ const FAQ = [
     q: "Peut-on annuler ou modifier une réservation de transfert aéroport ?",
     a: "Oui. Toute modification ou annulation est possible gratuitement jusqu'à quelques heures avant le trajet. Contactez-nous simplement par téléphone, WhatsApp ou e-mail : nous vous confirmons rapidement la mise à jour de votre réservation.",
   },
+  { q: "Assurez-vous les transferts depuis et vers les hôtels de Toulouse ?", a: "Oui. Nous assurons les transferts entre votre hôtel, l'aéroport Toulouse-Blagnac, la gare Matabiau et toute autre adresse à Toulouse et en Occitanie. Précisez le nom de votre hôtel dans votre demande pour obtenir un tarif ferme." },
+  { q: "Le chauffeur peut-il m'attendre à la sortie de mon hôtel ?", a: "Oui. Votre chauffeur vous attend à l'entrée de votre hôtel, à l'heure exacte convenue, avec une pancarte à votre nom si vous le souhaitez. Il vous accompagne jusqu'au véhicule et gère vos bagages." },
+
 ];
 
 export const Route = createFileRoute("/vtc-aeroport-toulouse-blagnac")({
@@ -153,6 +156,7 @@ function Page() {
       <Hero />
       <Advantages />
       <HowItWorks />
+      <HotelTransfers />
       <WhyUs />
       <TestimonialsBlock />
       <Faq />
@@ -322,6 +326,23 @@ function HowItWorks() {
               <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HotelTransfers() {
+  return (
+    <section id="transferts-hotels" className="section-light scroll-mt-28 border-t border-border/40 py-24 sm:py-32">
+      <div className="mx-auto max-w-3xl px-5 sm:px-8">
+        <h2 className="text-center font-display text-4xl leading-tight tracking-normal sm:text-5xl">Transferts hôtels à Toulouse et en Occitanie</h2>
+        <div className="hairline mx-auto my-6 w-24" />
+        <div className="mt-10 space-y-6 leading-relaxed text-muted-foreground">
+          <p>Au-delà des aéroports, EDEN DRIVE VTC assure vos transferts depuis et vers tous les hôtels, palaces et résidences de Toulouse et de sa région. Prise en charge à votre hôtel, dépose à l'aéroport Toulouse-Blagnac, à la gare Matabiau ou à toute autre adresse, avec un tarif ferme annoncé à l'avance.</p>
+          <p>Que vous soyez un voyageur d'affaires, un couple en week-end ou une famille en séjour, votre chauffeur vous attend à l'entrée de votre hôtel, à l'heure exacte convenue. Véhicule premium, discrétion absolue, ponctualité irréprochable : votre séjour commence et se termine sereinement.</p>
+          <p>Nous desservons les principaux hôtels de Toulouse (Capitole, Compans-Caffarelli, Wilson, Matabiau, Blagnac) et de la région (hôtels de luxe, palaces, résidences d'affaires). Précisez le nom de votre hôtel dans votre demande : nous vous communiquons un tarif ferme immédiatement.</p>
+          <Link to="/mise-a-disposition-chauffeur-toulouse" className="inline-block underline underline-offset-4 transition-colors hover:text-foreground">Besoin d'un chauffeur à disposition pendant votre séjour ? Découvrez notre service de mise à disposition →</Link>
         </div>
       </div>
     </section>

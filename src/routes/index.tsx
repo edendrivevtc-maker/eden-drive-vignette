@@ -374,12 +374,12 @@ function Services() {
   const services: Array<{ icon: typeof Plane; title: string; text: string; to?: string }> = [
     { icon: Plane, title: "Transfert aéroport", text: "Toulouse-Blagnac et aéroports d'Occitanie. Suivi de vol inclus.", to: "/vtc-aeroport-toulouse-blagnac" },
     { icon: Train, title: "Transfert gare", text: "Gare Matabiau et gares régionales, accueil quai avec pancarte.", to: "/vtc-gare-matabiau-toulouse" },
-    { icon: Hotel, title: "Transferts hôtels", text: "Prise en charge à votre hôtel, palace ou résidence." },
+    { icon: Hotel, title: "Transferts hôtels", text: "Prise en charge à votre hôtel, palace ou résidence.", to: "/vtc-aeroport-toulouse-blagnac" },
     { icon: Car, title: "Longs trajets", text: "Interville et longue distance dans toute la France.", to: "/long-trajet-vtc-toulouse" },
     { icon: Clock, title: "Mise à disposition", text: "Votre chauffeur à l'heure ou à la journée, disponibilité totale.", to: "/mise-a-disposition-chauffeur-toulouse" },
     { icon: Briefcase, title: "Déplacement professionnel", text: "Roadshows, rendez-vous d'affaires, événements corporate.", to: "/chauffeur-vtc-entreprise-toulouse" },
     { icon: Sparkles, title: "Événements privés", text: "Mariages, galas, soirées prestige, arrivées remarquées.", to: "/vtc-mariage-evenement-toulouse" },
-    { icon: ShieldCheck, title: "Service VIP", text: "Personnalités, artistes, protocole sur mesure." },
+    { icon: ShieldCheck, title: "Service VIP", text: "Personnalités, artistes, protocole sur mesure.", to: "/vtc-mariage-evenement-toulouse" },
   ];
   return (
     <section id="services" className="section-light relative border-t border-border/40 py-28 sm:py-40">
