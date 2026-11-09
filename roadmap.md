@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Ajouter hôtels sur la page aéroport et VIP sur la page événementielle ; textes, FAQ, SEO et deux liens accueil uniquement ; vérifier HTML, liens et affichage
 - [x] Page mariage/événement créée avec textes fournis, formulaire standard, 6 FAQ SSR, avis, footer, SEO et sitemap ; seule carte accueil reliée ; liens et affichage 390/587/1280 px vérifiés, 30 tests réussis et estimation réelle 25 € avec bouton Réserver, aucune réservation ni publication
 - [x] Page mise à disposition créée ; carte accueil reliée, 6 FAQ SSR, avis Sarah/Karen/Mariam, footer et SEO ; affichage 390/587/1280 px et 30 tests vérifiés, aucune publication
 - [x] Formulaire de mise à disposition remplacé par téléphone, WhatsApp et email ; bouton principal #contact et FAQ adaptés ; liens, absence de champs et affichage 390/587/1280 px vérifiés, aucune publication
