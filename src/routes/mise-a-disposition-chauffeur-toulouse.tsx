@@ -135,7 +135,7 @@ function DisposalContact() {
             <Mail className="h-7 w-7 text-silver-deep" strokeWidth={1.4} />
             <h3 className={head}>Par email</h3>
             <a href="mailto:edendrivevtc@gmail.com" className="mt-4 break-all text-lg font-medium text-foreground underline-offset-4 hover:underline">edendrivevtc@gmail.com</a>
-            <p className={sub}>Réponse sous quelques heures.</p>
+            <p className={sub}>Réponse rapide.</p>
           </article>
         </div>
         <p className="mx-auto mt-10 max-w-3xl text-center leading-relaxed text-muted-foreground">Précisez-nous la date, l'heure de prise en charge, la durée souhaitée et votre programme : nous vous répondons avec un tarif ferme et une proposition adaptée.</p>
