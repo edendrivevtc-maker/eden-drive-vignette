@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Créer la page longs trajets avec formulaire existant, FAQ, avis et footer ; relier uniquement la carte accueil ; vérifier mobile, liens et SEO sans publier
+- [x] Page longs trajets créée avec formulaire inchangé, 6 FAQ SSR, 3 avis authentiques, footer identique et SEO ; carte accueil reliée, sitemap complété ; navigation et affichage 390/587/1280 px vérifiés, aucun email envoyé ni publication
 - [x] Cache durable partagé des avis : stockage Lovable Cloud, tâche quotidienne sécurisée, verrou atomique 24 h ; 3 tests, 20 accès concurrents et badge sur 3 pages vérifiés ; déploiement public restant à publier
 - [x] Compléter la politique RGPD sans inventer durées ou garanties non vérifiées
 - [x] Ajouter la mention liée à la politique sous l’estimation, sur tous les formulaires partagés
