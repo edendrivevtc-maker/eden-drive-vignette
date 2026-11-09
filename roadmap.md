@@ -1,6 +1,6 @@
 # Roadmap
 - [x] Page mise à disposition créée ; carte accueil reliée, 6 FAQ SSR, avis Sarah/Karen/Mariam, footer et SEO ; affichage 390/587/1280 px et 30 tests vérifiés, aucune publication
-- [ ] Confirmer la réception du devis personnalisé : test réel refusé par Brevo (401, IP du serveur non autorisée) ; autorisation Brevo requise avant nouveau test
+- [ ] Remplacer le formulaire de mise à disposition par les contacts directs ; vérifier liens, FAQ et affichage mobile/ordinateur sans toucher aux autres pages
 - [x] Page longs trajets créée avec formulaire inchangé, 6 FAQ SSR, 3 avis authentiques, footer identique et SEO ; carte accueil reliée, sitemap complété ; navigation et affichage 390/587/1280 px vérifiés, aucun email envoyé ni publication
 - [x] Cache durable partagé des avis : stockage Lovable Cloud, tâche quotidienne sécurisée, verrou atomique 24 h ; 3 tests, 20 accès concurrents et badge sur 3 pages vérifiés ; déploiement public restant à publier
 - [x] Compléter la politique RGPD sans inventer durées ou garanties non vérifiées
