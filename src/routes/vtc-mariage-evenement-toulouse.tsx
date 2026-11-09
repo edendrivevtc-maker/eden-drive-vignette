@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, Calendar, Car, Clock, ShieldCheck, Sparkles, BadgeCheck, ArrowUpRight, Briefcase, MessageCircle, Heart, Users, Gift } from "lucide-react";
+import { Phone, Calendar, Car, Clock, ShieldCheck, Sparkles, BadgeCheck, ArrowUpRight, Briefcase, MessageCircle, Mail, Heart, Users, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BookingFormSection } from "@/components/booking-form";
 import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
 import { LongJourneyFooter, LongJourneyReviews } from "@/components/long-journey-shared";
 import { googleReviewsQueryOptions } from "@/lib/google-reviews.query";
@@ -53,7 +52,7 @@ function EventPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
           <Link to="/" aria-label="EDEN DRIVE VTC — Accueil"><img src="/logo.png" alt="EDEN DRIVE VTC" className="h-16 w-auto object-contain" /></Link>
           <nav className="flex items-center gap-6" aria-label="Navigation principale">
-            <a href="#reserver" className="hidden text-sm text-silver md:block">Réservation</a>
+            <a href="#contact" className="hidden text-sm text-silver md:block">Réservation</a>
             <a href="#services" className="hidden text-sm text-silver md:block">Prestations</a>
             <Button asChild className={`${cta} hidden md:inline-flex`}><a href="tel:+33635585823"><Phone />06 35 58 58 23</a></Button>
             <Button asChild className="btn-silver h-10 w-10 rounded-full md:hidden"><a href="tel:+33635585823" aria-label="Appeler EDEN DRIVE VTC"><Phone /></a></Button>
@@ -71,7 +70,7 @@ function EventPage() {
               <div className="hairline my-6 w-40" />
               <p className="max-w-2xl text-base leading-relaxed text-ivory/90 sm:text-lg">Un chauffeur privé et un véhicule premium pour votre mariage, votre gala ou votre soirée prestige. Arrivée remarquée, discrétion absolue, ponctualité irréprochable. Sur réservation.</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild className={cta}><a href="#reserver"><Calendar />Estimer mon événement</a></Button>
+                <Button asChild className={cta}><a href="#contact"><Phone />Nous contacter</a></Button>
                 <Button asChild className={cta}><a href="tel:+33635585823"><Phone />06 35 58 58 23</a></Button>
               </div>
             </div>
@@ -83,9 +82,9 @@ function EventPage() {
         <Band title="Comment se déroule un événement avec EDEN DRIVE VTC ?" narrow>
           <ol className="space-y-6">{steps.map((text, i) => <li key={text} className="flex gap-5 border-b border-border pb-6"><span className="font-display text-4xl text-silver-deep">{String(i + 1).padStart(2, "0")}</span><p className="pt-2">{text}</p></li>)}</ol>
         </Band>
-        <Band title="Nos formules pour votre événement"><Cards items={plans} icons={[Heart, Users, Sparkles]} /><p className="text-center">Chaque formule est personnalisable. Renseignez votre demande dans le formulaire pour obtenir votre tarif ferme immédiatement.</p></Band>
+        <Band title="Nos formules pour votre événement"><Cards items={plans} icons={[Heart, Users, Sparkles]} /><p className="text-center">Chaque formule est personnalisable. Contactez-nous directement pour obtenir votre tarif ferme et une proposition adaptée.</p></Band>
         <Band title="Pourquoi choisir EDEN DRIVE VTC pour votre événement ?"><Cards items={reasons} icons={[Sparkles, ShieldCheck, Clock, BadgeCheck, Calendar]} /></Band>
-        <BookingFormSection estimateLabel="Estimer mon événement" messagePlaceholder="Précisez le type d'événement, le nombre de passagers, le programme (arrivée, transport des proches, retour) et toute demande particulière." title="Réservez votre VTC événement dès maintenant" subtitle="Chauffeur dédié, tarif ferme, véhicule premium." sectionClassName="section-light relative scroll-mt-28 border-t border-border/40 py-24 sm:py-32" />
+        <EventContact />
         <section id="contact-rapide" className="scroll-mt-28 border-t border-border/40 bg-background py-24 sm:py-32">
           <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
             <p className="text-muted-foreground">Disponible 24h/24, 7j/7. Réponse immédiate par téléphone ou WhatsApp.</p>
@@ -114,4 +113,43 @@ function Cards({ items, icons }: { items: { title: string; text: string }[]; ico
 }
 function Band({ title, narrow = false, children }: { title: string; narrow?: boolean; children: React.ReactNode }) {
   return <section className="section-light border-t border-border/40 py-24 sm:py-32"><div className={`mx-auto px-5 sm:px-8 ${narrow ? "max-w-3xl" : "max-w-7xl"}`}><h2 className="text-center font-display text-4xl leading-tight tracking-normal sm:text-5xl">{title}</h2><div className="hairline mx-auto my-6 w-24" /><div className="mt-10 space-y-6 leading-relaxed text-muted-foreground">{children}</div></div></section>;
+}
+
+const WA_ICON = "M16.001 3.2C8.937 3.2 3.2 8.937 3.2 16c0 2.257.594 4.457 1.723 6.397L3.2 28.8l6.55-1.7A12.77 12.77 0 0 0 16.001 28.8C23.064 28.8 28.8 23.063 28.8 16S23.064 3.2 16.001 3.2zm0 23.36a10.53 10.53 0 0 1-5.365-1.467l-.384-.228-3.887 1.009 1.037-3.788-.25-.39A10.53 10.53 0 0 1 5.44 16c0-5.822 4.738-10.56 10.561-10.56 5.822 0 10.56 4.738 10.56 10.56 0 5.822-4.738 10.56-10.56 10.56zm5.79-7.905c-.317-.159-1.876-.926-2.167-1.032-.291-.106-.503-.159-.715.159-.212.317-.82 1.032-1.005 1.244-.185.212-.371.238-.688.079-.317-.159-1.339-.494-2.55-1.574-.943-.841-1.58-1.88-1.765-2.197-.185-.317-.02-.489.139-.647.143-.142.317-.371.476-.556.159-.185.212-.317.317-.529.106-.212.053-.397-.027-.556-.079-.159-.715-1.723-.98-2.36-.258-.62-.52-.536-.715-.546l-.609-.011c-.212 0-.556.079-.847.397-.291.317-1.111 1.085-1.111 2.65 0 1.564 1.137 3.076 1.296 3.288.159.212 2.239 3.418 5.424 4.792.759.328 1.35.523 1.812.669.761.242 1.454.208 2.001.126.611-.091 1.876-.767 2.141-1.508.265-.741.265-1.376.185-1.508-.079-.132-.291-.212-.608-.371z";
+
+function EventContact() {
+  const card = "luxe-card flex flex-col items-center rounded-2xl p-7 text-center";
+  const head = "mt-5 font-display text-2xl tracking-normal text-foreground";
+  const sub = "mt-4 text-sm leading-relaxed text-muted-foreground";
+  return (
+    <section id="contact" className="section-light scroll-mt-28 border-t border-border/40 py-24 sm:py-32">
+      <span id="reserver" className="block scroll-mt-28" aria-hidden="true" />
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <h2 className="text-center font-display text-4xl leading-tight tracking-normal sm:text-5xl">Réservez votre événement</h2>
+        <div className="hairline mx-auto my-6 w-24" />
+        <p className="mx-auto max-w-3xl text-center leading-relaxed text-muted-foreground">Votre événement est une prestation sur mesure. Pour obtenir votre tarif ferme et organiser votre programme, contactez-nous directement par téléphone, WhatsApp ou email. Réponse immédiate, 24h/24 et 7j/7.</p>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <article className={card}>
+            <Phone className="h-7 w-7 text-silver-deep" strokeWidth={1.4} />
+            <h3 className={head}>Par téléphone</h3>
+            <a href="tel:0635585823" className="mt-4 font-display text-3xl text-foreground underline-offset-4 hover:underline">06 35 58 58 23</a>
+            <p className={sub}>Disponible 24h/24, 7j/7. Réponse immédiate.</p>
+          </article>
+          <article className={card}>
+            <svg viewBox="0 0 32 32" className="h-7 w-7 fill-silver-deep" aria-hidden="true"><path d={WA_ICON} /></svg>
+            <h3 className={head}>Par WhatsApp</h3>
+            <Button asChild className={`${cta} mt-4 w-full`}><a href="https://wa.me/33635585823" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 32 32" className="fill-current" aria-hidden="true"><path d={WA_ICON} /></svg>Discuter sur WhatsApp</a></Button>
+            <p className={sub}>Réponse immédiate par message.</p>
+          </article>
+          <article className={card}>
+            <Mail className="h-7 w-7 text-silver-deep" strokeWidth={1.4} />
+            <h3 className={head}>Par email</h3>
+            <a href="mailto:edendrivevtc@gmail.com" className="mt-4 break-all text-lg font-medium text-foreground underline-offset-4 hover:underline">edendrivevtc@gmail.com</a>
+            <p className={sub}>Réponse rapide.</p>
+          </article>
+        </div>
+        <p className="mx-auto mt-10 max-w-3xl text-center leading-relaxed text-muted-foreground">Précisez-nous la date, l'heure de prise en charge, la durée souhaitée et votre programme : nous vous répondons avec un tarif ferme et une proposition adaptée.</p>
+      </div>
+    </section>
+  );
 }
