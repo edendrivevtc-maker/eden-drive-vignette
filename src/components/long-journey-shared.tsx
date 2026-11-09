@@ -16,7 +16,7 @@ function Logo({ className = "" }: { className?: string }) {
   );
 }
 
-export function LongJourneyReviews() {
+export function LongJourneyReviews({ selection = [0, 1, 2] }: { selection?: number[] }) {
   const reviews = [
     {
       name: "Sarah Vrancken",
@@ -73,7 +73,7 @@ export function LongJourneyReviews() {
         </div>
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {reviews.slice(0, 3).map((r) => (
+          {selection.flatMap(index => reviews[index] ? [reviews[index]] : []).map((r) => (
             <figure key={r.name} className="luxe-card flex h-full flex-col rounded-2xl p-7">
               <div className="flex gap-1 text-silver">
                 {Array.from({ length: 5 }).map((_, i) => (

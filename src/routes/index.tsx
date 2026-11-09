@@ -376,7 +376,7 @@ function Services() {
     { icon: Train, title: "Transfert gare", text: "Gare Matabiau et gares régionales, accueil quai avec pancarte.", to: "/vtc-gare-matabiau-toulouse" },
     { icon: Hotel, title: "Transferts hôtels", text: "Prise en charge à votre hôtel, palace ou résidence." },
     { icon: Car, title: "Longs trajets", text: "Interville et longue distance dans toute la France.", to: "/long-trajet-vtc-toulouse" },
-    { icon: Clock, title: "Mise à disposition", text: "Votre chauffeur à l'heure ou à la journée, disponibilité totale." },
+    { icon: Clock, title: "Mise à disposition", text: "Votre chauffeur à l'heure ou à la journée, disponibilité totale.", to: "/mise-a-disposition-chauffeur-toulouse" },
     { icon: Briefcase, title: "Déplacement professionnel", text: "Roadshows, rendez-vous d'affaires, événements corporate.", to: "/chauffeur-vtc-entreprise-toulouse" },
     { icon: Sparkles, title: "Événements privés", text: "Mariages, galas, soirées prestige, arrivées remarquées." },
     { icon: ShieldCheck, title: "Service VIP", text: "Personnalités, artistes, protocole sur mesure." },
