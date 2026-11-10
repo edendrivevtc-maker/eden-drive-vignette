@@ -25,9 +25,6 @@ import { BookingFormSection } from "@/components/booking-form";
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import { googleReviewsQueryOptions } from "@/lib/google-reviews.query";
 import heroCar from "@/assets/hero-car.jpg";
-import comfortWater from "@/assets/service-premium-vtc-toulouse-bouteilles-eau.jpg.asset.json";
-import comfortInterior from "@/assets/interieur-cuir-noir-ford-mondeo-vtc.jpg.asset.json";
-import comfortBench from "@/assets/banquette-arriere-premium-chauffeur-toulouse.jpg.asset.json";
 import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
 
 const FAQ: FaqItem[] = [
@@ -181,7 +178,6 @@ function Home() {
       <ContactCTA />
       <Testimonials />
       <FaqSection items={FAQ} title={<><em className="text-silver-gradient not-italic">FAQ</em> — EDEN DRIVE VTC</>} />
-      <ComfortSection />
       <ZoneSection />
       <Footer />
       <WhatsAppFloating />
@@ -699,63 +695,6 @@ function Field({
         className="w-full rounded-md border border-border bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-silver"
       />
     </div>
-  );
-}
-
-/* ---------- Le confort à bord ---------- */
-const COMFORT_PHOTOS = [
-  {
-    src: comfortWater.url,
-    alt: "Service premium VTC Toulouse avec bouteilles d'eau et carte de contact EDEN DRIVE VTC",
-  },
-  {
-    src: comfortInterior.url,
-    alt: "Intérieur cuir noir spacieux de la Ford Mondeo du chauffeur privé EDEN DRIVE VTC",
-  },
-  {
-    src: comfortBench.url,
-    alt: "Banquette arrière en cuir noir avec accoudoir central, EDEN DRIVE VTC Toulouse",
-  },
-];
-
-function ComfortSection() {
-  return (
-    <section id="confort" className="section-light relative border-t border-border/40 py-28 sm:py-40">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
-          <h2 className="font-display text-3xl leading-tight sm:text-5xl">
-            Le confort <em className="text-silver-gradient not-italic">à bord</em>
-          </h2>
-          <div className="hairline mx-auto my-6 w-24" />
-          <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Voyagez à bord de notre Ford Mondeo gris anthracite. Un intérieur cuir
-            noir spacieux, pensé pour votre confort, avec des attentions qui font la
-            différence : eau fraîche à disposition, chargeurs, et une propreté
-            irréprochable à chaque course.
-          </p>
-        </div>
-
-        <ul className="no-scrollbar mt-12 -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
-          {COMFORT_PHOTOS.map((photo) => (
-            <li key={photo.alt} className="w-[78%] shrink-0 snap-center md:w-auto">
-              <figure className="luxe-card h-full overflow-hidden rounded-2xl p-0">
-                <div className="aspect-[3/4] overflow-hidden">
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    width={1000}
-                    height={1333}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </figure>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
   );
 }
 
