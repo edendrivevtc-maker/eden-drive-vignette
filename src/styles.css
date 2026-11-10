@@ -167,6 +167,14 @@
   100% { background-position: 200% 0; }
 }
 
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility animate-fade-up {
   animation: fadeUp 0.9s var(--transition-smooth) both;
 }
