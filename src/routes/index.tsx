@@ -61,7 +61,7 @@ const FAQ: FaqItem[] = [
   },
   {
     q: "Quels types de véhicules utilisez-vous ?",
-    a: "Nous mettons à votre disposition des berlines haut de gamme récentes (type Mercedes Classe E ou équivalent), parfaitement entretenues, climatisées, avec intérieur cuir soigné. Bouteille d'eau offerte et Wi-Fi disponible sur demande.",
+    a: "Nous mettons à votre disposition une Ford Mondeo berline récente, gris anthracite, parfaitement entretenue, climatisée, avec un intérieur cuir noir soigné. Bouteille d'eau offerte, chargeurs et Wi-Fi disponibles à bord.",
   },
   {
     q: "Proposez-vous des services pour les entreprises et les événements ?",
