@@ -193,6 +193,16 @@ export function LongJourneyFooter() {
           <Link to="/politique-confidentialite" className="transition-colors hover:text-silver">
             Politique de confidentialité
           </Link>
+          <a
+            href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              (window as Window & { Cookiebot?: { renew: () => void } }).Cookiebot?.renew();
+            }}
+            className="transition-colors hover:text-silver"
+          >
+            Gérer mes cookies
+          </a>
         </nav>
 
 
