@@ -543,16 +543,13 @@ function Footer() {
               <Link to="/" className="hover:text-silver">Accueil</Link>
               <Link to="/mentions-legales" className="hover:text-silver">Mentions légales</Link>
               <Link to="/politique-confidentialite" className="hover:text-silver">Politique de confidentialité</Link>
-              <a
-                href="#"
-                onClick={(event) => {
-                  event.preventDefault();
-                  (window as Window & { Cookiebot?: { renew: () => void } }).Cookiebot?.renew();
-                }}
+              <button
+                type="button"
+                onClick={() => window.Cookiebot?.renew()}
                 className="transition-colors hover:text-silver"
               >
                 Gérer mes cookies
-              </a>
+              </button>
             </nav>
           </div>
         </div>

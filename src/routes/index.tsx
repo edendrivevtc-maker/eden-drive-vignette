@@ -827,16 +827,13 @@ function Footer() {
           <Link to="/politique-confidentialite" className="transition-colors hover:text-silver">
             Politique de confidentialité
           </Link>
-          <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-              (window as Window & { Cookiebot?: { renew: () => void } }).Cookiebot?.renew();
-            }}
+          <button
+            type="button"
+            onClick={() => window.Cookiebot?.renew()}
             className="transition-colors hover:text-silver"
           >
             Gérer mes cookies
-          </a>
+          </button>
         </nav>
 
 
