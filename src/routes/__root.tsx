@@ -13,6 +13,12 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+declare global {
+  interface Window {
+    Cookiebot?: { renew: () => void };
+  }
+}
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -75,6 +81,9 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
+    scripts: [
+      { src: "https://consent.cookiebot.com/uc.js", id: "Cookiebot", "data-cbid": "7e8faec6-b933-4dd4-9154-05f7ca5146d8", "data-blockingmode": "auto", type: "text/javascript" },
+    ],
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -109,7 +118,6 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="7e8faec6-b933-4dd4-9154-05f7ca5146d8" data-blockingmode="auto" type="text/javascript"></script>
         <HeadContent />
       </head>
       <body>
