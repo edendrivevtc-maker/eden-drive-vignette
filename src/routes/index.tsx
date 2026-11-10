@@ -25,9 +25,6 @@ import { BookingFormSection } from "@/components/booking-form";
 import { GoogleReviewsRating, GoogleReviewsCount } from "@/components/google-reviews-stats";
 import { googleReviewsQueryOptions } from "@/lib/google-reviews.query";
 import heroCar from "@/assets/hero-car.jpg";
-import comfortWater from "@/assets/service-premium-vtc-toulouse-bouteilles-eau.jpg.asset.json";
-import comfortInterior from "@/assets/interieur-cuir-noir-ford-mondeo-vtc.jpg.asset.json";
-import comfortBench from "@/assets/banquette-arriere-premium-chauffeur-toulouse.jpg.asset.json";
 import { FaqSection, buildFaqJsonLd, type FaqItem } from "@/components/faq-section";
 
 const FAQ: FaqItem[] = [
@@ -705,15 +702,15 @@ function Field({
 /* ---------- Le confort à bord ---------- */
 const COMFORT_PHOTOS = [
   {
-    src: comfortWater.url,
+    src: "/service-premium-vtc-toulouse-bouteilles-eau.jpg",
     alt: "Service premium VTC Toulouse avec bouteilles d'eau et carte de contact EDEN DRIVE VTC",
   },
   {
-    src: comfortInterior.url,
+    src: "/interieur-cuir-noir-ford-mondeo-vtc.jpg",
     alt: "Intérieur cuir noir spacieux de la Ford Mondeo du chauffeur privé EDEN DRIVE VTC",
   },
   {
-    src: comfortBench.url,
+    src: "/banquette-arriere-premium-chauffeur-toulouse.jpg",
     alt: "Banquette arrière en cuir noir avec accoudoir central, EDEN DRIVE VTC Toulouse",
   },
 ];

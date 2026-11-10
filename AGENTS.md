@@ -16,3 +16,4 @@
 - The long-distance leaf route reuses the unchanged booking component and isolated copies of the existing homepage footer and testimonials, so its content does not alter the homepage beyond its service-card destination.
 - The disposal leaf page uses route-local direct contact instead of the shared booking form; keep booking and email modules unchanged for other pages.
 - The event leaf page uses route-local direct contacts matching the disposal page and the existing isolated reviews/footer; preserve a reservation anchor for footer links and leave shared booking/email modules unchanged.
+- Serve the comfort gallery photos from public/ with root-relative JPG paths because the external custom-domain hosting does not serve Lovable asset proxy paths.
