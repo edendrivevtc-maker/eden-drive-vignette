@@ -695,6 +695,64 @@ function Field({
   );
 }
 
+/* ---------- Zone d'intervention ---------- */
+const ZONE_CITIES = [
+  "Montrabé",
+  "Balma",
+  "L'Union",
+  "Saint-Jean",
+  "Castelmaurou",
+  "Rouffiac-Tolosan",
+  "Beaupuy",
+  "Verfeil",
+  "Saint-Orens-de-Gameville",
+  "Labège",
+  "Castanet-Tolosan",
+  "Ramonville-Saint-Agne",
+  "Blagnac",
+  "Colomiers",
+  "Toulouse",
+];
+
+function ZoneSection() {
+  return (
+    <section id="zone" className="section-light relative border-t border-border/40 py-28 sm:py-40">
+      <div className="mx-auto max-w-4xl px-6 text-center">
+        <h2 className="font-display text-3xl leading-tight sm:text-5xl">
+          Notre zone d'intervention <em className="text-silver-gradient not-italic">autour de Toulouse</em>
+        </h2>
+        <div className="hairline mx-auto my-6 w-24" />
+        <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+          Basés à Montrabé, nous intervenons dans tout l'est toulousain et au-delà
+          pour vos transferts vers l'aéroport Toulouse-Blagnac, la gare Matabiau,
+          ou pour tous vos déplacements privés et professionnels. Que vous soyez à
+          Balma, L'Union, Saint-Jean, Castelmaurou, Rouffiac-Tolosan, Beaupuy,
+          Verfeil, Saint-Orens-de-Gameville, Labège, Castanet-Tolosan,
+          Ramonville-Saint-Agne, Blagnac, Colomiers ou dans le centre de Toulouse,
+          votre chauffeur privé EDEN DRIVE VTC vient vous chercher à votre domicile
+          ou à votre hôtel, avec un tarif ferme annoncé à l'avance.
+        </p>
+        <ul className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          {ZONE_CITIES.map((city) => (
+            <li
+              key={city}
+              className="rounded-full border border-silver/30 bg-silver/5 px-4 py-2 text-sm text-foreground"
+            >
+              {city}
+            </li>
+          ))}
+        </ul>
+        <a
+          href="#reserver"
+          className="btn-silver mt-12 inline-flex items-center justify-center px-6 py-4 text-sm font-medium tracking-wide"
+        >
+          Réserver ma course
+        </a>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Footer ---------- */
 function Footer() {
   return (
