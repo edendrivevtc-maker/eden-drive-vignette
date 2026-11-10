@@ -1,3 +1,4 @@
+import { GoogleReviewsConsent } from "@/components/google-reviews-consent";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
@@ -508,6 +509,7 @@ function Testimonials() {
         </div>
 
         {/* Google reviews highlight */}
+        <GoogleReviewsConsent>
         <div className="mt-12 flex justify-center">
           <div className="luxe-card w-full max-w-xl rounded-2xl p-8 text-center sm:p-10">
             <div className="flex flex-col items-center gap-5">
@@ -549,6 +551,7 @@ function Testimonials() {
             </figure>
           ))}
         </div>
+        </GoogleReviewsConsent>
       </div>
     </section>
   );

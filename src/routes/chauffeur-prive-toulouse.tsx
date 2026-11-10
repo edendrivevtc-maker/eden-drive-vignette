@@ -1,3 +1,4 @@
+import { GoogleReviewsConsent } from "@/components/google-reviews-consent";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
@@ -381,6 +382,7 @@ function WhyUs() {
           <div className="hairline mx-auto my-6 w-24" />
         </div>
 
+        <GoogleReviewsConsent>
         <div className="mt-12 flex flex-col items-center gap-4">
           <div className="flex flex-wrap items-center justify-center gap-3">
             <GoogleReviewsRating />
@@ -398,6 +400,7 @@ function WhyUs() {
           </a>
         </div>
 
+        </GoogleReviewsConsent>
 
         <div className="mt-12 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((s) => (
