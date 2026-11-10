@@ -65,7 +65,7 @@ const FAQ = [
   },
   {
     q: "Quel véhicule est utilisé pour le transfert aéroport ?",
-    a: "Nous mettons à votre disposition une berline haut de gamme récente (type Mercedes Classe E ou équivalent), impeccablement entretenue, climatisée et équipée pour un trajet confortable. Bouteille d'eau offerte et Wi-Fi disponible sur demande.",
+    a: "Nous mettons à votre disposition une Ford Mondeo gris anthracite, berline premium récente, impeccablement entretenue, climatisée et dotée d'un intérieur cuir noir soigné pour un trajet confortable. Bouteille d'eau offerte et Wi-Fi disponible sur demande.",
   },
   {
     q: "Comment sont fixés les tarifs : au compteur ou au forfait ?",

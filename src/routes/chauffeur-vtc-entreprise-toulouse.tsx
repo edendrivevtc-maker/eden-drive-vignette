@@ -71,7 +71,7 @@ const FAQ = [
   },
   {
     q: "Quels véhicules sont mis à disposition pour les déplacements professionnels ?",
-    a: "Nos berlines premium (type Mercedes Classe E, Classe S ou équivalent) offrent un confort haut de gamme, une insonorisation totale et un intérieur cuir soigné. Wi-Fi, chargeurs universels et bouteilles d'eau sont inclus pour un cadre de travail idéal en mobilité.",
+    a: "Notre Ford Mondeo gris anthracite, berline premium, offre un confort haut de gamme et un intérieur cuir noir soigné. Wi-Fi, chargeurs universels et bouteilles d'eau sont inclus pour un cadre de travail idéal en mobilité.",
   },
 ];
 
